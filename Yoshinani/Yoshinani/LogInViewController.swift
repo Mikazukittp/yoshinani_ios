@@ -24,6 +24,8 @@ class LogInViewController: UIViewController,UITextFieldDelegate {
         passwordTextInputer.keyboardType = .EmailAddress
         nameTextInputer.returnKeyType = .Done
         passwordTextInputer.returnKeyType = .Done
+        passwordTextInputer.secureTextEntry = true
+        
         nameTextInputer.delegate = self
         passwordTextInputer.delegate = self
         

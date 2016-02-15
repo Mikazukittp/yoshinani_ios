@@ -28,6 +28,7 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
         addressTextInput.returnKeyType = .Done
         accountTextInput.returnKeyType = .Done
         passwordTextInput.returnKeyType = .Done
+        passwordTextInput.secureTextEntry = true
         
         nameTextInput.delegate = self
         addressTextInput.delegate = self
