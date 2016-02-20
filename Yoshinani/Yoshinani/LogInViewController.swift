@@ -19,6 +19,8 @@ class LogInViewController: UIViewController,UITextFieldDelegate {
         super.viewDidLoad()
         
         self.edgesForExtendedLayout = .None
+        
+        self.title = "ログイン"
 
         nameTextInputer.keyboardType = .EmailAddress
         passwordTextInputer.keyboardType = .EmailAddress

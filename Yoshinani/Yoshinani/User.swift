@@ -16,6 +16,7 @@ struct User: Unboxable {
     let totals :[Total]?
     let invitedGroups :[Group]?
     let activeGroups :[Group]?
+    let sumPay :Int?
     
     init(unboxer: Unboxer) {
         self.token = unboxer.unbox("token")
@@ -29,6 +30,17 @@ struct User: Unboxable {
         self.totals = unboxer.unbox("totals")
         self.invitedGroups = unboxer.unbox("invited_groups")
         self.activeGroups = unboxer.unbox("active_groups")
+        
+        guard let notNilTotals = totals else {
+            self.sumPay = nil
+            return
+        }
+        var sum :Double = 0
+        notNilTotals.forEach{
+           sum = sum + ($0.result ?? 0)
+        }
+        self.sumPay = Int(round(sum))
+        print(self)
     }
     
     init(token: String, userId: Int, userName: String, email :String) {
@@ -39,5 +51,6 @@ struct User: Unboxable {
         self.totals = nil
         self.invitedGroups = nil
         self.activeGroups = nil
+        self.sumPay = nil
     }
 }

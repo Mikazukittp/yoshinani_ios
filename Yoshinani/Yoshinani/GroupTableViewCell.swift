@@ -10,15 +10,12 @@ import UIKit
 
 class GroupTableViewCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+    @IBOutlet weak var groupName: UILabel!
+    @IBOutlet weak var toPay: UILabel!
 
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    func setLabels(group :Group, total :Total?) {
+        groupName.text = group.name
+        let toPayStr = Int(round(total?.result ?? 0))
+        toPay.text = "¥\(toPayStr)"
     }
-    
 }

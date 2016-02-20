@@ -25,11 +25,7 @@ class OverviewTableViewCell: UITableViewCell {
             return
         }
         
-        let paid = Double(notNilTotal.paid ?? "0")!
-        let topay = Double(notNilTotal.to_pay ?? "0")!
-        let benefit = paid - topay
-        
-        let roundToPay = Int(round(benefit))
+        let roundToPay = Int(round(notNilTotal.result ?? 0))
         self.toPay.text = "¥\(roundToPay)"
     }
     

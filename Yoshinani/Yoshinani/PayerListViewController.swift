@@ -16,6 +16,8 @@ class PayerListViewController: UIViewController ,UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "参加者"
+        
         let nib = UINib(nibName: "PayerListTableViewCell", bundle: nil)
         tableView?.registerNib(nib, forCellReuseIdentifier: "PayerListTableViewCell")
         tableView?.estimatedRowHeight = 50

@@ -13,7 +13,7 @@ protocol TimeLineViewControllerDelegate {
     func pushNextViewControler (vc :UIViewController)
 }
 
-class TimeLineViewController: UIViewController ,UITableViewDelegate ,UITableViewDataSource ,UIViewControllerTransitioningDelegate {
+class TimeLineViewController: UIViewController ,UITableViewDelegate ,UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var createButton: UIButton!
@@ -68,21 +68,6 @@ class TimeLineViewController: UIViewController ,UITableViewDelegate ,UITableView
         }
     }
     
-    // MARK: UIViewControllerTransitioningDelegate
-    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.transitionMode = .Present
-        transition.startingPoint = createButton.center
-        transition.bubbleColor = createButton.backgroundColor!
-        return transition
-    }
-    
-    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.transitionMode = .Dismiss
-        transition.startingPoint = createButton.center
-        transition.bubbleColor = createButton.backgroundColor!
-        return transition
-    }
-    
     //MARK: UITableViewDelegate
     //MARK: UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -119,15 +104,13 @@ class TimeLineViewController: UIViewController ,UITableViewDelegate ,UITableView
     
     @IBAction func createButtonTapped(sender: AnyObject) {
         let vc = PostBillViewController(nibName: "PostBillViewController", bundle: nil)
-        vc.view.frame = UIScreen.mainScreen().bounds
-        vc.transitioningDelegate = self
         vc.modalPresentationStyle = .Custom
+        vc.modalTransitionStyle = .CrossDissolve
         vc.users = users
         vc.group_id = group_id
         self.presentViewController(vc, animated: true) { () -> Void in
         
         }
-
     }
     
     //MARK: Private 

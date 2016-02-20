@@ -11,9 +11,10 @@ import BubbleTransition
 import RealmSwift
 import Unbox
 
-class TopViewController: UIViewController ,UIViewControllerTransitioningDelegate ,UITableViewDataSource ,UITableViewDelegate  {
+class TopViewController: UIViewController  ,UITableViewDataSource ,UITableViewDelegate  {
     @IBOutlet weak var createButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var sumPay: UILabel!
     let transition = BubbleTransition()
     var user :User?
 
@@ -22,6 +23,7 @@ class TopViewController: UIViewController ,UIViewControllerTransitioningDelegate
         
         //登録画面に戻らせないため
         self.navigationItem.hidesBackButton = true
+        self.edgesForExtendedLayout = .None
         
         self.title = "Groups"        
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Menu", style: UIBarButtonItemStyle.Plain, target: self.navigationController, action:Selector("showMenu"))
@@ -42,6 +44,7 @@ class TopViewController: UIViewController ,UIViewControllerTransitioningDelegate
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     if !error {
                         self.user = session.user
+                        self.sumPay.text = "¥\(session.user?.sumPay ?? 0)"
                         self.tableView.reloadData()
                     }else {
                         self.popToNewUserController()
@@ -57,28 +60,11 @@ class TopViewController: UIViewController ,UIViewControllerTransitioningDelegate
     
     @IBAction func createButtonTapped(sender: AnyObject) {
         let vc = CreateRoomViewController(nibName: "CreateRoomViewController", bundle: nil)
-        vc.view.frame = self.view.frame
-        print(self.view.frame)
-        vc.transitioningDelegate = self
         vc.modalPresentationStyle = .Custom
+        vc.modalTransitionStyle = .CrossDissolve
         self.presentViewController(vc, animated: true) { () -> Void in
     
         }
-    }
-    
-    // MARK: UIViewControllerTransitioningDelegate
-    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.transitionMode = .Present
-        transition.startingPoint = createButton.center
-        transition.bubbleColor = createButton.backgroundColor!
-        return transition
-    }
-    
-    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.transitionMode = .Dismiss
-        transition.startingPoint = createButton.center
-        transition.bubbleColor = createButton.backgroundColor!
-        return transition
     }
     
     //MARK: UITableViewDelegate
@@ -98,9 +84,13 @@ class TopViewController: UIViewController ,UIViewControllerTransitioningDelegate
         guard let notNilGroups = user?.activeGroups else {
             return cell
         }
-        
+    
         let group = notNilGroups[indexPath.row]
-         cell.textLabel?.text = group.name
+        if indexPath.row < user?.totals?.count {
+            cell.setLabels(group, total: user?.totals?[indexPath.row])
+        }else{
+            cell.setLabels(group, total: nil)
+        }
         return cell
     }
     
@@ -113,6 +103,7 @@ class TopViewController: UIViewController ,UIViewControllerTransitioningDelegate
         
         let pc = PageMenuViewController()
         pc.group_id = notNilGroups[indexPath.row].group_id
+        pc.title = notNilGroups[indexPath.row].name
         self.navigationController?.pushViewController(pc, animated: true)
 
     }

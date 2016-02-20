@@ -11,12 +11,9 @@ import UIKit
 class CreateRoomViewController: UIViewController,UITextFieldDelegate {
 
     @IBOutlet weak var groupNameTextField: UITextField!
-    @IBOutlet weak var createButton: UIButton!
     @IBOutlet weak var descriptionNameTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        createButton.transform = CGAffineTransformMakeRotation(CGFloat(M_PI_4))
-        
         groupNameTextField.delegate = self
         descriptionNameTextField.delegate = self
         
@@ -101,6 +98,8 @@ class CreateRoomViewController: UIViewController,UITextFieldDelegate {
     
     func setAlertView () {
         let alertController = UIAlertController(title: "通信エラー", message: "通信環境の良い場所で通信してください", preferredStyle: .Alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alertController.addAction(defaultAction)
         
         presentViewController(alertController, animated: true, completion: nil)
     }

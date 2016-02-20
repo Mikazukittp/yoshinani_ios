@@ -17,10 +17,6 @@ class Const {
     }
 }
 
-func yoshinaniColor() -> UIColor {
-    return UIColor(red: 0.443, green: 0.769, blue: 0.784, alpha: 1.0)
-}
-
 func participants_ids(users :[User], checked :[Bool]) -> [Int] {
     var participants :[Int] = []
     for (index, score) in checked.enumerate() {

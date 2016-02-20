@@ -103,6 +103,7 @@ extension InviteFriendViewController: UISearchBarDelegate {
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    
         //ここで文字数を取得して、いい感じに処理します。
         let length = searchText.utf16.count
         

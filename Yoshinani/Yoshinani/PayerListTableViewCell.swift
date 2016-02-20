@@ -19,7 +19,7 @@ class PayerListTableViewCell: UITableViewCell {
     
     func setChecked (checked :Bool) {
         if checked {
-            nameLabel.textColor = yoshinaniColor()
+            nameLabel.textColor = UIColor.mainColor()
         }else {
             nameLabel.textColor = UIColor.blackColor()
         }

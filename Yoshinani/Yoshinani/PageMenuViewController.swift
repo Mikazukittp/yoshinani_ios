@@ -31,11 +31,11 @@ class PageMenuViewController: UIViewController ,UIViewControllerTransitioningDel
         // Make sure the title property of all view controllers is set
         // Example:
         let controller = OverViewController(nibName: "OverViewController", bundle: nil)
-        controller.title = "Overview"
+        controller.title = "メンバー"
         controller.group_id = group_id
         controllerArray.append(controller)
         let controller2 = TimeLineViewController(nibName: "TimeLineViewController", bundle: nil)
-        controller2.title = "Time Line"
+        controller2.title = "ログ"
         controller2.group_id = group_id
         controller2.delegate = self
         controllerArray.append(controller2)
@@ -46,9 +46,9 @@ class PageMenuViewController: UIViewController ,UIViewControllerTransitioningDel
         let parameters: [CAPSPageMenuOption] = [
             .MenuItemSeparatorWidth(4.3),
             .UseMenuLikeSegmentedControl(true),
-            .MenuItemSeparatorPercentageHeight(0.1),
-            .ViewBackgroundColor(UIColor(white: 1.0, alpha: 1.0)),
-            .ScrollMenuBackgroundColor(yoshinaniColor())
+            .MenuItemSeparatorPercentageHeight(0),
+            .ScrollMenuBackgroundColor(UIColor.mainColor()),
+            .SelectionIndicatorColor(UIColor.accentColor())
         ]
         
         // Initialize page menu with controller array, frame, and optional parameters

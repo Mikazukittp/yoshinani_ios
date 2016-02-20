@@ -16,6 +16,8 @@ class InvitedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "招待中のグループ"
+        
         let nib = UINib(nibName: "InviteCell", bundle: nil)
         tableView?.registerNib(nib, forCellReuseIdentifier: "InviteCell")
         tableView?.estimatedRowHeight = 50

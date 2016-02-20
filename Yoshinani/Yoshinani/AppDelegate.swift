@@ -42,9 +42,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,REFrostedViewControllerDel
             win.rootViewController = frostedVC
             win.makeKeyAndVisible()
             
-            UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red: 0.443, green: 0.769, blue: 0.784, alpha: 1.0)]
-            UINavigationBar.appearance().tintColor = UIColor(red: 0.443, green: 0.769, blue: 0.784, alpha: 1.0)
-            
+            UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+            UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+            UINavigationBar.appearance().barTintColor = UIColor.mainColor()
         }
         return true
     }

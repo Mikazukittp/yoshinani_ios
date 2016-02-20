@@ -19,6 +19,8 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
 
         self.edgesForExtendedLayout = .None
         
+        self.title = "新規登録"
+        
         nameTextInput.keyboardType = .EmailAddress
         addressTextInput.keyboardType = .EmailAddress
         accountTextInput.keyboardType = .EmailAddress

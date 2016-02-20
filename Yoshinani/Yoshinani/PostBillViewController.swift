@@ -9,9 +9,6 @@
 import UIKit
 
 class PostBillViewController: UIViewController {
-
-    @IBOutlet weak var dissmissButton: UIButton!
-    
     @IBOutlet weak var tableView: UITableView!
     var users :[User]? {
         didSet {
@@ -27,15 +24,15 @@ class PostBillViewController: UIViewController {
     var toolBar:UIToolbar!
     var group_id :Int?
     
+    @IBOutlet weak var eventInput: UITextField!
     @IBOutlet weak var detailInput: UITextField!
     @IBOutlet weak var priceInput: UITextField!
     @IBOutlet weak var dateInput: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dissmissButton.transform = CGAffineTransformMakeRotation(CGFloat(M_PI_4))
-        
         setTextInput()
+        //setLeftButton()
         
         datePicker = UIDatePicker()
         datePicker.addTarget(self, action: "changedDateEvent:", forControlEvents: UIControlEvents.ValueChanged)
@@ -54,15 +51,14 @@ class PostBillViewController: UIViewController {
         toolBar.items = [toolBarBtn]
         dateInput.inputAccessoryView = toolBar
        
-        let nib = UINib(nibName: "PayerListTableViewCell", bundle: nil)
-        tableView?.registerNib(nib, forCellReuseIdentifier: "PayerListTableViewCell")
+        let nib = UINib(nibName: "ToPayUserCell", bundle: nil)
+        tableView?.registerNib(nib, forCellReuseIdentifier: "ToPayUserCell")
         tableView?.estimatedRowHeight = 50
         tableView?.rowHeight = UITableViewAutomaticDimension
     }
     
-    //MARK: IBAction
-    
-    @IBAction func dismissButtonTapped(sender: AnyObject) {
+    //MARK :Action
+    @IBAction func didTapDismissButton(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -78,28 +74,24 @@ class PostBillViewController: UIViewController {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("PayerListTableViewCell", forIndexPath: indexPath) as! PayerListTableViewCell        
+        let cell = tableView.dequeueReusableCellWithIdentifier("ToPayUserCell", forIndexPath: indexPath) as! ToPayUserCell
         guard let notNilUsers = users else {
             return cell
         }
         
-        let user :User? = notNilUsers[indexPath.row]
-        cell.setName((user?.userName)!)
+        let user :User = notNilUsers[indexPath.row]
+        cell.setProperties(user.userName, check: !checkList[indexPath.row])
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let cell = tableView.dequeueReusableCellWithIdentifier("PayerListTableViewCell", forIndexPath: indexPath) as! PayerListTableViewCell
         let checked = checkList[indexPath.row]
-        checkList[indexPath.row] = checked ? false :true
-        
-        print(checkList)
-
-        cell.accessoryType = .Checkmark
+        checkList[indexPath.row] = checked ? false :true        
+        tableView.reloadData()
     }
     @IBAction func didTapSubmitButton(sender: AnyObject) {
-        let textFields = [detailInput,dateInput,priceInput]
+        let textFields = [detailInput,dateInput,priceInput,eventInput]
         let isSuccess = self.nilCheck(textFields, alertMessage: "不正な入力値です")
         
         if dateInput.markedTextRange != nil {
@@ -114,13 +106,21 @@ class PostBillViewController: UIViewController {
             return
         }
         
+        if eventInput.markedTextRange != nil {
+            
+        }
+        
         guard let notNilUser = RealmManager.sharedInstance.userInfo else {
             self.dismissViewControllerAnimated(true, completion: nil)
             return
         }
-        print(notNilUser)
         
-        let participants = participants_ids(self.users!, checked: checkList)
+        guard let notNilUsers = users else {
+            self.setAlertView("通信環境の良い場所で通信してください。")
+            return
+        }
+        
+        let participants = participants_ids(notNilUsers, checked: checkList)
      
         if participants.count == 0  {
             self.setAlertView("ユーザを選択してください")
@@ -130,7 +130,7 @@ class PostBillViewController: UIViewController {
         let user = User(token: "", userId: notNilUser.userId, userName: "", email: "")
         let price = priceInput.text! as String
         
-        let payment = Payment(amount:Int(price)!, event: "", description: detailInput.text!, created_at: dateInput.text!, paid_user: user)
+        let payment = Payment(amount:Int(price)!, event: eventInput.text!, description: detailInput.text!, created_at: dateInput.text!, paid_user: user)
         
         print(payment)
         
@@ -153,9 +153,20 @@ class PostBillViewController: UIViewController {
         priceInput.returnKeyType = .Done
         priceInput.delegate = self
         
+        eventInput.returnKeyType = .Done
+        eventInput.delegate = self
+        
         detailInput.returnKeyType = .Done
         detailInput.delegate = self
 
+    }
+    
+    private func setLeftButton() {
+//        let customButton :UIButton = UIButton(frame: CGRectMake(0, 0, 40, 35))
+//        customButton.setBackgroundImage(UIImage(named: "Cancel"), forState: UIControlState.Normal)
+//        customButton.addTarget(self, action: Selector("dismissView"), forControlEvents: .TouchUpInside)
+//        let customButtonItem :UIBarButtonItem = UIBarButtonItem(customView: customButton)
+//        self.navigationItem.leftBarButtonItem = customButtonItem
     }
     
     private func nilCheck(textFields :[UITextField!] , alertMessage: String) -> Bool{
@@ -179,6 +190,8 @@ class PostBillViewController: UIViewController {
     
     func setAlertView (alert :String) {
         let alertController = UIAlertController(title: "エラー", message: alert, preferredStyle: .Alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alertController.addAction(defaultAction)
         
         presentViewController(alertController, animated: true, completion: nil)
     }

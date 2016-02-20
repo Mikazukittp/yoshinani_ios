@@ -12,6 +12,7 @@ class BillTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
 
     
     override func awakeFromNib() {
@@ -25,5 +26,7 @@ class BillTableViewCell: UITableViewCell {
         self.nameLabel.text = payment.paid_user?.userName
         self.priceLabel.text = "¥\(payment.amount)"
         self.descriptionLabel.text = payment.description
+        self.dateLabel.text = (payment.created_at as NSString).substringToIndex(10)
+        print(self.dateLabel)
     }
 }

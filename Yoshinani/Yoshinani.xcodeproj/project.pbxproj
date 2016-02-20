@@ -26,6 +26,7 @@
 		83151F6A1C705B47009A4DA4 /* InviteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83151F681C705B47009A4DA4 /* InviteCell.xib */; };
 		83151F6D1C707050009A4DA4 /* InviteFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83151F6B1C707050009A4DA4 /* InviteFriendViewController.swift */; };
 		83151F6E1C707050009A4DA4 /* InviteFriendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83151F6C1C707050009A4DA4 /* InviteFriendViewController.xib */; };
+		83274DBD1C78397400CE99E0 /* UIColor+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83274DBC1C78397400CE99E0 /* UIColor+Addition.swift */; };
 		834DDB2F1C6C232900B7AB93 /* PageMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDB2E1C6C232900B7AB93 /* PageMenuViewController.swift */; };
 		834DDB321C6C285700B7AB93 /* Userable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDB311C6C285700B7AB93 /* Userable.swift */; };
 		835CCCA71C3551AD00FDEA21 /* RUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835CCCA61C3551AD00FDEA21 /* RUser.swift */; };
@@ -52,6 +53,8 @@
 		8381A58F1C33F055001911BC /* PayerListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8381A58D1C33F055001911BC /* PayerListViewController.xib */; };
 		8381A5921C33F16B001911BC /* PayerListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8381A5901C33F16B001911BC /* PayerListTableViewCell.swift */; };
 		8381A5931C33F16B001911BC /* PayerListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8381A5911C33F16B001911BC /* PayerListTableViewCell.xib */; };
+		83A5E4C11C7876B2001740A0 /* ToPayUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A5E4BF1C7876B2001740A0 /* ToPayUserCell.swift */; };
+		83A5E4C21C7876B2001740A0 /* ToPayUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83A5E4C01C7876B2001740A0 /* ToPayUserCell.xib */; };
 		83EF13261C436DB100D55F74 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EF13241C436DB100D55F74 /* LogInViewController.swift */; };
 		83EF13271C436DB100D55F74 /* LogInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83EF13251C436DB100D55F74 /* LogInViewController.xib */; };
 		83EF132A1C437D2E00D55F74 /* NewUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EF13281C437D2E00D55F74 /* NewUserViewController.swift */; };
@@ -91,6 +94,7 @@
 		83151F681C705B47009A4DA4 /* InviteCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InviteCell.xib; sourceTree = "<group>"; };
 		83151F6B1C707050009A4DA4 /* InviteFriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteFriendViewController.swift; sourceTree = "<group>"; };
 		83151F6C1C707050009A4DA4 /* InviteFriendViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InviteFriendViewController.xib; sourceTree = "<group>"; };
+		83274DBC1C78397400CE99E0 /* UIColor+Addition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Addition.swift"; sourceTree = "<group>"; };
 		834DDB2E1C6C232900B7AB93 /* PageMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageMenuViewController.swift; sourceTree = "<group>"; };
 		834DDB311C6C285700B7AB93 /* Userable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Userable.swift; sourceTree = "<group>"; };
 		835CCCA61C3551AD00FDEA21 /* RUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RUser.swift; sourceTree = "<group>"; };
@@ -118,6 +122,8 @@
 		8381A58D1C33F055001911BC /* PayerListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayerListViewController.xib; sourceTree = "<group>"; };
 		8381A5901C33F16B001911BC /* PayerListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayerListTableViewCell.swift; sourceTree = "<group>"; };
 		8381A5911C33F16B001911BC /* PayerListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayerListTableViewCell.xib; sourceTree = "<group>"; };
+		83A5E4BF1C7876B2001740A0 /* ToPayUserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToPayUserCell.swift; sourceTree = "<group>"; };
+		83A5E4C01C7876B2001740A0 /* ToPayUserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ToPayUserCell.xib; sourceTree = "<group>"; };
 		83EF13241C436DB100D55F74 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		83EF13251C436DB100D55F74 /* LogInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogInViewController.xib; sourceTree = "<group>"; };
 		83EF13281C437D2E00D55F74 /* NewUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserViewController.swift; sourceTree = "<group>"; };
@@ -228,6 +234,15 @@
 			name = Invite;
 			sourceTree = "<group>";
 		};
+		83274DBB1C78394F00CE99E0 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				8372BD631C6CC37900D07D97 /* UIViewController+Addition.swift */,
+				83274DBC1C78397400CE99E0 /* UIColor+Addition.swift */,
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
 		834DDB2D1C6C230A00B7AB93 /* PageMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -240,7 +255,6 @@
 			isa = PBXGroup;
 			children = (
 				834DDB311C6C285700B7AB93 /* Userable.swift */,
-				8372BD631C6CC37900D07D97 /* UIViewController+Addition.swift */,
 			);
 			name = Protocol;
 			sourceTree = "<group>";
@@ -324,6 +338,8 @@
 			children = (
 				8381A5871C33D3FA001911BC /* PostBillViewController.swift */,
 				8381A5881C33D3FA001911BC /* PostBillViewController.xib */,
+				83A5E4BF1C7876B2001740A0 /* ToPayUserCell.swift */,
+				83A5E4C01C7876B2001740A0 /* ToPayUserCell.xib */,
 			);
 			name = PostBill;
 			sourceTree = "<group>";
@@ -397,6 +413,7 @@
 		83FE2F731C35046E00EEC29B /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				83274DBB1C78394F00CE99E0 /* Extension */,
 				834DDB301C6C283000B7AB93 /* Protocol */,
 				83FE2F741C35047C00EEC29B /* Const.swift */,
 				83EF13361C4397C700D55F74 /* RealmManager.swift */,
@@ -494,6 +511,7 @@
 				8312ED531C2C3374005A269D /* TopViewController.xib in Resources */,
 				83151F611C7034AE009A4DA4 /* OverviewTableViewCell.xib in Resources */,
 				83151F591C6F1FB0009A4DA4 /* OverViewController.xib in Resources */,
+				83A5E4C21C7876B2001740A0 /* ToPayUserCell.xib in Resources */,
 				8381A57E1C33CA43001911BC /* TimeLineViewController.xib in Resources */,
 				8381A58F1C33F055001911BC /* PayerListViewController.xib in Resources */,
 				83EF132B1C437D2E00D55F74 /* NewUserViewController.xib in Resources */,
@@ -566,6 +584,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				834DDB321C6C285700B7AB93 /* Userable.swift in Sources */,
+				83274DBD1C78397400CE99E0 /* UIColor+Addition.swift in Sources */,
 				835CCCA91C3690EC00FDEA21 /* PaymentSession.swift in Sources */,
 				8372BD621C6C9BEF00D07D97 /* SignUpSession.swift in Sources */,
 				8381A5761C33C8DB001911BC /* GroupTableViewCell.swift in Sources */,
@@ -598,6 +617,7 @@
 				8363BD351C30217B0046A08F /* MenuNavigationController.swift in Sources */,
 				8312ED4E1C2C321F005A269D /* CreateRoomViewController.swift in Sources */,
 				83151F691C705B47009A4DA4 /* InviteCell.swift in Sources */,
+				83A5E4C11C7876B2001740A0 /* ToPayUserCell.swift in Sources */,
 				8381A5891C33D3FA001911BC /* PostBillViewController.swift in Sources */,
 				835CCCAB1C37BBF500FDEA21 /* Payment.swift in Sources */,
 				83EF13261C436DB100D55F74 /* LogInViewController.swift in Sources */,
