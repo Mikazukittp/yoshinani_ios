@@ -32,7 +32,6 @@ class PostBillViewController: UIViewController {
         super.viewDidLoad()
         
         setTextInput()
-        //setLeftButton()
         
         datePicker = UIDatePicker()
         datePicker.addTarget(self, action: "changedDateEvent:", forControlEvents: UIControlEvents.ValueChanged)
@@ -131,9 +130,7 @@ class PostBillViewController: UIViewController {
         let price = priceInput.text! as String
         
         let payment = Payment(amount:Int(price)!, event: eventInput.text!, description: detailInput.text!, created_at: dateInput.text!, paid_user: user)
-        
-        print(payment)
-        
+                
         if isSuccess {
             let session = PaymentSession()
             session.create(notNilUser.userId, pass: notNilUser.token, payment: payment, group_id: group_id!, participants: participants, complition: { (error) -> Void in
@@ -160,15 +157,7 @@ class PostBillViewController: UIViewController {
         detailInput.delegate = self
 
     }
-    
-    private func setLeftButton() {
-//        let customButton :UIButton = UIButton(frame: CGRectMake(0, 0, 40, 35))
-//        customButton.setBackgroundImage(UIImage(named: "Cancel"), forState: UIControlState.Normal)
-//        customButton.addTarget(self, action: Selector("dismissView"), forControlEvents: .TouchUpInside)
-//        let customButtonItem :UIBarButtonItem = UIBarButtonItem(customView: customButton)
-//        self.navigationItem.leftBarButtonItem = customButtonItem
-    }
-    
+        
     private func nilCheck(textFields :[UITextField!] , alertMessage: String) -> Bool{
         
         var isSuccess = true

@@ -19,6 +19,7 @@ struct Payment: Unboxable {
     
     init(unboxer: Unboxer) {
         self.payment_id = unboxer.unbox("id")
+        print(self.payment_id)
         self.event = unboxer.unbox("event")
         self.amount = unboxer.unbox("amount")
         self.description = unboxer.unbox("description")
@@ -29,7 +30,7 @@ struct Payment: Unboxable {
     
     init(amount :Int, event :String,description :String,created_at :String,paid_user :User){
         self.payment_id = 0
-        self.event = "-"
+        self.event = event
         self.amount = amount
         self.description = description
         self.created_at = created_at

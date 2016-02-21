@@ -28,6 +28,7 @@ class SignUpSession: NSObject {
             "username":property.username
         ]
         let params = ["user":userDict]
+        print(params)
         
         do {
             // Dict -> JSON

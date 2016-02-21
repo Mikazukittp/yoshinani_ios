@@ -15,7 +15,7 @@ protocol MenuTableViewControllerDelegate {
 class MenuTableViewController: UITableViewController {
     
     var tableData : Array<String> = []
-    let titles = [["Home","Profile"],["About App","Copy Right","Sign Out"]]
+    let titles = [["ホーム","プロフィール"],["Copy Right","Sign Out"]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,17 +39,19 @@ class MenuTableViewController: UITableViewController {
     
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0 {
-            return nil
-        }
-        
         let frame = CGRectMake(0, 0, tableView.frame.size.width, 34)
         let view = UIView(frame: frame)
         
         view.backgroundColor = UIColor(red: 167/255.0, green: 167/255.0, blue: 167/255.0, alpha: 0.6)
         
         let label = UILabel(frame: CGRectMake(10,8,0,0))
-        label.text = "Other";
+        
+        if section == 0 {
+            label.text = "メイン"
+        }else {
+            label.text = "その他"
+        }
+        
         label.font = UIFont.systemFontOfSize(15)
         label.textColor = UIColor.whiteColor()
         label.backgroundColor = UIColor.clearColor()
@@ -99,14 +101,16 @@ class MenuTableViewController: UITableViewController {
             self.frostedViewController.contentViewController = MenuNC
             
         }else if indexPath.section == 0 && indexPath.row == 1 {
-            //let vc: UIViewController = NewUserViewController(nibName: "NewUserViewController", bundle:nil)
             let profVC = ProfileViewController(nibName: "ProfileViewController" ,bundle: nil)
             let MenuNC = MenuNavigationController(rootViewController: profVC)
-            //MenuNC.addChildViewController(profVC)
             self.frostedViewController.contentViewController = MenuNC
-        }else if indexPath.section == 1 && indexPath.row == 2 {
+        }else if indexPath.section == 1 && indexPath.row == 1 {
             RealmManager.sharedInstance.deleteUserInfo()
             self.popToNewUserController()
+        }else if indexPath.section == 1 && indexPath.row == 0 {
+            let copyVC = CopyRightViewController(nibName: "CopyRightViewController" ,bundle: nil)
+            let MenuNC = MenuNavigationController(rootViewController: copyVC)
+            self.frostedViewController.contentViewController = MenuNC
         }
         
         self.frostedViewController.hideMenuViewController()

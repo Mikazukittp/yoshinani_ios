@@ -1,6 +1,4 @@
 PODS:
-  - BubbleTransition (1.0.1)
-  - ENSwiftSideMenu (0.1)
   - PageMenu (1.2.9)
   - Realm (0.97.0):
     - Realm/Headers (= 0.97.0)
@@ -8,26 +6,19 @@ PODS:
   - RealmSwift (0.97.0):
     - Realm (= 0.97.0)
   - REFrostedViewController (2.4.8)
-  - SwiftyUserDefaults (2.0.0)
   - Unbox (1.2.3)
 
 DEPENDENCIES:
-  - BubbleTransition (~> 1.0.0)
-  - ENSwiftSideMenu (~> 0.1)
   - PageMenu
   - RealmSwift
   - REFrostedViewController (~> 2.4)
-  - SwiftyUserDefaults
   - Unbox
 
 SPEC CHECKSUMS:
-  BubbleTransition: 76d5e306dbda0f622260ea7d082c971d976422ab
-  ENSwiftSideMenu: 4e17a97d1d92c1a9c7267993a167e27e0a10422d
   PageMenu: ba19ff267f7a19e444e93c20a7847b78954a7011
   Realm: b498a6fb9d288b171ff98d0e2d4384c295be8990
   RealmSwift: d014810dec75c9a3f1a33926d2dabfed855c582c
   REFrostedViewController: a893b4979ba1f200c547aef9ff4c3fd5a18f5923
-  SwiftyUserDefaults: 1266e9734c68bcfbac8294ee84173dc8ba6db312
   Unbox: 357412aec9fe10e0dcd36df61a2352a277037b62
 
 COCOAPODS: 0.39.0

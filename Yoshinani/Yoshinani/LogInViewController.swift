@@ -17,10 +17,8 @@ class LogInViewController: UIViewController,UITextFieldDelegate {
     //MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.edgesForExtendedLayout = .None
-        
         self.title = "ログイン"
+        self.edgesForExtendedLayout = .None
 
         nameTextInputer.keyboardType = .EmailAddress
         passwordTextInputer.keyboardType = .EmailAddress
@@ -33,7 +31,7 @@ class LogInViewController: UIViewController,UITextFieldDelegate {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"textFieldDidChange:", name: UITextFieldTextDidChangeNotification, object: nil)
         }
-    
+        
     //MARK: UITextFieldDelegate
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()

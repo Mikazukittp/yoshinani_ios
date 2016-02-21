@@ -17,6 +17,7 @@ struct User: Unboxable {
     let invitedGroups :[Group]?
     let activeGroups :[Group]?
     let sumPay :Int?
+    let account :String
     
     init(unboxer: Unboxer) {
         self.token = unboxer.unbox("token")
@@ -30,6 +31,7 @@ struct User: Unboxable {
         self.totals = unboxer.unbox("totals")
         self.invitedGroups = unboxer.unbox("invited_groups")
         self.activeGroups = unboxer.unbox("active_groups")
+        self.account = unboxer.unbox("account")
         
         guard let notNilTotals = totals else {
             self.sumPay = nil
@@ -52,5 +54,6 @@ struct User: Unboxable {
         self.invitedGroups = nil
         self.activeGroups = nil
         self.sumPay = nil
+        self.account = ""
     }
 }

@@ -71,28 +71,31 @@ extension InvitedViewController :UITableViewDelegate,UITableViewDataSource {
         
         let session = GroupSession()
         
-        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler:{
+        let defaultAction = UIAlertAction(title: "はい", style: .Default, handler:{
             (action:UIAlertAction!) -> Void in
             print("いいよ")
             session.accept(user.userId, token: user.token, group_id: group_id, complition: { (error) -> Void in
-                if !error {
-                    self.navigationController?.popViewControllerAnimated(true)
-                }else {
-                    self.caution()
-                }
-
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    if !error {
+                        self.navigationController?.popViewControllerAnimated(true)
+                    }else {
+                        self.caution()
+                    }
+                })
             })
         })
         
-        let destroyAction = UIAlertAction(title: "DENY", style: .Cancel, handler: {
+        let destroyAction = UIAlertAction(title: "いいえ", style: .Cancel, handler: {
             (action:UIAlertAction!) -> Void in
             print("やだ")
             session.destroy(user.userId, token: user.token, group_id: group_id, user_id: user.userId, complition: { (error) -> Void in
-                if !error {
-                    self.navigationController?.popViewControllerAnimated(true)
-                }else {
-                    self.caution()
-                }
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    if !error {
+                        self.navigationController?.popViewControllerAnimated(true)
+                    }else {
+                        self.caution()
+                    }
+                })
             })
         })
         

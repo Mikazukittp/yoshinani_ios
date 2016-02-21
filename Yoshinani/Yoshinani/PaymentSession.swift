@@ -14,9 +14,15 @@ class PaymentSession: NSObject {
     
     var payments :[Payment]?
     
-    func payments (uid :Int, pass :String, group_id :Int , complition :(error :Bool) ->Void) {
+    func payments (uid :Int, pass :String, group_id :Int,last_id :Int?, complition :(error :Bool) ->Void) {
         
-        let request = NSMutableURLRequest(URL: NSURL(string: Const.urlDomain + "/payments?group_id=\(group_id)")!,
+        var getParameter = "/payments?group_id=\(group_id)"
+        if last_id != nil {
+            getParameter = getParameter + "&last_id=\(last_id!)"
+            print(getParameter)
+        }
+        
+        let request = NSMutableURLRequest(URL: NSURL(string: Const.urlDomain + getParameter)!,
             cachePolicy: .UseProtocolCachePolicy,
             timeoutInterval: 10.0)
         request.HTTPMethod = "GET"

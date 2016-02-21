@@ -208,9 +208,13 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Sc-YO-WtU">
-                            <rect key="frame" x="20" y="20" width="48" height="32"/>
+                            <rect key="frame" x="20" y="17" width="35" height="35"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="35" id="EGg-Pz-TSC"/>
+                                <constraint firstAttribute="height" constant="35" id="G14-Xd-UPb"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                            <state key="normal" title="閉じる"/>
+                            <state key="normal" image="Cancel"/>
                             <connections>
                                 <action selector="didTapDismissButton:" destination="-1" eventType="touchUpInside" id="A5J-WP-51j"/>
                             </connections>
@@ -316,4 +320,7 @@
             </variation>
         </view>
     </objects>
+    <resources>
+        <image name="Cancel" width="48" height="48"/>
+    </resources>
 </document>

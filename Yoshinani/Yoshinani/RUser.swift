@@ -14,7 +14,7 @@ class RUser: Object {
     dynamic var userId = 0
     dynamic var userName = ""
     dynamic var email = ""
-
+    dynamic var account = ""
     
     //MARK: Init
     func setProperty(user :User) {
@@ -22,6 +22,7 @@ class RUser: Object {
         self.userId = user.userId
         self.userName = user.userName
         self.email = user.email
+        self.account = user.account
     }
     
     override static func primaryKey() -> String? {

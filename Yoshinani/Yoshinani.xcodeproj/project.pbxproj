@@ -66,6 +66,8 @@
 		83EF13391C43FE4100D55F74 /* GroupSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EF13381C43FE4100D55F74 /* GroupSession.swift */; };
 		83EF133B1C4407C800D55F74 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EF133A1C4407C800D55F74 /* Group.swift */; };
 		83EF133D1C440A1900D55F74 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EF133C1C440A1900D55F74 /* UserSession.swift */; };
+		83F53D461C79AA1B00E8F79C /* CopyRightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F53D441C79AA1B00E8F79C /* CopyRightViewController.swift */; };
+		83F53D471C79AA1B00E8F79C /* CopyRightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83F53D451C79AA1B00E8F79C /* CopyRightViewController.xib */; };
 		83FE2F721C3503B800EEC29B /* LoginSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FE2F711C3503B800EEC29B /* LoginSession.swift */; };
 		83FE2F751C35047C00EEC29B /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FE2F741C35047C00EEC29B /* Const.swift */; };
 		83FE2F781C35078500EEC29B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FE2F771C35078500EEC29B /* User.swift */; };
@@ -135,6 +137,8 @@
 		83EF13381C43FE4100D55F74 /* GroupSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupSession.swift; sourceTree = "<group>"; };
 		83EF133A1C4407C800D55F74 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		83EF133C1C440A1900D55F74 /* UserSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
+		83F53D441C79AA1B00E8F79C /* CopyRightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyRightViewController.swift; sourceTree = "<group>"; };
+		83F53D451C79AA1B00E8F79C /* CopyRightViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CopyRightViewController.xib; sourceTree = "<group>"; };
 		83FE2F711C3503B800EEC29B /* LoginSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSession.swift; sourceTree = "<group>"; };
 		83FE2F741C35047C00EEC29B /* Const.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		83FE2F771C35078500EEC29B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -406,6 +410,8 @@
 			children = (
 				83EF13321C43933A00D55F74 /* ProfileViewController.swift */,
 				83EF13331C43933A00D55F74 /* ProfileViewController.xib */,
+				83F53D441C79AA1B00E8F79C /* CopyRightViewController.swift */,
+				83F53D451C79AA1B00E8F79C /* CopyRightViewController.xib */,
 			);
 			name = ChildViews;
 			sourceTree = "<group>";
@@ -524,6 +530,7 @@
 				83EF13271C436DB100D55F74 /* LogInViewController.xib in Resources */,
 				8381A5931C33F16B001911BC /* PayerListTableViewCell.xib in Resources */,
 				8381A58A1C33D3FA001911BC /* PostBillViewController.xib in Resources */,
+				83F53D471C79AA1B00E8F79C /* CopyRightViewController.xib in Resources */,
 				8312ED4F1C2C321F005A269D /* CreateRoomViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -620,6 +627,7 @@
 				83A5E4C11C7876B2001740A0 /* ToPayUserCell.swift in Sources */,
 				8381A5891C33D3FA001911BC /* PostBillViewController.swift in Sources */,
 				835CCCAB1C37BBF500FDEA21 /* Payment.swift in Sources */,
+				83F53D461C79AA1B00E8F79C /* CopyRightViewController.swift in Sources */,
 				83EF13261C436DB100D55F74 /* LogInViewController.swift in Sources */,
 				83EF13391C43FE4100D55F74 /* GroupSession.swift in Sources */,
 				83FE2F751C35047C00EEC29B /* Const.swift in Sources */,

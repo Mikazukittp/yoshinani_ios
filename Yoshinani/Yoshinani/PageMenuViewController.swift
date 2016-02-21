@@ -20,7 +20,11 @@ class PageMenuViewController: UIViewController ,UIViewControllerTransitioningDel
         
         self.edgesForExtendedLayout = .None
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Invite", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("pushToInvite"))
+        let customButton :UIButton = UIButton(frame: CGRectMake(0, 0, 30, 30))
+        customButton.addTarget(self, action: Selector("pushToInvite"), forControlEvents: .TouchUpInside)
+        customButton.setBackgroundImage(UIImage(named: "Add"), forState: UIControlState.Normal)
+        let customButtonItem :UIBarButtonItem = UIBarButtonItem(customView: customButton)
+        self.navigationItem.rightBarButtonItem = customButtonItem
 
         // Array to keep track of controllers in page menu
         var controllerArray : [UIViewController] = []

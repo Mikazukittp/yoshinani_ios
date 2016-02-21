@@ -11,8 +11,9 @@ import UIKit
 class BillTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var eventLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
 
     
     override func awakeFromNib() {
@@ -24,9 +25,10 @@ class BillTableViewCell: UITableViewCell {
     //MARK: Public
     func setUpParts(payment :Payment) {
         self.nameLabel.text = payment.paid_user?.userName
-        self.priceLabel.text = "¥\(payment.amount)"
-        self.descriptionLabel.text = payment.description
-        self.dateLabel.text = (payment.created_at as NSString).substringToIndex(10)
+        self.priceLabel.text = "¥\(payment.amount)" ?? "-"
+        self.eventLabel.text = payment.event ?? "-"
+        self.descriptionLabel.text = payment.description ?? "-"
+        self.dateLabel.text = (payment.created_at as NSString).substringToIndex(10) ?? "-"
         print(self.dateLabel)
     }
 }

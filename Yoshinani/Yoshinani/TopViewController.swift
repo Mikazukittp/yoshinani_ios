@@ -25,10 +25,19 @@ class TopViewController: UIViewController  ,UITableViewDataSource ,UITableViewDe
         self.navigationItem.hidesBackButton = true
         self.edgesForExtendedLayout = .None
         
-        self.title = "Groups"        
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Menu", style: UIBarButtonItemStyle.Plain, target: self.navigationController, action:Selector("showMenu"))
+        self.title = "参加グループ"        
+        let customButton :UIButton = UIButton(frame: CGRectMake(0, 0, 35, 35))
+        customButton.addTarget(self.navigationController, action: Selector("showMenu"), forControlEvents: .TouchUpInside)
+        customButton.setBackgroundImage(UIImage(named: "List"), forState: UIControlState.Normal)
+        let customButtonItem :UIBarButtonItem = UIBarButtonItem(customView: customButton)
+        self.navigationItem.leftBarButtonItem = customButtonItem
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Invite", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("pushToInvite"))
+        
+        let customButtonRight :UIButton = UIButton(frame: CGRectMake(0, 0, 30, 30))
+        customButtonRight.addTarget(self, action: Selector("pushToInvite"), forControlEvents: .TouchUpInside)
+        customButtonRight.setBackgroundImage(UIImage(named: "Add"), forState: UIControlState.Normal)
+        let customButtonItemRight :UIBarButtonItem = UIBarButtonItem(customView: customButtonRight)
+        self.navigationItem.rightBarButtonItem = customButtonItemRight
         
         let nib = UINib(nibName: "GroupTableViewCell", bundle: nil)
         tableView?.registerNib(nib, forCellReuseIdentifier: "GroupTableViewCell")

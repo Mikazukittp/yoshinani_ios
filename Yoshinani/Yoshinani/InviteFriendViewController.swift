@@ -21,6 +21,8 @@ class InviteFriendViewController: UIViewController {
 
         self.edgesForExtendedLayout = .None
         
+        self.title = "メンバー追加"
+        
         let nib = UINib(nibName: "PayerListTableViewCell", bundle: nil)
         tableView?.registerNib(nib, forCellReuseIdentifier: "PayerListTableViewCell")
         tableView?.estimatedRowHeight = 50

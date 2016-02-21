@@ -18,29 +18,50 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <searchBar contentMode="redraw" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x0e-fu-ieX">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                    <rect key="frame" x="0.0" y="40" width="600" height="44"/>
                     <textInputTraits key="textInputTraits"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="lug-FX-DBp"/>
                     </connections>
                 </searchBar>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9aY-8S-Ng5">
-                    <rect key="frame" x="0.0" y="44" width="600" height="556"/>
+                    <rect key="frame" x="0.0" y="84" width="600" height="516"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="sHu-Y4-nio"/>
                         <outlet property="delegate" destination="-1" id="qBV-Th-LYC"/>
                     </connections>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dV1-R5-fqA">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="40"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="▼アカウント名を入力して招待  ※アカウント名はプロフィールで確認できます" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yee-jj-sim">
+                            <rect key="frame" x="5" y="4.5" width="590" height="31.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="Yee-jj-sim" firstAttribute="centerY" secondItem="dV1-R5-fqA" secondAttribute="centerY" id="AeQ-FW-qSe"/>
+                        <constraint firstItem="Yee-jj-sim" firstAttribute="leading" secondItem="dV1-R5-fqA" secondAttribute="leading" constant="5" id="Cip-MN-0Ih"/>
+                        <constraint firstAttribute="height" constant="40" id="fhQ-9s-Otz"/>
+                        <constraint firstAttribute="trailing" secondItem="Yee-jj-sim" secondAttribute="trailing" constant="5" id="ofp-T5-S3E"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="dV1-R5-fqA" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="AjW-9P-zcw"/>
+                <constraint firstAttribute="trailing" secondItem="dV1-R5-fqA" secondAttribute="trailing" id="Iyv-Si-dJu"/>
+                <constraint firstItem="x0e-fu-ieX" firstAttribute="top" secondItem="dV1-R5-fqA" secondAttribute="bottom" id="NNH-Ol-P1W"/>
                 <constraint firstAttribute="trailing" secondItem="x0e-fu-ieX" secondAttribute="trailing" id="P7I-1m-aW3"/>
+                <constraint firstItem="dV1-R5-fqA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Wx6-bz-3e7"/>
                 <constraint firstAttribute="trailing" secondItem="9aY-8S-Ng5" secondAttribute="trailing" id="bNb-mT-RMw"/>
                 <constraint firstItem="9aY-8S-Ng5" firstAttribute="top" secondItem="x0e-fu-ieX" secondAttribute="bottom" id="fr3-kR-VlY"/>
                 <constraint firstAttribute="bottom" secondItem="9aY-8S-Ng5" secondAttribute="bottom" id="hJM-pD-aap"/>
                 <constraint firstItem="9aY-8S-Ng5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hUh-tK-5RV"/>
-                <constraint firstItem="x0e-fu-ieX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="jVU-q2-XpZ"/>
                 <constraint firstItem="x0e-fu-ieX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zfs-nG-7fR"/>
             </constraints>
         </view>

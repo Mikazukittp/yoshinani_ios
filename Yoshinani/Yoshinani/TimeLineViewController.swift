@@ -13,7 +13,7 @@ protocol TimeLineViewControllerDelegate {
     func pushNextViewControler (vc :UIViewController)
 }
 
-class TimeLineViewController: UIViewController ,UITableViewDelegate ,UITableViewDataSource {
+class TimeLineViewController: UIViewController{
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var createButton: UIButton!
@@ -23,6 +23,7 @@ class TimeLineViewController: UIViewController ,UITableViewDelegate ,UITableView
     var users :[User]?
     var group_id :Int?
     var delegate :TimeLineViewControllerDelegate?
+    var onSession = false
 
     override func viewDidLoad() {
         
@@ -42,7 +43,7 @@ class TimeLineViewController: UIViewController ,UITableViewDelegate ,UITableView
         let token = notNilUser.token
 
         let session = PaymentSession()
-        session.payments(uid, pass: token, group_id: group_id!) { (error) -> Void in
+        session.payments(uid, pass: token, group_id: group_id!,last_id: nil) { (error) -> Void in
             
             if error {
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -66,38 +67,6 @@ class TimeLineViewController: UIViewController ,UITableViewDelegate ,UITableView
                 })
             })
         }
-    }
-    
-    //MARK: UITableViewDelegate
-    //MARK: UITableViewDataSource
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        if payments?.count == nil {
-            return 0
-        }
-        
-        return (payments?.count)!
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("BillTableViewCell", forIndexPath: indexPath) as! BillTableViewCell
-        
-        guard let notNilPayments = payments else {
-            return cell
-        }
-        
-        let pay :Payment? = notNilPayments[indexPath.row]
-        cell.setUpParts(pay!)
-        return cell
-    }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let payment = payments![indexPath.row]
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let pc = PayerListViewController(nibName: "PayerListViewController", bundle: nil)
-        pc.payerList = payment.participants
-    
-        delegate?.pushNextViewControler(pc)
     }
     
     //MARK: IBAction
@@ -128,6 +97,81 @@ class TimeLineViewController: UIViewController ,UITableViewDelegate ,UITableView
         
         presentViewController(alertController, animated: true, completion: nil)
     }
+}
 
+extension TimeLineViewController :UITableViewDelegate ,UITableViewDataSource {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if payments?.count == nil {
+            return 0
+        }
+        
+        return (payments?.count)!
+    }
     
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("BillTableViewCell", forIndexPath: indexPath) as! BillTableViewCell
+        
+        guard let notNilPayments = payments else {
+            return cell
+        }
+        
+        let pay :Payment? = notNilPayments[indexPath.row]
+        cell.setUpParts(pay!)
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let payment = payments![indexPath.row]
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        let pc = PayerListViewController(nibName: "PayerListViewController", bundle: nil)
+        pc.payerList = payment.participants
+        
+        delegate?.pushNextViewControler(pc)
+    }
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+       
+        if onSession { return }
+        
+        guard let notNilPayments = payments else {
+            return
+        }
+        
+        if indexPath.row == (notNilPayments.count - 1){
+            let session = PaymentSession()
+            
+            guard let notNilUser =  RealmManager.sharedInstance.userInfo else{
+                self.popToNewUserController()
+                return
+            }
+            
+            let uid = notNilUser.userId
+            let token = notNilUser.token
+            
+            self.onSession = true
+            session.payments(uid, pass: token, group_id: group_id!,last_id: notNilPayments.last?.payment_id) { (error) -> Void in
+
+                self.onSession = false
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    if error {
+                        self.setAlertView()
+                        return
+                    }
+                    
+                    guard let newPayments = session.payments else {
+                        self.onSession = true
+                        return
+                    }
+                    if newPayments.count == 0 {
+                        self.onSession = true
+                        return
+                    }
+                    
+                    self.payments?.appendContentsOf(newPayments)
+                    self.tableView.reloadData()
+                })
+            }
+        }
+    }
 }
