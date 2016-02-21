@@ -38,7 +38,6 @@
 		8363BD351C30217B0046A08F /* MenuNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8363BD341C30217B0046A08F /* MenuNavigationController.swift */; };
 		8367DF071C590C3B00B63E9B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8367DF051C590C3B00B63E9B /* SignUpViewController.swift */; };
 		8367DF081C590C3B00B63E9B /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8367DF061C590C3B00B63E9B /* SignUpViewController.xib */; };
-		8372BD601C6C3BC000D07D97 /* UserInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8372BD5F1C6C3BC000D07D97 /* UserInfoManager.swift */; };
 		8372BD621C6C9BEF00D07D97 /* SignUpSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8372BD611C6C9BEF00D07D97 /* SignUpSession.swift */; };
 		8372BD641C6CC37900D07D97 /* UIViewController+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8372BD631C6CC37900D07D97 /* UIViewController+Addition.swift */; };
 		8381A5761C33C8DB001911BC /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8381A5741C33C8DB001911BC /* GroupTableViewCell.swift */; };
@@ -109,7 +108,6 @@
 		8363BD341C30217B0046A08F /* MenuNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuNavigationController.swift; sourceTree = "<group>"; };
 		8367DF051C590C3B00B63E9B /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		8367DF061C590C3B00B63E9B /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
-		8372BD5F1C6C3BC000D07D97 /* UserInfoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoManager.swift; sourceTree = "<group>"; };
 		8372BD611C6C9BEF00D07D97 /* SignUpSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpSession.swift; sourceTree = "<group>"; };
 		8372BD631C6CC37900D07D97 /* UIViewController+Addition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Addition.swift"; sourceTree = "<group>"; };
 		8381A5741C33C8DB001911BC /* GroupTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
@@ -423,7 +421,6 @@
 				834DDB301C6C283000B7AB93 /* Protocol */,
 				83FE2F741C35047C00EEC29B /* Const.swift */,
 				83EF13361C4397C700D55F74 /* RealmManager.swift */,
-				8372BD5F1C6C3BC000D07D97 /* UserInfoManager.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -613,7 +610,6 @@
 				8363BD321C30121A0046A08F /* MenuTableViewCell.swift in Sources */,
 				83FE2F721C3503B800EEC29B /* LoginSession.swift in Sources */,
 				835CCCA71C3551AD00FDEA21 /* RUser.swift in Sources */,
-				8372BD601C6C3BC000D07D97 /* UserInfoManager.swift in Sources */,
 				83151F5D1C7030C0009A4DA4 /* Total.swift in Sources */,
 				83151F6D1C707050009A4DA4 /* InviteFriendViewController.swift in Sources */,
 				8381A5831C33CFB0001911BC /* BillTableViewCell.swift in Sources */,
