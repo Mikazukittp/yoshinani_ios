@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import BubbleTransition
 import RealmSwift
 import Unbox
 
@@ -15,7 +14,6 @@ class TopViewController: UIViewController  ,UITableViewDataSource ,UITableViewDe
     @IBOutlet weak var createButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var sumPay: UILabel!
-    let transition = BubbleTransition()
     var user :User?
 
     override func viewDidLoad() {
