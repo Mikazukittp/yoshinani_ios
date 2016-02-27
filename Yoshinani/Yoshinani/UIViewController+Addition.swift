@@ -11,6 +11,7 @@ import REFrostedViewController
 
 extension UIViewController {
     func popToNewUserController () {
+        RealmManager.sharedInstance.deleteUserInfo()
         let newRootVC = NewUserViewController(nibName: "NewUserViewController", bundle:nil)
         let MenuNC = MenuNavigationController(rootViewController: newRootVC)
         let menuVC = MenuTableViewController()

@@ -15,7 +15,19 @@ class GroupTableViewCell: UITableViewCell {
 
     func setLabels(group :Group, total :Total?) {
         groupName.text = group.name
-        let toPayStr = Int(round(total?.result ?? 0))
+        
+        guard let notNilTotal = total?.result else {
+            toPay.text = "¥0"
+            return
+        }
+        
+        if notNilTotal < 0 {
+            self.toPay.textColor = UIColor.accentColor()
+        }else {
+            self.toPay.textColor = UIColor.thirdColor()
+        }
+        
+        let toPayStr = Int(round(notNilTotal))
         toPay.text = "¥\(toPayStr)"
     }
 }

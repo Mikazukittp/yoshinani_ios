@@ -20,8 +20,8 @@ class RUser: Object {
     func setProperty(user :User) {
         self.token = user.token ?? "0"
         self.userId = user.userId
-        self.userName = user.userName
-        self.email = user.email
+        self.userName = user.userName ?? ""
+        self.email = user.email ?? ""
         self.account = user.account
     }
     

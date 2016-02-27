@@ -11,8 +11,8 @@ import Unbox
 struct User: Unboxable {
     let token: String?
     let userId: Int
-    let userName: String
-    let email: String
+    let userName: String?
+    let email: String?
     let totals :[Total]?
     let invitedGroups :[Group]?
     let activeGroups :[Group]?

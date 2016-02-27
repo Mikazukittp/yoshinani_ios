@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 import Unbox
 
-class TopViewController: UIViewController  ,UITableViewDataSource ,UITableViewDelegate  {
+class TopViewController: BaseViewController  ,UITableViewDataSource ,UITableViewDelegate  {
     @IBOutlet weak var createButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var sumPay: UILabel!
@@ -41,21 +41,45 @@ class TopViewController: UIViewController  ,UITableViewDataSource ,UITableViewDe
         tableView?.registerNib(nib, forCellReuseIdentifier: "GroupTableViewCell")
         tableView?.estimatedRowHeight = 50
         tableView?.rowHeight = UITableViewAutomaticDimension
-        
+        reloadData()
+    }
+    
+    private func reloadData() {
         //Realmのデータを取得
         let user = RealmManager.sharedInstance.userInfo
         
         if let nonNilUser = user {
             let session = UserSession()
+            self.startIndicator()
             session.show(nonNilUser.userId, token: nonNilUser.token, complition: { (error) -> Void in
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    if !error {
+                    self.stopIndicator()
+                    
+                    switch error {
+                    case .NetworkError:
+                        self.setAlertView(NetworkErrorTitle, message: NetworkErrorMessage)
+                        break
+                    case .Success:
                         self.user = session.user
-                        self.sumPay.text = "¥\(session.user?.sumPay ?? 0)"
+                        let pay = session.user?.sumPay ?? 0
+                        self.sumPay.text = "¥\(pay)"
+                        
+                        if pay < 0 {
+                            self.sumPay.textColor = UIColor.accentColor()
+                        }else {
+                            self.sumPay.textColor = UIColor.thirdColor()
+                        }
+                        
                         self.tableView.reloadData()
-                    }else {
+                        break
+                    case .ServerError:
+                        self.setAlertView(ServerErrorMessage, message: ServerErrorMessage)
+                        break
+                    case .UnauthorizedError:
                         self.popToNewUserController()
+                        break
                     }
+
                 })
             })
             
@@ -63,7 +87,21 @@ class TopViewController: UIViewController  ,UITableViewDataSource ,UITableViewDe
             //ユーザ情報がないので強制的にTOPに戻す
             self.popToNewUserController()
         }
+
     }
+    
+   private func setAlertView (title :String ,message :String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        
+        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler:{
+            (action:UIAlertAction!) -> Void in
+        })
+        
+        alertController.addAction(defaultAction)
+        
+        presentViewController(alertController, animated: true, completion: nil)
+    }
+
     
     @IBAction func createButtonTapped(sender: AnyObject) {
         let vc = CreateRoomViewController(nibName: "CreateRoomViewController", bundle: nil)
@@ -93,8 +131,11 @@ class TopViewController: UIViewController  ,UITableViewDataSource ,UITableViewDe
         }
     
         let group = notNilGroups[indexPath.row]
-        if indexPath.row < user?.totals?.count {
-            cell.setLabels(group, total: user?.totals?[indexPath.row])
+        
+        let total = user?.totals?.filter { $0.group_id == group.group_id}
+        
+        if total?.count > 0 {
+            cell.setLabels(group, total: total![0])
         }else{
             cell.setLabels(group, total: nil)
         }
@@ -119,5 +160,15 @@ class TopViewController: UIViewController  ,UITableViewDataSource ,UITableViewDe
         let pc = InvitedViewController(nibName :"InvitedViewController",bundle: nil)
         pc.groups = self.user?.invitedGroups
         self.navigationController?.pushViewController(pc , animated: true)
+    }
+    /*
+    スクロール時
+    */
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+        // 下に引っ張ったときは、ヘッダー位置を計算して動かないようにする（★ここがポイント..）
+        if scrollView.contentOffset.y < 0 {
+            reloadData()
+        }
     }
 }

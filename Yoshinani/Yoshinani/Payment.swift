@@ -23,7 +23,7 @@ struct Payment: Unboxable {
         self.event = unboxer.unbox("event")
         self.amount = unboxer.unbox("amount")
         self.description = unboxer.unbox("description")
-        self.created_at = unboxer.unbox("created_at")
+        self.created_at = unboxer.unbox("date")
         self.paid_user = unboxer.unbox("paid_user")
         self.participants = unboxer.unbox("participants")
     }

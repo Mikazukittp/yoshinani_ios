@@ -55,21 +55,6 @@
                         <constraint firstAttribute="height" constant="2" id="LyX-Iz-sVG"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="アカウント" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PuJ-AW-Tuq">
-                    <rect key="frame" x="20" y="75" width="80" height="30"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="GyV-fp-Rf6"/>
-                        <constraint firstAttribute="width" constant="80" id="R1z-pQ-ice"/>
-                        <constraint firstAttribute="height" constant="30" id="uh6-ze-JxT"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <nil key="highlightedColor"/>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="GyV-fp-Rf6"/>
-                        </mask>
-                    </variation>
-                </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="アカウント" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ckE-HJ-hLV">
                     <rect key="frame" x="105" y="75" width="475" height="30"/>
                     <constraints>
@@ -93,6 +78,21 @@
                         <constraint firstAttribute="height" constant="2" id="g4s-j7-gDv"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PuJ-AW-Tuq">
+                    <rect key="frame" x="20" y="75" width="80" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="GyV-fp-Rf6"/>
+                        <constraint firstAttribute="width" constant="80" id="R1z-pQ-ice"/>
+                        <constraint firstAttribute="height" constant="30" id="uh6-ze-JxT"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="highlightedColor"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="GyV-fp-Rf6"/>
+                        </mask>
+                    </variation>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>

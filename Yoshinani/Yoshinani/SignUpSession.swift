@@ -12,7 +12,7 @@ import Unbox
 
 class SignUpSession: NSObject {
 
-    func singUp (property :(account: String,password: String,email :String,username :String),complition :(error :Bool , user :User?) ->Void) {
+    func singUp (property :(account: String,password: String,email :String?,username :String?),complition :(error :ErrorHandring , user :User?) ->Void) {
         
         let request = NSMutableURLRequest(URL: NSURL(string: Const.urlDomain + "/users")!,
             cachePolicy: .UseProtocolCachePolicy,
@@ -20,13 +20,18 @@ class SignUpSession: NSObject {
         
         request.HTTPMethod = "POST"
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-
-        let userDict:Dictionary<String,String>  = [
+        
+        var userDict:Dictionary<String,String>  = [
             "account":property.account,
             "password":property.password,
-            "email":property.email,
-            "username":property.username
         ]
+        if let notNilEmail = property.email {
+            userDict["email"] = notNilEmail
+        }
+        if let notNilName = property.username {
+            userDict["username"] = notNilName
+        }
+        
         let params = ["user":userDict]
         print(params)
         
@@ -39,31 +44,37 @@ class SignUpSession: NSObject {
         }
         
         let session = NSURLSession.sharedSession()
+        session.cancelAllTasks()
         let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
             
-            print(response)
             if (error != nil) {
-                print(error)
-                complition(error: true, user: nil)
+                if error!.code != NSURLError.Cancelled.rawValue {
+                    complition(error: .NetworkError, user: nil)
+                }
+
             } else {
                 guard let notNilResponse = response else {
-                    complition(error: true, user: nil)
+                    complition(error: .ServerError, user: nil)
                     return
                 }
                 
                 let httpResponse = notNilResponse as! NSHTTPURLResponse
-                if httpResponse.statusCode != 200 {
-                    complition(error: true, user: nil)
+                if httpResponse.statusCode == 401 {
+                    complition(error: .UnauthorizedError, user: nil)
+                    return
+                }else if httpResponse.statusCode != 200 {
+                    complition(error: .ServerError, user: nil)
                     return
                 }
+
                 
                 let user :User? = Unbox(data!)
                 guard let notniluser = user else {
-                    complition(error: false, user: nil)
+                    complition(error: .ServerError, user: nil)
                     return
                 }
                 
-                complition(error: false, user: notniluser)
+                complition(error: .Success, user: notniluser)
             }
         })
         dataTask.resume()

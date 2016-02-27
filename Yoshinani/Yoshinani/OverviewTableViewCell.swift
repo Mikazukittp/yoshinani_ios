@@ -27,6 +27,11 @@ class OverviewTableViewCell: UITableViewCell {
         
         let roundToPay = Int(round(notNilTotal.result ?? 0))
         self.toPay.text = "¥\(roundToPay)"
+        if roundToPay < 0 {
+            toPay.textColor = UIColor.accentColor()
+        }else {
+            toPay.textColor = UIColor.thirdColor()
+        }
     }
     
 }

@@ -79,7 +79,7 @@ class PostBillViewController: UIViewController {
         }
         
         let user :User = notNilUsers[indexPath.row]
-        cell.setProperties(user.userName, check: !checkList[indexPath.row])
+        cell.setProperties(user.userName ?? String(user.userId), check: !checkList[indexPath.row])
         return cell
     }
     
@@ -115,14 +115,14 @@ class PostBillViewController: UIViewController {
         }
         
         guard let notNilUsers = users else {
-            self.setAlertView("通信環境の良い場所で通信してください。")
+            self.popToNewUserController()
             return
         }
         
         let participants = participants_ids(notNilUsers, checked: checkList)
      
         if participants.count == 0  {
-            self.setAlertView("ユーザを選択してください")
+            self.setAlertView("項目エラー", alert: "ユーザを選択してください")
             return
         }
         
@@ -135,10 +135,19 @@ class PostBillViewController: UIViewController {
             let session = PaymentSession()
             session.create(notNilUser.userId, pass: notNilUser.token, payment: payment, group_id: group_id!, participants: participants, complition: { (error) -> Void in
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    if error {
-                        self.setAlertView("通信環境の良い場所で通信してください。")
-                    }else {
+                    switch error {
+                    case .NetworkError:
+                        self.setAlertView(NetworkErrorTitle, alert: NetworkErrorMessage)
+                        break
+                    case .Success:
                         self.dismissViewControllerAnimated(true, completion: nil)
+                        break
+                    case .ServerError:
+                        self.setAlertView(ServerErrorMessage, alert: RequestErrorMessage)
+                        break
+                    case .UnauthorizedError:
+                        self.popToNewUserController()
+                        break
                     }
                 })
             })
@@ -177,8 +186,8 @@ class PostBillViewController: UIViewController {
         return isSuccess
     }
     
-    func setAlertView (alert :String) {
-        let alertController = UIAlertController(title: "エラー", message: alert, preferredStyle: .Alert)
+    func setAlertView (title :String, alert :String) {
+        let alertController = UIAlertController(title: title, message: alert, preferredStyle: .Alert)
         let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
         alertController.addAction(defaultAction)
         

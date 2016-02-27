@@ -60,7 +60,7 @@ extension InvitedViewController :UITableViewDelegate,UITableViewDataSource {
         let user = RealmManager.sharedInstance.userInfo
         
         guard let nonNilUser = user else{
-            caution()
+            self.popToNewUserController()
             return
         }
         setAlertView(group.name, group_id: group.group_id, user: nonNilUser)
@@ -73,27 +73,44 @@ extension InvitedViewController :UITableViewDelegate,UITableViewDataSource {
         
         let defaultAction = UIAlertAction(title: "はい", style: .Default, handler:{
             (action:UIAlertAction!) -> Void in
-            print("いいよ")
             session.accept(user.userId, token: user.token, group_id: group_id, complition: { (error) -> Void in
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    if !error {
+                    
+                    switch error {
+                    case .NetworkError:
+                        self.caution(NetworkErrorTitle, message: NetworkErrorMessage)
+                        break
+                    case .Success:
                         self.navigationController?.popViewControllerAnimated(true)
-                    }else {
-                        self.caution()
+                        break
+                    case .ServerError:
+                        self.caution(ServerErrorTitle, message: ServerErrorMessage)
+                        break
+                    case .UnauthorizedError:
+                        self.popToNewUserController()
+                        break
                     }
-                })
+                 })
             })
         })
         
         let destroyAction = UIAlertAction(title: "いいえ", style: .Cancel, handler: {
             (action:UIAlertAction!) -> Void in
-            print("やだ")
             session.destroy(user.userId, token: user.token, group_id: group_id, user_id: user.userId, complition: { (error) -> Void in
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    if !error {
+                    switch error {
+                    case .NetworkError:
+                        self.caution(NetworkErrorTitle, message: NetworkErrorMessage)
+                        break
+                    case .Success:
                         self.navigationController?.popViewControllerAnimated(true)
-                    }else {
-                        self.caution()
+                        break
+                    case .ServerError:
+                        self.caution(ServerErrorTitle, message: ServerErrorMessage)
+                        break
+                    case .UnauthorizedError:
+                        self.popToNewUserController()
+                        break
                     }
                 })
             })
@@ -105,8 +122,8 @@ extension InvitedViewController :UITableViewDelegate,UITableViewDataSource {
         presentViewController(alertController, animated: true, completion: nil)
     }
     
-    private func caution () {
-        let alertController = UIAlertController(title: "エラー", message: "通信環境の良い場所で通信してください", preferredStyle: .Alert)
+    private func caution (title: String, message :String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         
         let defaultAction = UIAlertAction(title: "OK", style: .Default, handler:nil)
         alertController.addAction(defaultAction)

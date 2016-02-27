@@ -14,7 +14,7 @@ class GroupSession: NSObject {
     var groups :[Group]?
     var group :Group?
     
-    func groups (uid: Int,token :String, complition :(error :Bool) ->Void) {
+    func groups (uid: Int,token :String, complition :(error :ErrorHandring) ->Void) {
         let request = NSMutableURLRequest(URL: NSURL(string: Const.urlDomain + "/groups")!,
             cachePolicy: .UseProtocolCachePolicy,
             timeoutInterval: 10.0)
@@ -24,32 +24,37 @@ class GroupSession: NSObject {
         request.addValue(token, forHTTPHeaderField: "token")
         
         let session = NSURLSession.sharedSession()
+        session.cancelAllTasks()
         let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
-                print(error)
-                complition(error: true)
+                if error!.code != NSURLError.Cancelled.rawValue {
+                    complition(error: .NetworkError)
+                }
             } else {
                 guard let notNilResponse = response else {
-                    complition(error: true)
+                    complition(error: .ServerError)
                     return
                 }
                 
                 let httpResponse = notNilResponse as! NSHTTPURLResponse
-                if httpResponse.statusCode != 200 {
-                    complition(error: true)
+                if httpResponse.statusCode == 401 {
+                    complition(error: .UnauthorizedError)
+                    return
+                }else if httpResponse.statusCode != 200 {
+                    complition(error: .ServerError)
                     return
                 }
                 
                 self.groups = Unbox(data!)
                 print(self.groups)
                 
-                complition(error: false)
+                complition(error: .Success)
             }
         })
         dataTask.resume()
     }
     
-    func create (uid: Int,token :String,name: String, desp :String, complition :(error :Bool) ->Void) {
+    func create (uid: Int,token :String,name: String, desp :String, complition :(error :ErrorHandring) ->Void) {
         let request = NSMutableURLRequest(URL: NSURL(string: Const.urlDomain + "/groups")!,
             cachePolicy: .UseProtocolCachePolicy,
             timeoutInterval: 10.0)
@@ -76,32 +81,39 @@ class GroupSession: NSObject {
 
         
         let session = NSURLSession.sharedSession()
+        session.cancelAllTasks()
         let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
-                print(error)
-                complition(error: true)
+                if error!.code != NSURLError.Cancelled.rawValue {
+                    complition(error: .NetworkError)
+                }
             } else {
                 guard let notNilResponse = response else {
-                    complition(error: true)
+                    complition(error: .ServerError)
                     return
                 }
                 
                 let httpResponse = notNilResponse as! NSHTTPURLResponse
-                if httpResponse.statusCode != 200 {
-                    complition(error: true)
+                if httpResponse.statusCode == 401 {
+                    complition(error: .UnauthorizedError)
+                    return
+                }else if httpResponse.statusCode != 200 {
+                    complition(error: .ServerError)
                     return
                 }
                 
-                let group : Group? = Unbox(data!)
-                print(group)
-                
-                complition(error: false)
+                self.group = Unbox(data!)
+                print(self.group)
+
+                complition(error: .Success)
             }
+            
+            
         })
         dataTask.resume()
     }
     
-    func accept(uid :Int, token :String, group_id :Int ,complition :(error :Bool) ->Void) {
+    func accept(uid :Int, token :String, group_id :Int ,complition :(error :ErrorHandring) ->Void) {
         let request = NSMutableURLRequest(URL: NSURL(string: Const.urlDomain + "/groups/\(group_id)/users/accept")!,
             cachePolicy: .UseProtocolCachePolicy,
             timeoutInterval: 10.0)
@@ -111,29 +123,34 @@ class GroupSession: NSObject {
         request.addValue(token, forHTTPHeaderField: "token")
         
         let session = NSURLSession.sharedSession()
+        session.cancelAllTasks()
         let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
-                print(error)
-                complition(error: true)
+                if error!.code != NSURLError.Cancelled.rawValue {
+                    complition(error: .NetworkError)
+                }
             } else {
                 guard let notNilResponse = response else {
-                    complition(error: true)
+                    complition(error: .ServerError)
                     return
                 }
                 
                 let httpResponse = notNilResponse as! NSHTTPURLResponse
-                if httpResponse.statusCode != 200 {
-                    complition(error: true)
+                 if httpResponse.statusCode == 401 {
+                    complition(error: .UnauthorizedError)
+                    return
+                }else if httpResponse.statusCode != 200 {
+                    complition(error: .ServerError)
                     return
                 }
                 
-                complition(error: false)
+                complition(error: .Success)
             }
         })
         dataTask.resume()
     }
     
-    func destroy(uid :Int,token :String,group_id :Int, user_id :Int,complition :(error :Bool) ->Void) {
+    func destroy(uid :Int,token :String,group_id :Int, user_id :Int,complition :(error :ErrorHandring) ->Void) {
         let request = NSMutableURLRequest(URL: NSURL(string: Const.urlDomain + "/groups/\(group_id)/users/\(user_id)")!,
             cachePolicy: .UseProtocolCachePolicy,
             timeoutInterval: 10.0)
@@ -143,28 +160,33 @@ class GroupSession: NSObject {
         request.addValue(token, forHTTPHeaderField: "token")
         
         let session = NSURLSession.sharedSession()
+        session.cancelAllTasks()
         let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
-                print(error)
-                complition(error: true)
+                if error!.code != NSURLError.Cancelled.rawValue {
+                    complition(error: .NetworkError)
+                }
             } else {
                 guard let notNilResponse = response else {
-                    complition(error: true)
+                    complition(error: .ServerError)
                     return
                 }
                 
                 let httpResponse = notNilResponse as! NSHTTPURLResponse
-                if httpResponse.statusCode != 200 {
-                    complition(error: true)
+                if httpResponse.statusCode == 401 {
+                    complition(error: .UnauthorizedError)
+                    return
+                }else if httpResponse.statusCode != 200 {
+                    complition(error: .ServerError)
                     return
                 }
-                complition(error: false)
+                complition(error: .Success)
             }
         })
         dataTask.resume()
     }
     
-    func invite(uid :Int, token :String,group_id: Int,invite_user_id :Int,complition :(error :Bool) ->Void) {
+    func invite(uid :Int, token :String,group_id: Int,invite_user_id :Int,complition :(error :ErrorHandring) ->Void) {
         let request = NSMutableURLRequest(URL: NSURL(string: Const.urlDomain + "/groups/\(group_id)/users/")!,
             cachePolicy: .UseProtocolCachePolicy,
             timeoutInterval: 10.0)
@@ -189,29 +211,37 @@ class GroupSession: NSObject {
         }
         
         let session = NSURLSession.sharedSession()
+        session.cancelAllTasks()
         let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
-                print(error)
-                complition(error: true)
+                if error!.code != NSURLError.Cancelled.rawValue {
+                    complition(error: .NetworkError)
+                }
             } else {
                 guard let notNilResponse = response else {
-                    complition(error: true)
+                    complition(error: .ServerError)
                     return
                 }
                 
                 let httpResponse = notNilResponse as! NSHTTPURLResponse
-                if httpResponse.statusCode != 200 {
-                    complition(error: true)
+                if httpResponse.statusCode == 401 {
+                    complition(error: .UnauthorizedError)
+                    return
+                }else if httpResponse.statusCode != 200 {
+                    complition(error: .ServerError)
                     return
                 }
-                complition(error: false)
+                self.groups = Unbox(data!)
+                print(self.groups)
+
+                complition(error: .Success)
             }
+            
         })
         dataTask.resume()
     }
     
-    func users(uid :Int,token :String,group_id :Int,complition :(error :Bool) ->Void) {
-        // groups/:group_id/users
+    func users(uid :Int,token :String,group_id :Int,complition :(error :ErrorHandring) ->Void) {
         
         let request = NSMutableURLRequest(URL: NSURL(string: Const.urlDomain + "/groups/\(group_id)")!,
             cachePolicy: .UseProtocolCachePolicy,
@@ -222,27 +252,34 @@ class GroupSession: NSObject {
         request.addValue(token, forHTTPHeaderField: "token")
         
         let session = NSURLSession.sharedSession()
+        session.cancelAllTasks()
         let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
-                print(error)
-                complition(error: true)
+                if error!.code != NSURLError.Cancelled.rawValue {
+                    complition(error: .NetworkError)
+                }
             } else {
                 guard let notNilResponse = response else {
-                    complition(error: true)
+                    complition(error: .ServerError)
                     return
                 }
                 
                 let httpResponse = notNilResponse as! NSHTTPURLResponse
-                if httpResponse.statusCode != 200 {
-                    complition(error: true)
+                 if httpResponse.statusCode == 401 {
+                    complition(error: .UnauthorizedError)
+                    return
+                }else if httpResponse.statusCode != 200 {
+                    complition(error: .ServerError)
                     return
                 }
                 
                 self.group = Unbox(data!)
                 print(self.group)
                 
-                complition(error: false)
+                complition(error: .Success)
             }
+            
+
         })
         dataTask.resume()
 

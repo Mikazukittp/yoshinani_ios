@@ -14,7 +14,7 @@ class PaymentSession: NSObject {
     
     var payments :[Payment]?
     
-    func payments (uid :Int, pass :String, group_id :Int,last_id :Int?, complition :(error :Bool) ->Void) {
+    func payments (uid :Int, pass :String, group_id :Int,last_id :Int?, complition :(error :ErrorHandring) ->Void) {
         
         var getParameter = "/payments?group_id=\(group_id)"
         if last_id != nil {
@@ -31,32 +31,35 @@ class PaymentSession: NSObject {
         request.addValue(pass, forHTTPHeaderField: "token")
         
         let session = NSURLSession.sharedSession()
+        session.cancelAllTasks()
         let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
-                print(error)
-                complition(error: true)
+                if error!.code != NSURLError.Cancelled.rawValue {
+                    complition(error: .NetworkError)
+                }
             } else {
                 guard let notNilResponse = response else {
-                    complition(error: true)
+                    complition(error: .ServerError)
                     return
                 }
                 
                 let httpResponse = notNilResponse as! NSHTTPURLResponse
-                if httpResponse.statusCode != 200 {
-                    complition(error: true)
+                if httpResponse.statusCode == 401 {
+                 complition(error: .UnauthorizedError)
+                }else if httpResponse.statusCode != 200 {
+                    complition(error: .ServerError)
                     return
                 }
-                
                 self.payments = Unbox(data!)
                 print(self.payments)
-                
-                complition(error: false)
+
+                complition(error: .Success)
             }
         })
         dataTask.resume()
     }
     
-    func create (uid :Int, pass :String,payment :Payment,group_id :Int,participants: [Int], complition :(error :Bool) ->Void) {
+    func create (uid :Int, pass :String,payment :Payment,group_id :Int,participants: [Int], complition :(error :ErrorHandring) ->Void) {
         
         let request = NSMutableURLRequest(URL: NSURL(string: Const.urlDomain + "/payments")!,
             cachePolicy: .UseProtocolCachePolicy,
@@ -95,30 +98,70 @@ class PaymentSession: NSObject {
 
         
         let session = NSURLSession.sharedSession()
+        session.cancelAllTasks()
         let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
-                print(error)
-                complition(error: true)
-            } else {
+                if error!.code != NSURLError.Cancelled.rawValue {
+                    complition(error: .NetworkError)
+                }
+           } else {
                 guard let notNilResponse = response else {
-                    complition(error: true)
+                    complition(error: .ServerError)
                     return
                 }
                 
                 let httpResponse = notNilResponse as! NSHTTPURLResponse
-                if httpResponse.statusCode != 201 {
-                    complition(error: true)
+                if httpResponse.statusCode == 401 {
+                    complition(error: .UnauthorizedError)
+                    return
+                }else if httpResponse.statusCode != 201 {
+                    complition(error: .ServerError)
                     return
                 }
-                
-                let payment :Payment? = Unbox(data!)
-                print(payment)
-                
-                complition(error: false)
+                complition(error: .Success)
             }
         })
         dataTask.resume()
     }
-
-
+    
+    
+    func delete (uid :Int, pass :String, payment_id :Int, complition :(error :ErrorHandring) ->Void) {
+        
+        let parameter = "/payments/\(payment_id))"
+        
+        let request = NSMutableURLRequest(URL: NSURL(string: Const.urlDomain + parameter)!,
+            cachePolicy: .UseProtocolCachePolicy,
+            timeoutInterval: 10.0)
+        request.HTTPMethod = "DELETE"
+        
+        request.addValue("\(uid)", forHTTPHeaderField: "uid")
+        request.addValue(pass, forHTTPHeaderField: "token")
+        
+        let session = NSURLSession.sharedSession()
+        session.cancelAllTasks()
+        let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+            if (error != nil) {
+                if error!.code != NSURLError.Cancelled.rawValue {
+                    complition(error: .NetworkError)
+                }
+            } else {
+                guard let notNilResponse = response else {
+                    complition(error: .ServerError)
+                    return
+                }
+                
+                let httpResponse = notNilResponse as! NSHTTPURLResponse
+                if httpResponse.statusCode == 401 {
+                    complition(error: .UnauthorizedError)
+                    return
+                }else if httpResponse.statusCode != 200 {
+                    complition(error: .ServerError)
+                    return
+                }
+                
+                complition(error: .Success)
+            }
+        })
+        dataTask.resume()
+    }
 }

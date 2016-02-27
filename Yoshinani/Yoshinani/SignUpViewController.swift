@@ -8,12 +8,13 @@
 
 import UIKit
 
-class SignUpViewController: UIViewController,UITextFieldDelegate {
+class SignUpViewController: BaseViewController,UITextFieldDelegate {
 
     @IBOutlet weak var nameTextInput: UITextField!
     @IBOutlet weak var addressTextInput: UITextField!
     @IBOutlet weak var accountTextInput: UITextField!
     @IBOutlet weak var passwordTextInput: UITextField!
+    @IBOutlet weak var rePasswordInput: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,49 +23,85 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
         self.title = "新規登録"
         
         nameTextInput.keyboardType = .EmailAddress
-        addressTextInput.keyboardType = .EmailAddress
-        accountTextInput.keyboardType = .EmailAddress
-        passwordTextInput.keyboardType = .EmailAddress
+        addressTextInput.keyboardType = .ASCIICapable
+        accountTextInput.keyboardType = .ASCIICapable
+        passwordTextInput.keyboardType = .ASCIICapable
+        rePasswordInput.keyboardType = .ASCIICapable
         
         nameTextInput.returnKeyType = .Done
         addressTextInput.returnKeyType = .Done
         accountTextInput.returnKeyType = .Done
         passwordTextInput.returnKeyType = .Done
+        rePasswordInput.returnKeyType = .Done
         passwordTextInput.secureTextEntry = true
+        rePasswordInput.secureTextEntry = true
         
         nameTextInput.delegate = self
         addressTextInput.delegate = self
         accountTextInput.delegate = self
         passwordTextInput.delegate = self
+        rePasswordInput.delegate = self
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"textFieldDidChange:", name: UITextFieldTextDidChangeNotification, object: nil)
     }
     @IBAction func submitButtonTapped(sender: AnyObject) {
-   
-        let textFields = [nameTextInput,addressTextInput,accountTextInput,passwordTextInput]
+        
+        let textFields = [accountTextInput,passwordTextInput,rePasswordInput]
         let isSuccess = self.nilCheck(textFields, alertMessage: "不正な入力値です")
 
         if isSuccess {
+            
+            let password = passwordTextInput.text!
+            let repassword = rePasswordInput.text!
+            
+            if password != repassword {
+                setAlertView("パスワードが一致しません")
+                return
+            }
+            
             let session = SignUpSession()
-            let property = (accountTextInput.text!, passwordTextInput.text! ,addressTextInput.text! ,nameTextInput.text!)
+            
+            let email = addressTextInput.text!.characters.count > 0 ? addressTextInput.text : nil
+            let name = nameTextInput.text!.characters.count > 0 ? nameTextInput.text : nil
+            
+            let property = (accountTextInput.text!, passwordTextInput.text! ,email ,name)
+            print(property)
+            self.startIndicator()
             session.singUp(property, complition: { (error, user) -> Void in
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    if  error {
-                        self.setAlertView()
-                    }else {
+                    self.stopIndicator()
+
+                    switch error {
+                    case .NetworkError:
+                        self.setAlertView(NetworkErrorMessage)
+                        break
+                    case .Success:
                         if let notNilUser = user {
                             //ログイン情報をRealmに保存する
                             let ruser = RUser()
                             ruser.setProperty(notNilUser)
                             RealmManager.sharedInstance.userInfo = ruser
                         }
+                        
                         self.pushToTopViewController()
+                        break
+                    case .ServerError:
+                        self.setAlertView(ServerErrorMessage)
+                        break
+                    case .UnauthorizedError:
+                        self.popToNewUserController()
+                        break
                     }
+
                 })
             })
         }
     }
     
+    @IBAction func didTapPrivacyPolicyButton(sender: AnyObject) {
+        let vc :PrivacyPolicyViewController = PrivacyPolicyViewController(nibName :"PrivacyPolicyViewController", bundle: nil)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     //MARK: UITextFieldDelegate
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -114,8 +151,8 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
     }
     
     
-    private func setAlertView () {
-        let alertController = UIAlertController(title: "ログイン失敗", message: "ユーザ名もしくはパスワードが間違っています。", preferredStyle: .Alert)
+    private func setAlertView (message :String) {
+        let alertController = UIAlertController(title: "登録失敗", message: message, preferredStyle: .Alert)
         
         let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
         alertController.addAction(defaultAction)

@@ -10,7 +10,7 @@ import UIKit
 
 class Const {
     class var urlDomain: String {
-        return "http://52.193.62.129/api/v1/"
+        return "http://52.69.32.124/api/v1"
         
         //http://52.193.62.129/api/v1/: 開発
         //http://52.69.32.124/api/v1 :本番
@@ -27,3 +27,9 @@ func participants_ids(users :[User], checked :[Bool]) -> [Int] {
     }
     return participants
 }
+
+let NetworkErrorTitle = "通信エラー"
+let NetworkErrorMessage = "通信環境の良い場所で通信してください"
+let ServerErrorTitle = "サーバエラー"
+let ServerErrorMessage = "処理を受け付けることができませんでした"
+let RequestErrorMessage = "入力項目に誤りがあります"

@@ -15,18 +15,22 @@ protocol MenuTableViewControllerDelegate {
 class MenuTableViewController: UITableViewController {
     
     var tableData : Array<String> = []
-    let titles = [["ホーム","プロフィール"],["Copy Right","Sign Out"]]
+    let titles = [["icon"],["ホーム","プロフィール"],["Copyright","利用規約","サインアウト"]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //cellの登録
-        let nib  = UINib(nibName: "MenuTableViewCell", bundle:nil)
-        self.tableView.registerNib(nib, forCellReuseIdentifier:"MenuTableViewCell")
+        self.tableView.registerNib(UINib(nibName: "MenuTableViewCell", bundle:nil), forCellReuseIdentifier:"MenuTableViewCell")
+        self.tableView.registerNib(UINib(nibName: "MenuProfTableViewCell", bundle:nil), forCellReuseIdentifier:"MenuProfTableViewCell")
         
         self.tableView.separatorColor = UIColor(red: 150/255.0, green: 161/255.0, blue: 177/255.0, alpha: 1.0)
         self.tableView.opaque = false
         self.tableView.backgroundColor = UIColor.clearColor()
+        
+        tableView?.estimatedRowHeight = 50
+        tableView?.rowHeight = UITableViewAutomaticDimension
+
     }
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return titles.count
@@ -37,39 +41,13 @@ class MenuTableViewController: UITableViewController {
         return titles[section].count
     }
     
-    
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let frame = CGRectMake(0, 0, tableView.frame.size.width, 34)
-        let view = UIView(frame: frame)
-        
-        view.backgroundColor = UIColor(red: 167/255.0, green: 167/255.0, blue: 167/255.0, alpha: 0.6)
-        
-        let label = UILabel(frame: CGRectMake(10,8,0,0))
-        
-        if section == 0 {
-            label.text = "メイン"
-        }else {
-            label.text = "その他"
-        }
-        
-        label.font = UIFont.systemFontOfSize(15)
-        label.textColor = UIColor.whiteColor()
-        label.backgroundColor = UIColor.clearColor()
-        label.sizeToFit()
-        view.addSubview(label)
-        return view;
-    }
-    
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if  section == 0 {
-            return 0
-        }
-    
-        return 34
-    }
-
-    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("MenuProfTableViewCell") as? MenuProfTableViewCell
+            return cell!
+        }
+        
+        
         let identifier: String = "MenuTableViewCell"
 
         var cell = tableView.dequeueReusableCellWithIdentifier(identifier) as? MenuTableViewCell
@@ -87,30 +65,30 @@ class MenuTableViewController: UITableViewController {
         cell.textLabel!.font = UIFont(name: "HelveticaNeue", size: 17)
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 54;
-    }
-    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        if  indexPath.section == 0 && indexPath.row == 0 {
+        if  indexPath.section == 1 && indexPath.row == 0 {
             let topVC = TopViewController(nibName: "TopViewController", bundle:nil)
             let MenuNC = MenuNavigationController(rootViewController: topVC)
             self.frostedViewController.contentViewController = MenuNC
             
-        }else if indexPath.section == 0 && indexPath.row == 1 {
+        }else if indexPath.section == 1 && indexPath.row == 1 {
             let profVC = ProfileViewController(nibName: "ProfileViewController" ,bundle: nil)
             let MenuNC = MenuNavigationController(rootViewController: profVC)
             self.frostedViewController.contentViewController = MenuNC
-        }else if indexPath.section == 1 && indexPath.row == 1 {
-            RealmManager.sharedInstance.deleteUserInfo()
-            self.popToNewUserController()
-        }else if indexPath.section == 1 && indexPath.row == 0 {
+        }else if indexPath.section == 2 && indexPath.row == 0 {
             let copyVC = CopyRightViewController(nibName: "CopyRightViewController" ,bundle: nil)
             let MenuNC = MenuNavigationController(rootViewController: copyVC)
             self.frostedViewController.contentViewController = MenuNC
+        }else if indexPath.section == 2 && indexPath.row == 1 {
+            let priVC = PrivacyPolicyViewController(nibName: "PrivacyPolicyViewController" ,bundle: nil)
+            priVC.setLeftButton()
+            let MenuNC = MenuNavigationController(rootViewController: priVC)
+            self.frostedViewController.contentViewController = MenuNC
+        }else if indexPath.section == 2 && indexPath.row == 2 {
+            self.popToNewUserController()
         }
         
         self.frostedViewController.hideMenuViewController()

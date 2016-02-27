@@ -7,18 +7,16 @@
 //
 
 import UIKit
-import BubbleTransition
 
 protocol TimeLineViewControllerDelegate {
     func pushNextViewControler (vc :UIViewController)
 }
 
-class TimeLineViewController: UIViewController{
+class TimeLineViewController: BaseViewController{
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var createButton: UIButton!
 
-    let transition = BubbleTransition()
     var payments :[Payment]?
     var users :[User]?
     var group_id :Int?
@@ -33,7 +31,12 @@ class TimeLineViewController: UIViewController{
         tableView?.registerNib(nib, forCellReuseIdentifier: "BillTableViewCell")
         tableView?.estimatedRowHeight = 50
         tableView?.rowHeight = UITableViewAutomaticDimension
-        
+        reloadData()
+    }
+    
+    private func reloadData() {
+        if onSession { return }
+        onSession = true
         guard let notNilUser =  RealmManager.sharedInstance.userInfo else{
             self.popToNewUserController()
             return
@@ -41,32 +44,55 @@ class TimeLineViewController: UIViewController{
         
         let uid = notNilUser.userId
         let token = notNilUser.token
-
+        
         let session = PaymentSession()
+        self.startIndicator()
         session.payments(uid, pass: token, group_id: group_id!,last_id: nil) { (error) -> Void in
             
-            if error {
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.setAlertView()
+            switch error {
+            case .NetworkError:
+                self.stopIndicator()
+                self.setAlertView(NetworkErrorTitle, message: NetworkErrorMessage)
+                self.onSession = false
+                return
+            case .Success:
+                self.payments = session.payments
+                
+                let groupSession = GroupSession()
+                groupSession.users(uid, token: token, group_id: self.group_id!, complition: { (groupSessionError) -> Void in
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.stopIndicator()
+                        self.onSession = false
+                        
+                        switch groupSessionError {
+                        case .NetworkError:
+                            self.setAlertView(NetworkErrorTitle, message: NetworkErrorMessage)
+                            break
+                        case .Success:
+                            self.users = groupSession.group?.activeUsers
+                            self.tableView.reloadData()
+                            break
+                        case .ServerError:
+                            self.setAlertView(ServerErrorMessage, message: ServerErrorMessage)
+                            break
+                        case .UnauthorizedError:
+                            self.popToNewUserController()
+                            break
+                        }
+                    })
                 })
+                break
+            case .ServerError:
+                self.stopIndicator()
+                self.setAlertView(ServerErrorMessage, message: ServerErrorMessage)
+                self.onSession = false
+                return
+            case .UnauthorizedError:
+                self.popToNewUserController()
                 return
             }
-            self.payments = session.payments
-            
-            let groupSession = GroupSession()
-            groupSession.users(uid, token: token, group_id: self.group_id!, complition: { (groupSessionError) -> Void in
-                
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    if groupSessionError {
-                        self.setAlertView()
-                        return
-                    }
-                    
-                    self.users = groupSession.group?.activeUsers
-                    self.tableView.reloadData()
-                })
-            })
-        }
+         }
+
     }
     
     //MARK: IBAction
@@ -84,13 +110,11 @@ class TimeLineViewController: UIViewController{
     
     //MARK: Private 
     
-    func setAlertView () {
-        let alertController = UIAlertController(title: "通信エラー", message: "通信環境の良い場所で通信してください", preferredStyle: .Alert)
+    func setAlertView (title :String ,message :String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         
         let defaultAction = UIAlertAction(title: "OK", style: .Default, handler:{
             (action:UIAlertAction!) -> Void in
-            //ユーザ情報がないので強制的にTOPに戻す
-            self.popToNewUserController()
         })
 
         alertController.addAction(defaultAction)
@@ -126,6 +150,8 @@ extension TimeLineViewController :UITableViewDelegate ,UITableViewDataSource {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let pc = PayerListViewController(nibName: "PayerListViewController", bundle: nil)
         pc.payerList = payment.participants
+        pc.payer = payment.paid_user
+        pc.payment_id = payment.payment_id
         
         delegate?.pushNextViewControler(pc)
     }
@@ -150,28 +176,49 @@ extension TimeLineViewController :UITableViewDelegate ,UITableViewDataSource {
             let token = notNilUser.token
             
             self.onSession = true
+            
+            self.startIndicator()
             session.payments(uid, pass: token, group_id: group_id!,last_id: notNilPayments.last?.payment_id) { (error) -> Void in
 
-                self.onSession = false
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    if error {
-                        self.setAlertView()
-                        return
-                    }
+                    self.stopIndicator()
+                    self.onSession = false
                     
-                    guard let newPayments = session.payments else {
-                        self.onSession = true
-                        return
+                    switch error {
+                    case .NetworkError:
+                        self.setAlertView(NetworkErrorTitle, message: NetworkErrorMessage)
+                        break
+                    case .Success:
+                        guard let newPayments = session.payments else {
+                            return
+                        }
+                        if newPayments.count == 0 {
+                            return
+                        }
+                        
+                        self.payments?.appendContentsOf(newPayments)
+                        self.tableView.reloadData()
+                        break
+                    case .ServerError:
+                        self.setAlertView(ServerErrorMessage, message: ServerErrorMessage)
+                        break
+                    case .UnauthorizedError:
+                        self.popToNewUserController()
+                        break
                     }
-                    if newPayments.count == 0 {
-                        self.onSession = true
-                        return
-                    }
-                    
-                    self.payments?.appendContentsOf(newPayments)
-                    self.tableView.reloadData()
                 })
             }
         }
     }
+    /*
+    スクロール時
+    */
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+        // 下に引っ張ったときは、ヘッダー位置を計算して動かないようにする（★ここがポイント..）
+        if scrollView.contentOffset.y < 0 {
+            reloadData()
+        }
+    }
+
 }

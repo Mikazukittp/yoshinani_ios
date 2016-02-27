@@ -8,7 +8,7 @@
 
 import UIKit
 
-class InviteFriendViewController: UIViewController {
+class InviteFriendViewController: BaseViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
@@ -51,7 +51,7 @@ extension InviteFriendViewController :UITableViewDelegate,UITableViewDataSource 
             return cell
         }
         
-        cell.setName(notNilUser.userName)
+        cell.setName(notNilUser.userName ?? String(notNilUser.userId))
         return cell
         
     }
@@ -65,12 +65,23 @@ extension InviteFriendViewController :UITableViewDelegate,UITableViewDataSource 
         }
         
         let session = GroupSession()
+        self.startIndicator()
         session.invite(nonNilUser.userId, token: nonNilUser.token, group_id: group_id!, invite_user_id: user!.userId) { (error) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                if error {
-                    self.caution()
-                }else {
-                        self.setAlertView()
+                self.stopIndicator()
+                switch error {
+                case .NetworkError:
+                    self.caution(NetworkErrorTitle, message: NetworkErrorMessage)
+                    break
+                case .Success:
+                    self.successAlert()
+                    break
+                case .ServerError:
+                    self.caution(ServerErrorTitle, message: "招待できませんでした")
+                    break
+                case .UnauthorizedError:
+                    self.popToNewUserController()
+                    break
                 }
             })
         }
@@ -87,18 +98,32 @@ extension InviteFriendViewController: UISearchBarDelegate {
         let user = RealmManager.sharedInstance.userInfo
         
         guard let nonNilUser = user else{
+            self.popToNewUserController()
             return
         }
         
         let session = UserSession()
+        self.startIndicator()
         session.search(nonNilUser.userId, token: nonNilUser.token, userName: searchBar.text!) { (error) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                if error {
-                    self.caution()
-                }else {
+                self.stopIndicator()
+
+                switch error {
+                case .NetworkError:
+                    self.caution(NetworkErrorTitle, message: NetworkErrorMessage)
+                    break
+                case .Success:
                     self.user = session.user
                     self.tableView.reloadData()
+                    break
+                case .ServerError:
+                    self.caution(ServerErrorTitle, message: ServerErrorMessage)
+                    break
+                case .UnauthorizedError:
+                    self.popToNewUserController()
+                    break
                 }
+
             })
         }
         
@@ -126,17 +151,14 @@ extension InviteFriendViewController: UISearchBarDelegate {
         searchBar.resignFirstResponder()
     }
     
-    private func caution () {
-        let alertController = UIAlertController(title: "エラー", message: "通信環境の良い場所で通信してください", preferredStyle: .Alert)
+    private func caution (title: String, message :String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         
         let defaultAction = UIAlertAction(title: "OK", style: .Default, handler:nil)
         alertController.addAction(defaultAction)
-        
-        presentViewController(alertController, animated: true, completion: nil)
-
     }
     
-    private func setAlertView() {
+    private func successAlert() {
         let alertController = UIAlertController(title: "招待完了", message: "友人をグループに招待しました。", preferredStyle: .Alert)
         
         let defaultAction = UIAlertAction(title: "OK", style: .Default) {

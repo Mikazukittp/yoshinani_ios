@@ -10,9 +10,17 @@ import UIKit
 import Unbox
 import RealmSwift
 
+
+enum ErrorHandring :Int {
+    case Success
+    case NetworkError
+    case UnauthorizedError
+    case ServerError
+}
+
 class LoginSession: NSObject {
 
-    func login (account :String,pass :String,complition :(error :Bool, user :User?) ->Void) {
+    func login (account :String,pass :String,complition :(error :ErrorHandring, user :User?) ->Void) {
         
         let request = NSMutableURLRequest(URL: NSURL(string: Const.urlDomain + "/users/sign_in")!,
             cachePolicy: .UseProtocolCachePolicy,
@@ -23,32 +31,50 @@ class LoginSession: NSObject {
         request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
 
         let session = NSURLSession.sharedSession()
+        session.cancelAllTasks()
+        
         let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
-                print(error)
-                complition(error: true, user: nil)
+                if error!.code != NSURLError.Cancelled.rawValue {
+                    complition(error: .NetworkError, user: nil)
+                }
             } else {
                 guard let notNilResponse = response else {
-                    complition(error: true, user: nil)
+                    complition(error: .ServerError, user: nil)
                     return
                 }
                 
                 let httpResponse = notNilResponse as! NSHTTPURLResponse
-                if httpResponse.statusCode != 200 {
-                    complition(error: true, user: nil)
+                if httpResponse.statusCode == 401 {
+                    complition(error: .UnauthorizedError, user: nil)
+                    return
+                }else if httpResponse.statusCode != 200 {
+                    complition(error: .ServerError, user: nil)
                     return
                 }
                 
                 let user :User? = Unbox(data!)
                 guard let notNilUser = user else{
-                    complition(error: false, user: nil)
+                    complition(error: .ServerError, user: nil)
                     return
                 }
                 
-                complition(error: false, user: notNilUser)
+                complition(error: .Success, user: notNilUser)
             }
         })
         dataTask.resume()
     }
+}
 
+extension NSURLSession {
+    func cancelAllTasks() {
+        self.getTasksWithCompletionHandler { (dataTasks, uploadTasks, downloadTasks) -> Void in
+            
+            dataTasks.forEach {
+                if $0.state == .Running {
+                    $0.cancel()
+                }
+            }
+        }
+    }
 }

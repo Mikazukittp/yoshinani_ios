@@ -43,11 +43,21 @@ class CreateRoomViewController: UIViewController,UITextFieldDelegate {
         if isSuccess {
             let session = GroupSession()
             session.create(notNilUser.userId, token: notNilUser.token, name: groupNameTextField.text!, desp: descriptionNameTextField.text!, complition: { (error) -> Void in
-                if error {
-                    self.setAlertView()
-                }else {
+                switch error {
+                case .NetworkError:
+                    self.setAlertView(NetworkErrorTitle, message: NetworkErrorMessage)
+                    break
+                case .Success:
                     self.dismissViewControllerAnimated(true, completion: nil)
+                    break
+                case .ServerError:
+                    self.setAlertView(ServerErrorMessage, message: ServerErrorMessage)
+                    break
+                case .UnauthorizedError:
+                    self.popToNewUserController()
+                    break
                 }
+
                 
             })
         }
@@ -63,9 +73,9 @@ class CreateRoomViewController: UIViewController,UITextFieldDelegate {
         //ここで文字数を取得して、いい感じに処理します。
         let length = groupNameTextField.text?.utf16.count
         
-        if length > 8 {
+        if length > 20 {
             groupNameTextField.text = ""
-            groupNameTextField.attributedPlaceholder = NSAttributedString(string: "8文字を超えています。",attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            groupNameTextField.attributedPlaceholder = NSAttributedString(string: "20文字を超えています。",attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
         }
     }
     
@@ -96,14 +106,16 @@ class CreateRoomViewController: UIViewController,UITextFieldDelegate {
         return isSuccess
     }
     
-    func setAlertView () {
-        let alertController = UIAlertController(title: "通信エラー", message: "通信環境の良い場所で通信してください", preferredStyle: .Alert)
-        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+    private func setAlertView (title :String ,message :String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        
+        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler:{
+            (action:UIAlertAction!) -> Void in
+        })
+        
         alertController.addAction(defaultAction)
         
         presentViewController(alertController, animated: true, completion: nil)
     }
-
-
-
 }
+

@@ -7,16 +7,27 @@
 //
 
 import UIKit
-import RealmSwift
-import REFrostedViewController
-
 
 class BaseViewController: UIViewController {
-
-    var userInfo: RUser?
+    let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(0, 0, 100, 100)) as UIActivityIndicatorView
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.view.addSubview(loadingIndicator)        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        loadingIndicator.center = CGPointMake(CGFloat(UIScreenUtil.screenWidth() / 2), CGFloat(UIScreenUtil.screenHeight() / 2))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+    }
+    
+    func startIndicator() {
+        self.view.bringSubviewToFront(loadingIndicator)
+        loadingIndicator.startAnimating();
+    }
+    
+    func stopIndicator() {
+        loadingIndicator.stopAnimating()
     }
 }

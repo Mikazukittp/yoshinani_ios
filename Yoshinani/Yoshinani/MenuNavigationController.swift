@@ -10,6 +10,7 @@ import UIKit
 
 class MenuNavigationController: UINavigationController {
     
+    
     override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
     }
@@ -24,7 +25,7 @@ class MenuNavigationController: UINavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
     
     func showMenu () {
@@ -33,3 +34,4 @@ class MenuNavigationController: UINavigationController {
         self.frostedViewController .presentMenuViewController()
     }
 }
+

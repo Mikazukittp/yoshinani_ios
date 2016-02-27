@@ -28,12 +28,7 @@ class PageMenuViewController: UIViewController ,UIViewControllerTransitioningDel
 
         // Array to keep track of controllers in page menu
         var controllerArray : [UIViewController] = []
-        
-        // Create variables for all view controllers you want to put in the
-        // page menu, initialize them, and add each to the controller array.
-        // (Can be any UIViewController subclass)
-        // Make sure the title property of all view controllers is set
-        // Example:
+
         let controller = OverViewController(nibName: "OverViewController", bundle: nil)
         controller.title = "メンバー"
         controller.group_id = group_id
@@ -60,7 +55,13 @@ class PageMenuViewController: UIViewController ,UIViewControllerTransitioningDel
        
         // Lastly add page menu as subview of base view controller view
         // or use pageMenu controller in you view hierachy as desired
-        self.view.addSubview(pageMenu!.view)        
+        self.addChildViewController(pageMenu!)
+        
+        pageMenu!.view.frame = self.view.bounds // modify this line as you like
+        pageMenu!.view.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleHeight] // modify this line as you like
+        
+        self.view.addSubview(pageMenu!.view)
+        pageMenu!.didMoveToParentViewController(self)
     }
     
     func pushToInvite() {
