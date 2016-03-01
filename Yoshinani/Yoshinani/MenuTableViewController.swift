@@ -15,7 +15,7 @@ protocol MenuTableViewControllerDelegate {
 class MenuTableViewController: UITableViewController {
     
     var tableData : Array<String> = []
-    let titles = [["icon"],["ホーム","プロフィール"],["Copyright","利用規約","サインアウト"]]
+    let titles = [["icon"],["ホーム"],["このアプリについて","サインアウト"]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +44,8 @@ class MenuTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("MenuProfTableViewCell") as? MenuProfTableViewCell
+            let user = RealmManager.sharedInstance.userInfo
+            cell?.setLabels(user!)
             return cell!
         }
         
@@ -79,15 +81,10 @@ class MenuTableViewController: UITableViewController {
             let MenuNC = MenuNavigationController(rootViewController: profVC)
             self.frostedViewController.contentViewController = MenuNC
         }else if indexPath.section == 2 && indexPath.row == 0 {
-            let copyVC = CopyRightViewController(nibName: "CopyRightViewController" ,bundle: nil)
+            let copyVC = AboutAppViewController(nibName: "AboutAppViewController" ,bundle: nil)
             let MenuNC = MenuNavigationController(rootViewController: copyVC)
             self.frostedViewController.contentViewController = MenuNC
         }else if indexPath.section == 2 && indexPath.row == 1 {
-            let priVC = PrivacyPolicyViewController(nibName: "PrivacyPolicyViewController" ,bundle: nil)
-            priVC.setLeftButton()
-            let MenuNC = MenuNavigationController(rootViewController: priVC)
-            self.frostedViewController.contentViewController = MenuNC
-        }else if indexPath.section == 2 && indexPath.row == 2 {
             self.popToNewUserController()
         }
         

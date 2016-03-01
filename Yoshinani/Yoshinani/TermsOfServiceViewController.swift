@@ -1,23 +1,21 @@
 //
-//  PrivacyPolicyViewController.swift
+//  TermsOfServiceViewController.swift
 //  Yoshinani
 //
-//  Created by 石部達也 on 2016/02/23.
+//  Created by 石部達也 on 2016/02/29.
 //  Copyright © 2016年 石部達也. All rights reserved.
 //
 
 import UIKit
 
-class PrivacyPolicyViewController: UIViewController {
+class TermsOfServiceViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.title = "プライバシーポリシー"
+        self.title = "利用規約"
         self.edgesForExtendedLayout = .None
+   }
 
-    }
-    
     func setLeftButton() {
         let customButton :UIButton = UIButton(frame: CGRectMake(0, 0, 35, 35))
         customButton.addTarget(self.navigationController, action: "showMenu", forControlEvents: .TouchUpInside)

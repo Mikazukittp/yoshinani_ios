@@ -85,12 +85,12 @@ extension OverViewController: UITableViewDataSource,UITableViewDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier("OverviewTableViewCell", forIndexPath: indexPath) as! OverviewTableViewCell
         let total = user.totals?.filter{$0.group_id == self.group_id}
         if total?.count == 0 {
-            cell.setLabels(user.userName ?? String(user.userId), total: nil)
+            cell.setLabels(user.userName ?? String(user.account), total: nil)
             return cell
         }
         print("aaaaaa")
         print(total)
-        cell.setLabels(user.userName ?? String(user.userId), total: total![0])
+        cell.setLabels(user.userName ?? String(user.account), total: total![0])
         return cell
     }
     

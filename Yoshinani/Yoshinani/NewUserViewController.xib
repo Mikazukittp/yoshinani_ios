@@ -91,8 +91,8 @@
                     </userDefinedRuntimeAttributes>
                     <variation key="default">
                         <mask key="constraints">
-                            <exclude reference="SHt-sS-1iQ"/>
                             <exclude reference="IBl-JE-nN3"/>
+                            <exclude reference="SHt-sS-1iQ"/>
                         </mask>
                     </variation>
                 </textField>

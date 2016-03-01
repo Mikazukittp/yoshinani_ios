@@ -51,7 +51,7 @@ extension InviteFriendViewController :UITableViewDelegate,UITableViewDataSource 
             return cell
         }
         
-        cell.setName(notNilUser.userName ?? String(notNilUser.userId))
+        cell.setName(notNilUser.userName ?? String(notNilUser.account))
         return cell
         
     }

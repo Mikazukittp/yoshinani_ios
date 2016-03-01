@@ -118,8 +118,8 @@
                     <textInputTraits key="textInputTraits"/>
                     <variation key="default">
                         <mask key="constraints">
-                            <exclude reference="UeC-eQ-x1t"/>
                             <exclude reference="Gfu-Ig-T91"/>
+                            <exclude reference="UeC-eQ-x1t"/>
                         </mask>
                     </variation>
                 </textField>
@@ -135,8 +135,8 @@
                     <textInputTraits key="textInputTraits"/>
                     <variation key="default">
                         <mask key="constraints">
-                            <exclude reference="6no-IU-HZt"/>
                             <exclude reference="00c-uB-lrG"/>
+                            <exclude reference="6no-IU-HZt"/>
                         </mask>
                     </variation>
                 </textField>
@@ -177,6 +177,16 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="に同意したことになります。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PfP-dZ-T5D">
+                    <rect key="frame" x="20" y="318" width="155" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="9V2-Lr-lan"/>
+                        <constraint firstAttribute="width" constant="155" id="K8w-zT-cmE"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hMK-n9-Oxz">
                     <rect key="frame" x="141" y="290" width="48" height="25"/>
                     <constraints>
@@ -185,25 +195,45 @@
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <state key="normal" title="利用規約"/>
                     <connections>
-                        <action selector="didTapPrivacyPolicyButton:" destination="-1" eventType="touchUpInside" id="olv-e3-89h"/>
+                        <action selector="didTapTermsOfService:" destination="-1" eventType="touchUpInside" id="SIi-QA-jL3"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="に同意したことになります。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpN-rZ-NGH">
-                    <rect key="frame" x="189" y="290" width="391" height="25"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="knE-pW-2uR">
+                    <rect key="frame" x="204" y="290" width="121" height="25"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="277" id="aDE-XF-pg1"/>
+                        <constraint firstAttribute="height" constant="25" id="1R1-4m-Lwk"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="121" id="h9A-wm-7AA"/>
+                        <constraint firstAttribute="width" constant="48" id="hjW-19-i6v"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <state key="normal" title="プライバシーポリシー"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="hjW-19-i6v"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <action selector="didTapPrivacyPolicyButton:" destination="-1" eventType="touchUpInside" id="5gz-zp-iZR"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="、" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="47I-EG-4Fc">
+                    <rect key="frame" x="192" y="290" width="12" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="erS-HJ-bRc"/>
+                        <constraint firstAttribute="width" constant="277" id="rxN-qi-EjH"/>
+                        <constraint firstAttribute="width" constant="12" id="ssu-1g-Nf9"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                     <variation key="default">
                         <mask key="constraints">
-                            <exclude reference="aDE-XF-pg1"/>
+                            <exclude reference="rxN-qi-EjH"/>
                         </mask>
                     </variation>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="※メールアドレスは他人に共有されません。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vap-SA-GeI">
-                    <rect key="frame" x="20" y="318" width="277" height="21"/>
+                    <rect key="frame" x="20" y="346" width="277" height="21"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="277" id="LtH-ci-ICg"/>
                         <constraint firstAttribute="height" constant="21" id="qzx-Y7-esd"/>
@@ -215,17 +245,18 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="PfP-dZ-T5D" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="0Cj-LE-ehF"/>
+                <constraint firstItem="knE-pW-2uR" firstAttribute="top" secondItem="lUH-CE-HvV" secondAttribute="bottom" constant="10" id="0fy-pX-7GW"/>
                 <constraint firstItem="HiE-ce-vwh" firstAttribute="top" secondItem="vLl-zS-kRA" secondAttribute="bottom" constant="3" id="5aw-9e-KkX"/>
                 <constraint firstItem="PKt-FG-wJs" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="5em-T6-V5E"/>
+                <constraint firstItem="knE-pW-2uR" firstAttribute="leading" secondItem="47I-EG-4Fc" secondAttribute="trailing" id="5yW-Z4-ikn"/>
                 <constraint firstItem="vLl-zS-kRA" firstAttribute="top" secondItem="jYM-yc-2uy" secondAttribute="bottom" constant="10" id="6zD-gQ-UMI"/>
                 <constraint firstAttribute="trailing" secondItem="U9A-zS-Xkr" secondAttribute="trailing" constant="20" id="7nw-Li-pDf"/>
                 <constraint firstItem="ZfJ-Fr-3LY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="9sB-ms-16Z"/>
                 <constraint firstAttribute="trailing" secondItem="9tx-H4-MLt" secondAttribute="trailing" constant="20" id="9zg-WX-rkS"/>
-                <constraint firstItem="fpN-rZ-NGH" firstAttribute="top" secondItem="lUH-CE-HvV" secondAttribute="bottom" constant="10" id="Br2-WR-AHu"/>
                 <constraint firstItem="HiE-ce-vwh" firstAttribute="top" secondItem="vLl-zS-kRA" secondAttribute="bottom" constant="3" id="CS0-vX-aKj"/>
                 <constraint firstItem="lUH-CE-HvV" firstAttribute="top" secondItem="OAl-Zw-fzS" secondAttribute="bottom" constant="20" id="D5s-4L-cGE"/>
                 <constraint firstAttribute="trailing" secondItem="ZfJ-Fr-3LY" secondAttribute="trailing" constant="20" id="H12-wI-l8T"/>
-                <constraint firstAttribute="trailing" secondItem="fpN-rZ-NGH" secondAttribute="trailing" constant="20" id="Hvw-qp-vxh"/>
                 <constraint firstItem="lUH-CE-HvV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="Ioy-sp-TEB"/>
                 <constraint firstAttribute="trailing" secondItem="HiE-ce-vwh" secondAttribute="trailing" constant="20" id="J13-y9-hHm"/>
                 <constraint firstItem="Det-wm-JFF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="Jnq-1Y-HyZ"/>
@@ -238,6 +269,7 @@
                 <constraint firstItem="9tx-H4-MLt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="Tm1-mC-Zb3"/>
                 <constraint firstItem="ekD-Mu-y4B" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="UdU-X6-B8k"/>
                 <constraint firstItem="jYM-yc-2uy" firstAttribute="top" secondItem="U9A-zS-Xkr" secondAttribute="bottom" constant="3" id="Utq-n5-hCO"/>
+                <constraint firstItem="PfP-dZ-T5D" firstAttribute="top" secondItem="PKt-FG-wJs" secondAttribute="bottom" constant="3" id="VrQ-RJ-738"/>
                 <constraint firstItem="vap-SA-GeI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="Wc3-oZ-HDA"/>
                 <constraint firstAttribute="trailing" secondItem="vLl-zS-kRA" secondAttribute="trailing" constant="20" id="YD5-DZ-13u"/>
                 <constraint firstItem="vap-SA-GeI" firstAttribute="top" secondItem="PKt-FG-wJs" secondAttribute="bottom" constant="3" id="Yfn-JB-FJu"/>
@@ -248,20 +280,27 @@
                 <constraint firstItem="9tx-H4-MLt" firstAttribute="top" secondItem="HiE-ce-vwh" secondAttribute="bottom" constant="10" id="ckt-BM-aBA"/>
                 <constraint firstAttribute="trailing" secondItem="ekD-Mu-y4B" secondAttribute="trailing" constant="20" id="dIw-1L-tkh"/>
                 <constraint firstAttribute="trailing" secondItem="lUH-CE-HvV" secondAttribute="trailing" constant="20" id="eNp-6j-1yv"/>
+                <constraint firstItem="vap-SA-GeI" firstAttribute="top" secondItem="PfP-dZ-T5D" secondAttribute="bottom" constant="3" id="ezJ-DW-Tj0"/>
+                <constraint firstItem="47I-EG-4Fc" firstAttribute="leading" secondItem="hMK-n9-Oxz" secondAttribute="trailing" constant="3" id="fQx-CW-8AH"/>
                 <constraint firstItem="jYM-yc-2uy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="gEu-E4-Kfi"/>
                 <constraint firstItem="vap-SA-GeI" firstAttribute="top" secondItem="hMK-n9-Oxz" secondAttribute="bottom" constant="3" id="kMI-Nv-gPJ"/>
-                <constraint firstItem="fpN-rZ-NGH" firstAttribute="height" secondItem="PKt-FG-wJs" secondAttribute="height" id="mbj-rJ-G40"/>
                 <constraint firstItem="hMK-n9-Oxz" firstAttribute="height" secondItem="PKt-FG-wJs" secondAttribute="height" id="mee-vQ-vxI"/>
                 <constraint firstItem="PKt-FG-wJs" firstAttribute="top" secondItem="lUH-CE-HvV" secondAttribute="bottom" constant="10" id="nDi-Jt-saZ"/>
                 <constraint firstItem="Det-wm-JFF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="pPf-is-2zD"/>
                 <constraint firstItem="OAl-Zw-fzS" firstAttribute="top" secondItem="ZfJ-Fr-3LY" secondAttribute="bottom" constant="3" id="qSc-c5-zVr"/>
                 <constraint firstAttribute="trailing" secondItem="71T-DX-EjF" secondAttribute="trailing" constant="20" id="qad-vR-jzJ"/>
                 <constraint firstItem="U9A-zS-Xkr" firstAttribute="top" secondItem="ekD-Mu-y4B" secondAttribute="bottom" constant="10" id="sme-0B-Z9z"/>
+                <constraint firstItem="47I-EG-4Fc" firstAttribute="top" secondItem="lUH-CE-HvV" secondAttribute="bottom" constant="10" id="uuB-4h-RSN"/>
                 <constraint firstItem="ZfJ-Fr-3LY" firstAttribute="top" secondItem="71T-DX-EjF" secondAttribute="bottom" constant="10" id="x64-d7-kbg"/>
                 <constraint firstItem="OAl-Zw-fzS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="xkj-TH-Ns0"/>
-                <constraint firstItem="fpN-rZ-NGH" firstAttribute="leading" secondItem="hMK-n9-Oxz" secondAttribute="trailing" id="zqR-Qi-bdb"/>
                 <constraint firstAttribute="trailing" secondItem="OAl-Zw-fzS" secondAttribute="trailing" constant="20" id="zvd-c0-HB6"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="Yfn-JB-FJu"/>
+                    <exclude reference="kMI-Nv-gPJ"/>
+                </mask>
+            </variation>
         </view>
     </objects>
 </document>

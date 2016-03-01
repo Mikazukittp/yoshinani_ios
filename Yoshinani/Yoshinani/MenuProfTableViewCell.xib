@@ -15,24 +15,55 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="249.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="DCa-yn-j3I">
-                        <rect key="frame" x="130" y="28" width="60" height="60"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T9k-jN-Qh3">
+                        <rect key="frame" x="18" y="88" width="284" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6hI-PI-kHH">
+                        <rect key="frame" x="18" y="113.5" width="284" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="T" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VBm-mg-yJS" customClass="RoundLabel" customModule="Yoshinani" customModuleProvider="target">
+                        <rect key="frame" x="18" y="28" width="50" height="50"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="60" id="DX1-sH-Ho0"/>
-                            <constraint firstAttribute="height" constant="60" id="bxD-FS-47u"/>
+                            <constraint firstAttribute="width" constant="50" id="TMK-gj-0ba"/>
+                            <constraint firstAttribute="height" constant="50" id="h6G-Gq-8Tf"/>
                         </constraints>
-                    </imageView>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                        <color key="textColor" red="0.14901960780000001" green="0.65098039220000004" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="DCa-yn-j3I" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="20" id="SAo-2y-qpA"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="DCa-yn-j3I" secondAttribute="bottom" priority="200" constant="20" id="mfe-0b-g6p"/>
-                    <constraint firstItem="DCa-yn-j3I" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="n7H-LY-Uqj"/>
+                    <constraint firstItem="VBm-mg-yJS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="20" id="9VR-nS-0F5"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="VBm-mg-yJS" secondAttribute="bottom" priority="200" constant="20" id="J2H-Xr-gtk"/>
+                    <constraint firstItem="T9k-jN-Qh3" firstAttribute="top" secondItem="VBm-mg-yJS" secondAttribute="bottom" constant="10" id="WSz-LC-Huc"/>
+                    <constraint firstItem="VBm-mg-yJS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="Y2z-q7-rX3"/>
+                    <constraint firstItem="6hI-PI-kHH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="ZQd-ak-aot"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="T9k-jN-Qh3" secondAttribute="trailing" constant="10" id="abV-td-pci"/>
+                    <constraint firstItem="6hI-PI-kHH" firstAttribute="top" secondItem="T9k-jN-Qh3" secondAttribute="bottom" constant="5" id="cTQ-VO-9tN"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="6hI-PI-kHH" secondAttribute="trailing" constant="10" id="hmQ-z9-yiS"/>
+                    <constraint firstItem="T9k-jN-Qh3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="iBu-yJ-Ww7"/>
+                    <constraint firstItem="VBm-mg-yJS" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="mDI-2S-jiK"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="6hI-PI-kHH" secondAttribute="bottom" priority="200" constant="10" id="mnX-vt-Jlf"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="J2H-Xr-gtk"/>
+                        <exclude reference="mDI-2S-jiK"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="initialLabel" destination="VBm-mg-yJS" id="5sv-IX-WbJ"/>
+                <outlet property="userAcount" destination="6hI-PI-kHH" id="eGP-5F-b0K"/>
+                <outlet property="userName" destination="T9k-jN-Qh3" id="MbY-xZ-7oN"/>
+            </connections>
             <point key="canvasLocation" x="266" y="473"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="Logo" width="68" height="68"/>
-    </resources>
 </document>

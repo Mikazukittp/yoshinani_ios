@@ -59,6 +59,10 @@
 		8381A5931C33F16B001911BC /* PayerListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8381A5911C33F16B001911BC /* PayerListTableViewCell.xib */; };
 		83A5E4C11C7876B2001740A0 /* ToPayUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A5E4BF1C7876B2001740A0 /* ToPayUserCell.swift */; };
 		83A5E4C21C7876B2001740A0 /* ToPayUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83A5E4C01C7876B2001740A0 /* ToPayUserCell.xib */; };
+		83D033831C848C6200576B8E /* TermsOfServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D033811C848C6200576B8E /* TermsOfServiceViewController.swift */; };
+		83D033841C848C6200576B8E /* TermsOfServiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83D033821C848C6200576B8E /* TermsOfServiceViewController.xib */; };
+		83D033871C848C7900576B8E /* AboutAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D033851C848C7900576B8E /* AboutAppViewController.swift */; };
+		83D033881C848C7900576B8E /* AboutAppViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83D033861C848C7900576B8E /* AboutAppViewController.xib */; };
 		83E6D1661C7C989E004B399C /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E6D1641C7C989E004B399C /* PrivacyPolicyViewController.swift */; };
 		83E6D1671C7C989E004B399C /* PrivacyPolicyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83E6D1651C7C989E004B399C /* PrivacyPolicyViewController.xib */; };
 		83EF132A1C437D2E00D55F74 /* NewUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EF13281C437D2E00D55F74 /* NewUserViewController.swift */; };
@@ -134,6 +138,10 @@
 		8381A5911C33F16B001911BC /* PayerListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayerListTableViewCell.xib; sourceTree = "<group>"; };
 		83A5E4BF1C7876B2001740A0 /* ToPayUserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToPayUserCell.swift; sourceTree = "<group>"; };
 		83A5E4C01C7876B2001740A0 /* ToPayUserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ToPayUserCell.xib; sourceTree = "<group>"; };
+		83D033811C848C6200576B8E /* TermsOfServiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsOfServiceViewController.swift; sourceTree = "<group>"; };
+		83D033821C848C6200576B8E /* TermsOfServiceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TermsOfServiceViewController.xib; sourceTree = "<group>"; };
+		83D033851C848C7900576B8E /* AboutAppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutAppViewController.swift; sourceTree = "<group>"; };
+		83D033861C848C7900576B8E /* AboutAppViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutAppViewController.xib; sourceTree = "<group>"; };
 		83E6D1641C7C989E004B399C /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
 		83E6D1651C7C989E004B399C /* PrivacyPolicyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrivacyPolicyViewController.xib; sourceTree = "<group>"; };
 		83EF13281C437D2E00D55F74 /* NewUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserViewController.swift; sourceTree = "<group>"; };
@@ -370,8 +378,6 @@
 			children = (
 				8367DF051C590C3B00B63E9B /* SignUpViewController.swift */,
 				8367DF061C590C3B00B63E9B /* SignUpViewController.xib */,
-				83E6D1641C7C989E004B399C /* PrivacyPolicyViewController.swift */,
-				83E6D1651C7C989E004B399C /* PrivacyPolicyViewController.xib */,
 			);
 			name = "Sign Up";
 			sourceTree = "<group>";
@@ -424,6 +430,12 @@
 				83EF13331C43933A00D55F74 /* ProfileViewController.xib */,
 				83F53D441C79AA1B00E8F79C /* CopyRightViewController.swift */,
 				83F53D451C79AA1B00E8F79C /* CopyRightViewController.xib */,
+				83E6D1641C7C989E004B399C /* PrivacyPolicyViewController.swift */,
+				83E6D1651C7C989E004B399C /* PrivacyPolicyViewController.xib */,
+				83D033811C848C6200576B8E /* TermsOfServiceViewController.swift */,
+				83D033821C848C6200576B8E /* TermsOfServiceViewController.xib */,
+				83D033851C848C7900576B8E /* AboutAppViewController.swift */,
+				83D033861C848C7900576B8E /* AboutAppViewController.xib */,
 			);
 			name = ChildViews;
 			sourceTree = "<group>";
@@ -525,6 +537,7 @@
 				83EF13351C43933A00D55F74 /* ProfileViewController.xib in Resources */,
 				83151F6E1C707050009A4DA4 /* InviteFriendViewController.xib in Resources */,
 				83151F6A1C705B47009A4DA4 /* InviteCell.xib in Resources */,
+				83D033881C848C7900576B8E /* AboutAppViewController.xib in Resources */,
 				83151F661C7056D4009A4DA4 /* InvitedViewController.xib in Resources */,
 				8312ED531C2C3374005A269D /* TopViewController.xib in Resources */,
 				83151F611C7034AE009A4DA4 /* OverviewTableViewCell.xib in Resources */,
@@ -532,6 +545,7 @@
 				83A5E4C21C7876B2001740A0 /* ToPayUserCell.xib in Resources */,
 				8381A57E1C33CA43001911BC /* TimeLineViewController.xib in Resources */,
 				8381A58F1C33F055001911BC /* PayerListViewController.xib in Resources */,
+				83D033841C848C6200576B8E /* TermsOfServiceViewController.xib in Resources */,
 				83EF132B1C437D2E00D55F74 /* NewUserViewController.xib in Resources */,
 				83E6D1671C7C989E004B399C /* PrivacyPolicyViewController.xib in Resources */,
 				8381A5771C33C8DB001911BC /* GroupTableViewCell.xib in Resources */,
@@ -621,6 +635,7 @@
 				8381A5921C33F16B001911BC /* PayerListTableViewCell.swift in Sources */,
 				8312ED3A1C2C2904005A269D /* AppDelegate.swift in Sources */,
 				8372BD641C6CC37900D07D97 /* UIViewController+Addition.swift in Sources */,
+				83D033871C848C7900576B8E /* AboutAppViewController.swift in Sources */,
 				83151F581C6F1FB0009A4DA4 /* OverViewController.swift in Sources */,
 				834DDB2F1C6C232900B7AB93 /* PageMenuViewController.swift in Sources */,
 				83EF133D1C440A1900D55F74 /* UserSession.swift in Sources */,
@@ -637,6 +652,7 @@
 				83151F651C7056D4009A4DA4 /* InvitedViewController.swift in Sources */,
 				8381A57D1C33CA43001911BC /* TimeLineViewController.swift in Sources */,
 				8363BD351C30217B0046A08F /* MenuNavigationController.swift in Sources */,
+				83D033831C848C6200576B8E /* TermsOfServiceViewController.swift in Sources */,
 				8312ED4E1C2C321F005A269D /* CreateRoomViewController.swift in Sources */,
 				830315131C7F5A7600F031E1 /* ProfitLabel.swift in Sources */,
 				83151F691C705B47009A4DA4 /* InviteCell.swift in Sources */,
@@ -752,9 +768,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Yoshinani/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.co.tatsuya.yoshinani;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Yoshinani/Yoshinani-Bridging-Header.h";
 			};
 			name = Debug;
@@ -764,11 +782,13 @@
 			baseConfigurationReference = 73B802D50B2C294AB961BA8A /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				INFOPLIST_FILE = Yoshinani/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.co.tatsuya.yoshinani;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "c645bdfa-2114-478c-a4de-6a08dbf75aa5";
 				SWIFT_OBJC_BRIDGING_HEADER = "Yoshinani/Yoshinani-Bridging-Header.h";
 			};
 			name = Release;

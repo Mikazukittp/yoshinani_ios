@@ -100,7 +100,6 @@ class UserSession: NSObject {
         let request = NSMutableURLRequest(URL: NSURL(string: Const.urlDomain + "/users/search?account=" + String(userName))!,
             cachePolicy: .UseProtocolCachePolicy,
             timeoutInterval: 10.0)
-        print(userName)
         request.HTTPMethod = "GET"
         
         request.addValue("\(uid)", forHTTPHeaderField: "uid")

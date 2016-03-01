@@ -16,7 +16,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ESb-9k-TZC">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <rect key="frame" x="20" y="0.0" width="560" height="600"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <string key="text">REFrostedViewController is available under the MIT license.
 
@@ -68,8 +68,8 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="ESb-9k-TZC" secondAttribute="bottom" id="BIu-Mc-0pl"/>
                 <constraint firstItem="ESb-9k-TZC" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Cb7-04-Xxj"/>
-                <constraint firstAttribute="trailing" secondItem="ESb-9k-TZC" secondAttribute="trailing" id="dEf-o2-Aqe"/>
-                <constraint firstItem="ESb-9k-TZC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ddU-A5-qzQ"/>
+                <constraint firstAttribute="trailing" secondItem="ESb-9k-TZC" secondAttribute="trailing" constant="20" id="dEf-o2-Aqe"/>
+                <constraint firstItem="ESb-9k-TZC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="ddU-A5-qzQ"/>
             </constraints>
         </view>
     </objects>

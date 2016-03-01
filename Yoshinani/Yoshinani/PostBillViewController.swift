@@ -79,7 +79,7 @@ class PostBillViewController: UIViewController {
         }
         
         let user :User = notNilUsers[indexPath.row]
-        cell.setProperties(user.userName ?? String(user.userId), check: !checkList[indexPath.row])
+        cell.setProperties(user.userName ?? String(user.account), check: !checkList[indexPath.row])
         return cell
     }
     

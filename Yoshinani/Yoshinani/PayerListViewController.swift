@@ -101,7 +101,7 @@ class PayerListViewController: UIViewController ,UITableViewDataSource, UITableV
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let user = payerList![indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier("PayerListTableViewCell", forIndexPath: indexPath) as! PayerListTableViewCell
-        cell.setName(user.userName ?? String(user.userId))
+        cell.setName(user.userName ?? String(user.account))
         return cell
     }
     

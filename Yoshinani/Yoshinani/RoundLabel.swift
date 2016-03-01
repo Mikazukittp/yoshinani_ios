@@ -14,6 +14,6 @@ class RoundLabel: UILabel {
         self.layer.cornerRadius = self.frame.width / 2;
         self.clipsToBounds = true;
         self.layer.borderColor = UIColor.mainColor().CGColor
-        self.layer.borderWidth = 3
+        self.layer.borderWidth = 2
     }
 }

@@ -14,8 +14,10 @@ class CopyRightViewController: UIViewController {
         super.viewDidLoad()
         
         self.edgesForExtendedLayout = .None
-        self.title = "Copy Right"
-        
+        self.title = "著作権情報"
+    }
+    
+    func setLeftButton() {
         let customButton :UIButton = UIButton(frame: CGRectMake(0, 0, 35, 35))
         customButton.addTarget(self.navigationController, action: "showMenu", forControlEvents: .TouchUpInside)
         customButton.setBackgroundImage(UIImage(named: "List"), forState: UIControlState.Normal)

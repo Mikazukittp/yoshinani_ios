@@ -102,6 +102,10 @@ class SignUpViewController: BaseViewController,UITextFieldDelegate {
         let vc :PrivacyPolicyViewController = PrivacyPolicyViewController(nibName :"PrivacyPolicyViewController", bundle: nil)
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    @IBAction func didTapTermsOfService(sender: AnyObject) {
+        let vc :TermsOfServiceViewController = TermsOfServiceViewController(nibName :"TermsOfServiceViewController", bundle: nil)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     //MARK: UITextFieldDelegate
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
