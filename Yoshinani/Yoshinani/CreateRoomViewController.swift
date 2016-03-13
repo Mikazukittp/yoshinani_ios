@@ -8,12 +8,17 @@
 
 import UIKit
 
-class CreateRoomViewController: UIViewController,UITextFieldDelegate {
+class CreateRoomViewController: BaseViewController,UITextFieldDelegate {
 
     @IBOutlet weak var groupNameTextField: UITextField!
     @IBOutlet weak var descriptionNameTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = "グループ作成"
+        self.screenTitle = "グループ作成画面(iOS)"
+        self.edgesForExtendedLayout = .None
+
         groupNameTextField.delegate = self
         descriptionNameTextField.delegate = self
         
@@ -22,10 +27,26 @@ class CreateRoomViewController: UIViewController,UITextFieldDelegate {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"textFieldDidChange:", name: UITextFieldTextDidChangeNotification, object: nil)
 
+        setCloseButton()
     }
+    
+    func setCloseButton() {
+        let customButton :UIButton = UIButton(frame: CGRectMake(0, 0, 30, 30))
+        customButton.addTarget(self, action: Selector("closeView"), forControlEvents: .TouchUpInside)
+        customButton.setBackgroundImage(UIImage(named: "Cancel"), forState: UIControlState.Normal)
+        let customButtonItem :UIBarButtonItem = UIBarButtonItem(customView: customButton)
+        self.navigationItem.leftBarButtonItem = customButtonItem
+    }
+    
+    func closeView() {
+        self.dismissViewControllerAnimated(true) { () -> Void in
+            
+        }
+    }
+    
     @IBAction func submitButtonTapped(sender: AnyObject) {
         let textFields = [groupNameTextField,descriptionNameTextField]
-        let isSuccess = self.nilCheck(textFields, alertMessage: "不正な入力値です")
+        let isSuccess = self.nilCheck(textFields, alertMessage: "未入力の項目があります")
         
         if groupNameTextField.markedTextRange != nil {
             return;
@@ -42,23 +63,25 @@ class CreateRoomViewController: UIViewController,UITextFieldDelegate {
         
         if isSuccess {
             let session = GroupSession()
+            self.startIndicator()
             session.create(notNilUser.userId, token: notNilUser.token, name: groupNameTextField.text!, desp: descriptionNameTextField.text!, complition: { (error) -> Void in
-                switch error {
-                case .NetworkError:
-                    self.setAlertView(NetworkErrorTitle, message: NetworkErrorMessage)
-                    break
-                case .Success:
-                    self.dismissViewControllerAnimated(true, completion: nil)
-                    break
-                case .ServerError:
-                    self.setAlertView(ServerErrorMessage, message: ServerErrorMessage)
-                    break
-                case .UnauthorizedError:
-                    self.popToNewUserController()
-                    break
-                }
-
-                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.stopIndicator()
+                    switch error {
+                    case .NetworkError:
+                        self.setAlertView(NetworkErrorTitle, message: NetworkErrorMessage)
+                        break
+                    case .Success:
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                        break
+                    case .ServerError:
+                        self.setAlertView(ServerErrorMessage, message: ServerErrorMessage)
+                        break
+                    case .UnauthorizedError:
+                        self.popToNewUserController()
+                        break
+                    }
+                    })
             })
         }
         

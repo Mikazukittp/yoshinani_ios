@@ -9,23 +9,29 @@
 import UIKit
 
 class OverViewController: BaseViewController {
-
     
     var users :[User]?
     var group_id :Int?
+    var indicatorDelegate :PageMenuIndicatorDelegate?
+    var onSession = false
     
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.screenTitle = "メンバー全収支画面(iOS)"
+        
         let nib = UINib(nibName: "OverviewTableViewCell", bundle: nil)
         tableView?.registerNib(nib, forCellReuseIdentifier: "OverviewTableViewCell")
         tableView?.estimatedRowHeight = 50
         tableView?.rowHeight = UITableViewAutomaticDimension
+        indicatorDelegate?.startChildViewIndicator()
         reloadData()
     }
     
     func reloadData() {
+        if onSession { return }
+        onSession = true
         guard let notNilUser =  RealmManager.sharedInstance.userInfo else{
             self.popToNewUserController()
             return
@@ -35,10 +41,11 @@ class OverViewController: BaseViewController {
         let token = notNilUser.token
         
         let groupSession = GroupSession()
-        self.startIndicator()
         groupSession.users(uid, token: token, group_id: group_id!, complition: { (error) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.stopIndicator()
+                self.indicatorDelegate?.stopChildViewIndicator()
+                self.onSession = false
+
                 switch error {
                 case .NetworkError:
                     self.setAlertView(NetworkErrorTitle, message: NetworkErrorMessage)
@@ -85,12 +92,10 @@ extension OverViewController: UITableViewDataSource,UITableViewDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier("OverviewTableViewCell", forIndexPath: indexPath) as! OverviewTableViewCell
         let total = user.totals?.filter{$0.group_id == self.group_id}
         if total?.count == 0 {
-            cell.setLabels(user.userName ?? String(user.account), total: nil)
+            cell.setLabels(user.userName ?? user.account, total: nil)
             return cell
         }
-        print("aaaaaa")
-        print(total)
-        cell.setLabels(user.userName ?? String(user.account), total: total![0])
+        cell.setLabels(user.userName ?? user.account, total: total![0])
         return cell
     }
     
@@ -105,6 +110,7 @@ extension OverViewController: UITableViewDataSource,UITableViewDelegate {
         
         // 下に引っ張ったときは、ヘッダー位置を計算して動かないようにする（★ここがポイント..）
         if scrollView.contentOffset.y < 0 {
+            indicatorDelegate?.startChildViewSmallIndicator()
             reloadData()
         }
     }

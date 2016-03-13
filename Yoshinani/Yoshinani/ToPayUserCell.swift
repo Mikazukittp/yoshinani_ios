@@ -13,16 +13,16 @@ class ToPayUserCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var box: UIImageView!
     
-    var isChecked = false
+    var isBlank = false
     
     func setProperties (name :String ,check :Bool) {
         nameLabel.text = name
-        isChecked = check
+        isBlank = check
         setImage()
     }
     
     func setImage () {
-        if isChecked {
+        if isBlank {
             box.image = UIImage(named: "BoxBlank")!
         }else {
             box.image = UIImage(named: "BoxChecked")!

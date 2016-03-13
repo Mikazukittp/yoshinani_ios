@@ -1,77 +1,64 @@
 //
-//  SignUpViewController.swift
+//  ResetPasswordViewController.swift
 //  Yoshinani
 //
-//  Created by 石部達也 on 2016/01/27.
+//  Created by 石部達也 on 2016/03/13.
 //  Copyright © 2016年 石部達也. All rights reserved.
 //
 
 import UIKit
 
-class SignUpViewController: BaseViewController,UITextFieldDelegate {
+class ResetPasswordViewController: BaseViewController, UITextFieldDelegate {
+    @IBOutlet weak var confirmKeyInput: UITextField!
+    @IBOutlet weak var newPasswordInput: UITextField!
+    @IBOutlet weak var reNewPasswordInput: UITextField!
 
-    @IBOutlet weak var nameTextInput: UITextField!
-    @IBOutlet weak var addressTextInput: UITextField!
-    @IBOutlet weak var accountTextInput: UITextField!
-    @IBOutlet weak var passwordTextInput: UITextField!
-    @IBOutlet weak var rePasswordInput: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.title = "パスワード再設定"
+        
         self.edgesForExtendedLayout = .None
+        self.screenTitle = "パスワード再設定新パスワード入力画面(iOS)"
         
-        self.title = "新規登録"
-        self.screenTitle = "新規登録画面(iOS)"
+        confirmKeyInput.keyboardType = .ASCIICapable
+        newPasswordInput.keyboardType = .ASCIICapable
+        reNewPasswordInput.keyboardType = .ASCIICapable
         
-        nameTextInput.keyboardType = .EmailAddress
-        addressTextInput.keyboardType = .ASCIICapable
-        accountTextInput.keyboardType = .ASCIICapable
-        passwordTextInput.keyboardType = .ASCIICapable
-        rePasswordInput.keyboardType = .ASCIICapable
+        newPasswordInput.secureTextEntry = true
+        reNewPasswordInput.secureTextEntry = true
         
-        nameTextInput.returnKeyType = .Done
-        addressTextInput.returnKeyType = .Done
-        accountTextInput.returnKeyType = .Done
-        passwordTextInput.returnKeyType = .Done
-        rePasswordInput.returnKeyType = .Done
-        passwordTextInput.secureTextEntry = true
-        rePasswordInput.secureTextEntry = true
-        
-        nameTextInput.delegate = self
-        addressTextInput.delegate = self
-        accountTextInput.delegate = self
-        passwordTextInput.delegate = self
-        rePasswordInput.delegate = self
+        confirmKeyInput.delegate = self
+        newPasswordInput.delegate = self
+        reNewPasswordInput.delegate = self
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"textFieldDidChange:", name: UITextFieldTextDidChangeNotification, object: nil)
-    }
-    @IBAction func submitButtonTapped(sender: AnyObject) {
-        
-        let textFields = [accountTextInput,passwordTextInput,rePasswordInput]
-        let isSuccess = self.nilCheck(textFields, alertMessage: "未入力の項目があります")
 
+    }
+    @IBAction func didTapSubmitButton(sender: AnyObject) {
+        let textFields = [confirmKeyInput,newPasswordInput,reNewPasswordInput]
+        let isSuccess = self.nilCheck(textFields, alertMessage: "未入力の項目があります")
+        
         if isSuccess {
             
-            let password = passwordTextInput.text!
-            let repassword = rePasswordInput.text!
+            let confirmKey = confirmKeyInput.text!
+            let password = newPasswordInput.text!
+            let repassword = reNewPasswordInput.text!
             
             if password != repassword {
                 setAlertView("パスワードが一致しません")
                 return
             }
             
-            let session = SignUpSession()
+
+            let session = PasswordSession()
+            let property = (confirmKey,password,repassword)
             
-            let email = addressTextInput.text!.characters.count > 0 ? addressTextInput.text : nil
-            let name = nameTextInput.text!.characters.count > 0 ? nameTextInput.text : nil
-            
-            let property = (accountTextInput.text!, passwordTextInput.text! ,email ,name)
-            print(property)
             self.startIndicator()
-            session.singUp(property, complition: { (error, user, message) -> Void in
+            
+            session.reset(property, complition: { (error, user, message) -> Void in
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.stopIndicator()
-
+                    
                     switch error {
                     case .NetworkError:
                         self.setAlertView(NetworkErrorMessage)
@@ -81,32 +68,29 @@ class SignUpViewController: BaseViewController,UITextFieldDelegate {
                             //ログイン情報をRealmに保存する
                             let ruser = RUser()
                             ruser.setProperty(notNilUser)
+                            RealmManager.sharedInstance.deleteUserInfo()
                             RealmManager.sharedInstance.userInfo = ruser
                         }
                         
-                        self.pushToTopViewController()
+                        self.setAlertView(SuccessTitle, message: PasswordMessage, closure: { () -> Void in
+                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                let vc :TopViewController = TopViewController(nibName :"TopViewController", bundle: nil)
+                                self.navigationController?.pushViewController(vc, animated: true)
+                            })
+                        })
                         break
                     case .ServerError:
                         let alertMessage = message ?? ServerErrorMessage
                         self.setAlertView(alertMessage)
                         break
                     case .UnauthorizedError:
-                        self.popToNewUserController()
                         break
                     }
-
+                    
                 })
             })
         }
-    }
-    
-    @IBAction func didTapPrivacyPolicyButton(sender: AnyObject) {
-        let vc :PrivacyPolicyViewController = PrivacyPolicyViewController(nibName :"PrivacyPolicyViewController", bundle: nil)
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    @IBAction func didTapTermsOfService(sender: AnyObject) {
-        let vc :TermsOfServiceViewController = TermsOfServiceViewController(nibName :"TermsOfServiceViewController", bundle: nil)
-        self.navigationController?.pushViewController(vc, animated: true)
+
     }
     //MARK: UITextFieldDelegate
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -117,10 +101,8 @@ class SignUpViewController: BaseViewController,UITextFieldDelegate {
     //MARK* Private
     
     func textFieldDidChange(notification: NSNotification) {
-        validateCheckInputText(accountTextInput, limit: 15)
-        validateCheckInputText(addressTextInput, limit: 30)
-        validateCheckInputText(nameTextInput, limit: 15)
-        validateCheckInputText(passwordTextInput, limit: 20)
+        validateCheckInputText(newPasswordInput, limit: 20)
+        validateCheckInputText(reNewPasswordInput, limit: 20)
     }
     
     private func validateCheckInputText(textInput :UITextField , limit :Int) {
@@ -158,15 +140,19 @@ class SignUpViewController: BaseViewController,UITextFieldDelegate {
     
     
     private func setAlertView (message :String) {
-        let alertController = UIAlertController(title: "登録失敗", message: message, preferredStyle: .Alert)
+        setAlertView("パスワード変更失敗",message: message, closure: nil)
+    }
+    
+    private func setAlertView (title :String,message :String, closure :(() -> Void)?) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         
-        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: { (action :UIAlertAction) -> Void in
+            if let notNilClosure = closure {
+                notNilClosure()
+            }
+        })
         alertController.addAction(defaultAction)
         
         presentViewController(alertController, animated: true, completion: nil)
-    }
-    private func pushToTopViewController () {
-        let vc :TopViewController = TopViewController(nibName :"TopViewController", bundle: nil)
-        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

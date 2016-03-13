@@ -22,6 +22,7 @@ class InviteFriendViewController: BaseViewController {
         self.edgesForExtendedLayout = .None
         
         self.title = "メンバー追加"
+        self.screenTitle = "友達追加画面(iOS)"
         
         let nib = UINib(nibName: "PayerListTableViewCell", bundle: nil)
         tableView?.registerNib(nib, forCellReuseIdentifier: "PayerListTableViewCell")
@@ -51,7 +52,7 @@ extension InviteFriendViewController :UITableViewDelegate,UITableViewDataSource 
             return cell
         }
         
-        cell.setName(notNilUser.userName ?? String(notNilUser.account))
+        cell.setName(notNilUser.userName ?? notNilUser.account)
         return cell
         
     }

@@ -8,14 +8,10 @@
 
 import UIKit
 
-protocol MenuTableViewControllerDelegate {
-    func menuControllerDidSelectRow(indexPath:NSIndexPath)
-}
-
 class MenuTableViewController: UITableViewController {
     
     var tableData : Array<String> = []
-    let titles = [["icon"],["ホーム"],["このアプリについて","サインアウト"]]
+    let titles = [["icon"],["ホーム"],["プロフィール","このアプリについて","サインアウト"]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,10 +77,15 @@ class MenuTableViewController: UITableViewController {
             let MenuNC = MenuNavigationController(rootViewController: profVC)
             self.frostedViewController.contentViewController = MenuNC
         }else if indexPath.section == 2 && indexPath.row == 0 {
+            let profVC = ProfileViewController(nibName: "ProfileViewController" ,bundle: nil)
+            let MenuNC = MenuNavigationController(rootViewController: profVC)
+            self.frostedViewController.contentViewController = MenuNC
+        }
+        else if indexPath.section == 2 && indexPath.row == 1 {
             let copyVC = AboutAppViewController(nibName: "AboutAppViewController" ,bundle: nil)
             let MenuNC = MenuNavigationController(rootViewController: copyVC)
             self.frostedViewController.contentViewController = MenuNC
-        }else if indexPath.section == 2 && indexPath.row == 1 {
+        }else if indexPath.section == 2 && indexPath.row == 2 {
             self.popToNewUserController()
         }
         

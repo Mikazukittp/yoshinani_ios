@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PayerListViewController: UIViewController ,UITableViewDataSource, UITableViewDelegate{
+class PayerListViewController: BaseViewController ,UITableViewDataSource, UITableViewDelegate{
 
     var payerList :[User]?
     var payer :User?
@@ -19,6 +19,7 @@ class PayerListViewController: UIViewController ,UITableViewDataSource, UITableV
         super.viewDidLoad()
         
         self.title = "参加者"
+        self.screenTitle = "支払い者リスト画面(iOS)"
         
         let nib = UINib(nibName: "PayerListTableViewCell", bundle: nil)
         tableView?.registerNib(nib, forCellReuseIdentifier: "PayerListTableViewCell")
@@ -47,8 +48,10 @@ class PayerListViewController: UIViewController ,UITableViewDataSource, UITableV
         let defaultAction = UIAlertAction(title: "はい", style: .Default, handler:{
             (action:UIAlertAction!) -> Void in
         
+            self.startIndicator()
             session.delete(user!.userId, pass: user!.token, payment_id: self.payment_id!, complition: { (error) -> Void in
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.stopIndicator()
                     switch error {
                     case .NetworkError:
                         self.setAlertView(NetworkErrorTitle, message: NetworkErrorMessage)
@@ -101,7 +104,7 @@ class PayerListViewController: UIViewController ,UITableViewDataSource, UITableV
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let user = payerList![indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier("PayerListTableViewCell", forIndexPath: indexPath) as! PayerListTableViewCell
-        cell.setName(user.userName ?? String(user.account))
+        cell.setName(user.userName ?? user.account)
         return cell
     }
     

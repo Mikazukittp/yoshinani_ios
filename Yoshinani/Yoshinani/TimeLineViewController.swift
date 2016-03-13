@@ -1,3 +1,4 @@
+
 //
 //  TimeLineViewController.swift
 //  Yoshinani
@@ -21,16 +22,20 @@ class TimeLineViewController: BaseViewController{
     var users :[User]?
     var group_id :Int?
     var delegate :TimeLineViewControllerDelegate?
+    var indicatorDelegate :PageMenuIndicatorDelegate?
     var onSession = false
 
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
+        self.screenTitle = "全ログ画面(iOS)"
+        
         let nib = UINib(nibName: "BillTableViewCell", bundle: nil)
         tableView?.registerNib(nib, forCellReuseIdentifier: "BillTableViewCell")
         tableView?.estimatedRowHeight = 50
         tableView?.rowHeight = UITableViewAutomaticDimension
+        indicatorDelegate?.startChildViewIndicator()
         reloadData()
     }
     
@@ -46,22 +51,22 @@ class TimeLineViewController: BaseViewController{
         let token = notNilUser.token
         
         let session = PaymentSession()
-        self.startIndicator()
         session.payments(uid, pass: token, group_id: group_id!,last_id: nil) { (error) -> Void in
             
             switch error {
             case .NetworkError:
-                self.stopIndicator()
-                self.setAlertView(NetworkErrorTitle, message: NetworkErrorMessage)
-                self.onSession = false
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.indicatorDelegate?.stopChildViewIndicator()
+                    self.setAlertView(NetworkErrorTitle, message: NetworkErrorMessage)
+                    self.onSession = false
+                    })
                 return
             case .Success:
                 self.payments = session.payments
-                
                 let groupSession = GroupSession()
                 groupSession.users(uid, token: token, group_id: self.group_id!, complition: { (groupSessionError) -> Void in
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.stopIndicator()
+                        self.indicatorDelegate?.stopChildViewIndicator()
                         self.onSession = false
                         
                         switch groupSessionError {
@@ -83,12 +88,17 @@ class TimeLineViewController: BaseViewController{
                 })
                 break
             case .ServerError:
-                self.stopIndicator()
-                self.setAlertView(ServerErrorMessage, message: ServerErrorMessage)
-                self.onSession = false
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.indicatorDelegate?.stopChildViewIndicator()
+                    self.setAlertView(ServerErrorMessage, message: ServerErrorMessage)
+                    self.onSession = false
+                    })
                 return
             case .UnauthorizedError:
-                self.popToNewUserController()
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.indicatorDelegate?.stopChildViewIndicator()
+                    self.popToNewUserController()
+                    })
                 return
             }
          }
@@ -98,13 +108,14 @@ class TimeLineViewController: BaseViewController{
     //MARK: IBAction
     
     @IBAction func createButtonTapped(sender: AnyObject) {
-        let vc = PostBillViewController(nibName: "PostBillViewController", bundle: nil)
+        let vc = PostPageMenuViewController()
+        let nc = MenuNavigationController(rootViewController: vc)
         vc.modalPresentationStyle = .Custom
         vc.modalTransitionStyle = .CrossDissolve
         vc.users = users
         vc.group_id = group_id
-        self.presentViewController(vc, animated: true) { () -> Void in
-        
+        self.presentViewController(nc, animated: true) { () -> Void in
+            
         }
     }
     
@@ -176,12 +187,11 @@ extension TimeLineViewController :UITableViewDelegate ,UITableViewDataSource {
             let token = notNilUser.token
             
             self.onSession = true
-            
-            self.startIndicator()
+            self.indicatorDelegate?.startChildViewSmallIndicator()
             session.payments(uid, pass: token, group_id: group_id!,last_id: notNilPayments.last?.payment_id) { (error) -> Void in
 
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.stopIndicator()
+                    self.indicatorDelegate?.stopChildViewIndicator()
                     self.onSession = false
                     
                     switch error {
@@ -213,10 +223,14 @@ extension TimeLineViewController :UITableViewDelegate ,UITableViewDataSource {
     /*
     スクロール時
     */
+    //FIXME :一回だけフェッチする
     func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+        if onSession { return }
         
         // 下に引っ張ったときは、ヘッダー位置を計算して動かないようにする（★ここがポイント..）
         if scrollView.contentOffset.y < 0 {
+            indicatorDelegate?.startChildViewSmallIndicator()
             reloadData()
         }
     }

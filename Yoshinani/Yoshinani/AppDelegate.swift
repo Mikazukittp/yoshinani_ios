@@ -9,6 +9,8 @@
 import UIKit
 import REFrostedViewController
 import RealmSwift
+import GoogleMobileAds
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate,REFrostedViewControllerDelegate {
@@ -31,13 +33,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate,REFrostedViewControllerDel
                 vc = TopViewController(nibName: "TopViewController", bundle: nil)
             }
             let MenuNC = MenuNavigationController(rootViewController: vc)
-
-            print(MenuNC.viewControllers)
-            
             let menuVC = MenuTableViewController()
             
             let frostedVC = REFrostedViewController(contentViewController: MenuNC, menuViewController: menuVC)
             frostedVC.direction = REFrostedViewControllerDirection.Left;
+            
+            //GA
+            // Configure tracker from GoogleService-Info.plist.
+            var configureError:NSError?
+            GGLContext.sharedInstance().configureWithError(&configureError)
+            assert(configureError == nil, "Error configuring Google services: \(configureError)")
+            
+            // Optional: configure GAI options.
+            let gai = GAI.sharedInstance()
+            gai.trackUncaughtExceptions = true  // report uncaught exceptions
+            gai.logger.logLevel = GAILogLevel.Verbose  // remove before app release
+            
 
             win.rootViewController = frostedVC
             win.makeKeyAndVisible()

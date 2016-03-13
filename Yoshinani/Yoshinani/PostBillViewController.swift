@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PostBillViewController: UIViewController {
+class PostBillViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     var users :[User]? {
         didSet {
@@ -23,6 +23,8 @@ class PostBillViewController: UIViewController {
     var datePicker: UIDatePicker!
     var toolBar:UIToolbar!
     var group_id :Int?
+    var indicatorDelegate :PageMenuIndicatorDelegate?
+
     
     @IBOutlet weak var eventInput: UITextField!
     @IBOutlet weak var detailInput: UITextField!
@@ -30,6 +32,8 @@ class PostBillViewController: UIViewController {
     @IBOutlet weak var dateInput: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.screenTitle = "立替精算画面(iOS)"
         
         setTextInput()
         
@@ -79,7 +83,7 @@ class PostBillViewController: UIViewController {
         }
         
         let user :User = notNilUsers[indexPath.row]
-        cell.setProperties(user.userName ?? String(user.account), check: !checkList[indexPath.row])
+        cell.setProperties(user.userName ?? user.account, check: !checkList[indexPath.row])
         return cell
     }
     
@@ -91,7 +95,7 @@ class PostBillViewController: UIViewController {
     }
     @IBAction func didTapSubmitButton(sender: AnyObject) {
         let textFields = [detailInput,dateInput,priceInput,eventInput]
-        let isSuccess = self.nilCheck(textFields, alertMessage: "不正な入力値です")
+        let isSuccess = self.nilCheck(textFields, alertMessage: "未入力の項目があります")
         
         if dateInput.markedTextRange != nil {
             return;
@@ -115,7 +119,6 @@ class PostBillViewController: UIViewController {
         }
         
         guard let notNilUsers = users else {
-            self.popToNewUserController()
             return
         }
         
@@ -133,8 +136,10 @@ class PostBillViewController: UIViewController {
                 
         if isSuccess {
             let session = PaymentSession()
+            self.indicatorDelegate?.startChildViewIndicator()
             session.create(notNilUser.userId, pass: notNilUser.token, payment: payment, group_id: group_id!, participants: participants, complition: { (error) -> Void in
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.indicatorDelegate?.stopChildViewIndicator()
                     switch error {
                     case .NetworkError:
                         self.setAlertView(NetworkErrorTitle, alert: NetworkErrorMessage)

@@ -1,53 +1,43 @@
 //
-//  PageMenuViewController.swift
+//  PostPageMenuViewController.swift
 //  Yoshinani
 //
-//  Created by 石部達也 on 2016/02/11.
+//  Created by 石部達也 on 2016/03/03.
 //  Copyright © 2016年 石部達也. All rights reserved.
 //
 
 import UIKit
 import PageMenu
 
-protocol PageMenuIndicatorDelegate {
-    func startChildViewIndicator()
-    func startChildViewSmallIndicator()
-    func stopChildViewIndicator()
-}
 
-class PageMenuViewController: BaseViewController ,UIViewControllerTransitioningDelegate{
-
+class PostPageMenuViewController: BaseViewController ,UIViewControllerTransitioningDelegate{
     var pageMenu : CAPSPageMenu?
+    var users :[User]?
     var group_id :Int?
-    var postButton :UIButton?
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.edgesForExtendedLayout = .None
         
-        let customButton :UIButton = UIButton(frame: CGRectMake(0, 0, 30, 30))
-        customButton.addTarget(self, action: Selector("pushToInvite"), forControlEvents: .TouchUpInside)
-        customButton.setBackgroundImage(UIImage(named: "Add"), forState: UIControlState.Normal)
-        let customButtonItem :UIBarButtonItem = UIBarButtonItem(customView: customButton)
-        self.navigationItem.rightBarButtonItem = customButtonItem
-
         // Array to keep track of controllers in page menu
         var controllerArray : [UIViewController] = []
-
-        let controller = OverViewController(nibName: "OverViewController", bundle: nil)
-        controller.title = "メンバー"
+        self.title = "入力フォーム"
+        
+        let controller = PostBillViewController(nibName: "PostBillViewController", bundle: nil)
+        controller.title = "立替"
+        controller.users = users
         controller.group_id = group_id
         controller.indicatorDelegate = self
-
         controllerArray.append(controller)
-        let controller2 = TimeLineViewController(nibName: "TimeLineViewController", bundle: nil)
-        controller2.title = "ログ"
+        let controller2 = RepaymentViewController(nibName: "RepaymentViewController", bundle: nil)
+        controller2.title = "返済"
+        controller2.users = users
         controller2.group_id = group_id
-        controller2.delegate = self
         controller2.indicatorDelegate = self
         controllerArray.append(controller2)
-
+        
         
         // Customize page menu to your liking (optional) or use default settings by sending nil for 'options' in the init
         // Example:
@@ -61,7 +51,7 @@ class PageMenuViewController: BaseViewController ,UIViewControllerTransitioningD
         
         // Initialize page menu with controller array, frame, and optional parameters
         pageMenu = CAPSPageMenu(viewControllers: controllerArray, frame: CGRectMake(0.0, 0.0, self.view.frame.width, self.view.frame.height), pageMenuOptions: parameters)
-       
+        
         // Lastly add page menu as subview of base view controller view
         // or use pageMenu controller in you view hierachy as desired
         self.addChildViewController(pageMenu!)
@@ -71,22 +61,26 @@ class PageMenuViewController: BaseViewController ,UIViewControllerTransitioningD
         
         self.view.addSubview(pageMenu!.view)
         pageMenu!.didMoveToParentViewController(self)
+        
+        setCloseButton()
     }
     
-    func pushToInvite() {
-        let pc = InviteFriendViewController(nibName :"InviteFriendViewController",bundle: nil)
-        pc.group_id = group_id
-        self.navigationController?.pushViewController(pc , animated: true)
+    func setCloseButton() {
+        let customButton :UIButton = UIButton(frame: CGRectMake(0, 0, 30, 30))
+        customButton.addTarget(self, action: Selector("closeView"), forControlEvents: .TouchUpInside)
+        customButton.setBackgroundImage(UIImage(named: "Cancel"), forState: UIControlState.Normal)
+        let customButtonItem :UIBarButtonItem = UIBarButtonItem(customView: customButton)
+        self.navigationItem.leftBarButtonItem = customButtonItem
+    }
+    
+    func closeView() {
+        self.dismissViewControllerAnimated(true) { () -> Void in
+            
+        }
     }
 }
 
-extension PageMenuViewController :TimeLineViewControllerDelegate {
-    func pushNextViewControler(vc: UIViewController) {
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-}
-
-extension PageMenuViewController :PageMenuIndicatorDelegate {
+extension PostPageMenuViewController :PageMenuIndicatorDelegate {
     func startChildViewIndicator() {
         startIndicator()
     }
@@ -99,3 +93,4 @@ extension PageMenuViewController :PageMenuIndicatorDelegate {
         startSmallIndicator()
     }
 }
+

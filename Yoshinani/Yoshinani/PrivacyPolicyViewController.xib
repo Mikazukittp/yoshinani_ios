@@ -18,7 +18,7 @@
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7hI-LC-Hud">
                     <rect key="frame" x="20" y="0.0" width="560" height="600"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <mutableString key="text">私たちYoshinani（以下、「当方」といいます）は、当方が提供するYoshinaniにおけるお客様情報を以下の通り取り扱います。
+                    <string key="text">私たちYoshinani（以下、「当方」といいます）は、当方が提供するYoshinaniにおけるお客様情報を以下の通り取り扱います。
 
 適用範囲
 本プライバシーポリシーはYoshinaniに関する全てのサービス（以下、「本サービス」といいます）に適用されます。別途にサービス別のプライバシーポリシーまたは個別利用規約等（以下、「個別規約」といいます）においてお客様情報の取り扱いを規定する場合は、個別規約も適用されます。本プライバシーポリシーと個別規約において矛盾が発生する場合は個別規約が優先されます。
@@ -101,7 +101,7 @@
 本プライバシーポリシーの改定
 本プライバシーポリシーは改定されることがあります。重要な変更にあたってはお客様に対してわかりやすい方法にて改定内容を告知いたします。
 
-2016年3月1日制定</mutableString>
+2016年3月1日制定</string>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>

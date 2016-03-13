@@ -8,7 +8,7 @@
 
 import UIKit
 
-class InvitedViewController: UIViewController {
+class InvitedViewController: BaseViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -17,6 +17,7 @@ class InvitedViewController: UIViewController {
         super.viewDidLoad()
         
         self.title = "招待中のグループ"
+        self.screenTitle = "招待中画面(iOS)"
         
         let nib = UINib(nibName: "InviteCell", bundle: nil)
         tableView?.registerNib(nib, forCellReuseIdentifier: "InviteCell")

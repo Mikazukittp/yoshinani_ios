@@ -26,7 +26,7 @@
                     </connections>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ka8-Zr-lJ2">
-                    <rect key="frame" x="510" y="510" width="60" height="60"/>
+                    <rect key="frame" x="510" y="460" width="60" height="60"/>
                     <color key="backgroundColor" red="0.90196078431372551" green="0.49803921568627452" blue="0.30980392156862746" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="60" id="e47-sk-nsy"/>
@@ -56,7 +56,7 @@
             <constraints>
                 <constraint firstItem="YxY-sQ-IEX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4sw-o6-JLf"/>
                 <constraint firstAttribute="bottom" secondItem="YxY-sQ-IEX" secondAttribute="bottom" id="X3i-0j-X8r"/>
-                <constraint firstAttribute="bottom" secondItem="ka8-Zr-lJ2" secondAttribute="bottom" constant="30" id="cdG-BL-5y5"/>
+                <constraint firstAttribute="bottom" secondItem="ka8-Zr-lJ2" secondAttribute="bottom" constant="80" id="cdG-BL-5y5"/>
                 <constraint firstAttribute="trailing" secondItem="ka8-Zr-lJ2" secondAttribute="trailing" constant="30" id="fbr-B5-z6i"/>
                 <constraint firstAttribute="trailing" secondItem="YxY-sQ-IEX" secondAttribute="trailing" id="oGk-m1-eYz"/>
                 <constraint firstItem="YxY-sQ-IEX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ocF-f6-Ff9"/>

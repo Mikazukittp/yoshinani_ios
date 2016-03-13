@@ -9,11 +9,17 @@
 import UIKit
 import RealmSwift
 import Unbox
+import GoogleMobileAds
+
 
 class TopViewController: BaseViewController  ,UITableViewDataSource ,UITableViewDelegate  {
     @IBOutlet weak var createButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var sumPay: UILabel!
+    @IBOutlet weak var admobView: GADBannerView!
+    
+    var onSession = false
+    
     var user :User?
 
     override func viewDidLoad() {
@@ -23,7 +29,8 @@ class TopViewController: BaseViewController  ,UITableViewDataSource ,UITableView
         self.navigationItem.hidesBackButton = true
         self.edgesForExtendedLayout = .None
         
-        self.title = "参加グループ"        
+        self.title = "参加グループ"
+        self.screenTitle = "トップ画面(iOS)"
         let customButton :UIButton = UIButton(frame: CGRectMake(0, 0, 35, 35))
         customButton.addTarget(self.navigationController, action: Selector("showMenu"), forControlEvents: .TouchUpInside)
         customButton.setBackgroundImage(UIImage(named: "List"), forState: UIControlState.Normal)
@@ -41,20 +48,34 @@ class TopViewController: BaseViewController  ,UITableViewDataSource ,UITableView
         tableView?.registerNib(nib, forCellReuseIdentifier: "GroupTableViewCell")
         tableView?.estimatedRowHeight = 50
         tableView?.rowHeight = UITableViewAutomaticDimension
+        
+        setAdBannerView()
+        
+        self.startIndicator()
         reloadData()
     }
     
+    private func setAdBannerView(){
+        self.admobView.adUnitID = Const.urlAdmob;
+        self.admobView.rootViewController = self;
+        self.admobView.loadRequest(GADRequest())
+        //[self.bannerView loadRequest:[GADRequest request]];
+    }
+    
     private func reloadData() {
+        if onSession { return }
+        onSession = true
         //Realmのデータを取得
         let user = RealmManager.sharedInstance.userInfo
         
+        
         if let nonNilUser = user {
             let session = UserSession()
-            self.startIndicator()
             session.show(nonNilUser.userId, token: nonNilUser.token, complition: { (error) -> Void in
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.stopIndicator()
                     
+                    self.onSession = false
                     switch error {
                     case .NetworkError:
                         self.setAlertView(NetworkErrorTitle, message: NetworkErrorMessage)
@@ -105,9 +126,10 @@ class TopViewController: BaseViewController  ,UITableViewDataSource ,UITableView
     
     @IBAction func createButtonTapped(sender: AnyObject) {
         let vc = CreateRoomViewController(nibName: "CreateRoomViewController", bundle: nil)
+        let nc = UINavigationController(rootViewController: vc)
         vc.modalPresentationStyle = .Custom
         vc.modalTransitionStyle = .CrossDissolve
-        self.presentViewController(vc, animated: true) { () -> Void in
+        self.presentViewController(nc, animated: true) { () -> Void in
     
         }
     }
@@ -168,6 +190,7 @@ class TopViewController: BaseViewController  ,UITableViewDataSource ,UITableView
         
         // 下に引っ張ったときは、ヘッダー位置を計算して動かないようにする（★ここがポイント..）
         if scrollView.contentOffset.y < 0 {
+            startSmallIndicator()
             reloadData()
         }
     }

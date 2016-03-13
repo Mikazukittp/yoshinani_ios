@@ -143,6 +143,16 @@ Yoshinaniへ</string>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lSL-CX-6tH">
+                    <rect key="frame" x="216.5" y="485" width="168" height="27"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <state key="normal" title="パスワードを忘れた方はこちら">
+                        <color key="titleColor" red="0.89019608500000003" green="0.89019608500000003" blue="0.89803922179999995" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="didTapResetPasswordButton:" destination="-1" eventType="touchUpInside" id="Vsi-qR-acY"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.27270087599999998" green="0.3071439862" blue="0.43824788930000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -152,7 +162,9 @@ Yoshinaniへ</string>
                 <constraint firstItem="IGv-L5-IsE" firstAttribute="width" secondItem="mkp-af-koU" secondAttribute="width" id="BFE-2w-ik7"/>
                 <constraint firstAttribute="trailing" secondItem="IGv-L5-IsE" secondAttribute="trailing" constant="20" id="OML-l2-Gnc"/>
                 <constraint firstAttribute="trailing" secondItem="bxP-Gr-Ayw" secondAttribute="trailing" constant="20" id="UMn-VK-Rx2"/>
+                <constraint firstItem="lSL-CX-6tH" firstAttribute="top" secondItem="zYD-vW-53o" secondAttribute="bottom" constant="10" id="WA1-iV-TBp"/>
                 <constraint firstAttribute="trailing" secondItem="CQ5-wG-3Zd" secondAttribute="trailing" constant="20" id="Xxb-ad-aP9"/>
+                <constraint firstItem="lSL-CX-6tH" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="YKg-DD-BdH"/>
                 <constraint firstItem="zYD-vW-53o" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="Yd5-Vd-gJE"/>
                 <constraint firstItem="CQ5-wG-3Zd" firstAttribute="width" secondItem="bxP-Gr-Ayw" secondAttribute="width" id="Zfu-Z2-uqQ"/>
                 <constraint firstItem="mkp-af-koU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="atg-Pa-H5M"/>

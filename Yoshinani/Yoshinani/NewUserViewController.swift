@@ -18,6 +18,8 @@ class NewUserViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.screenTitle = "WellCome画面(iOS)"
+        
         nameTextInputer.keyboardType = .ASCIICapable
         passwordTextInputer.keyboardType = .ASCIICapable
         nameTextInputer.returnKeyType = .Done
@@ -115,6 +117,7 @@ extension NewUserViewController :UITextFieldDelegate {
                         //ログイン情報をRealmに保存する
                         let ruser = RUser()
                         ruser.setProperty(notNilUser)
+                        RealmManager.sharedInstance.deleteUserInfo()
                         RealmManager.sharedInstance.userInfo = ruser
                     }
                     
@@ -130,6 +133,11 @@ extension NewUserViewController :UITextFieldDelegate {
             })
         }
     }
+    @IBAction func didTapResetPasswordButton(sender: AnyObject) {
+        let vc = ResetPasswordSendEmailViewController(nibName :"ResetPasswordSendEmailViewController", bundle: nil)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     
     //MARK* Private
     
