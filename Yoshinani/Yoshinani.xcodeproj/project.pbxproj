@@ -902,7 +902,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.co.tatsuya.yoshinani;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c645bdfa-2114-478c-a4de-6a08dbf75aa5";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Yoshinani/Yoshinani-Bridging-Header.h";
 			};
 			name = Release;

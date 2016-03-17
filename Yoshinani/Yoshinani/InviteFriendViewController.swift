@@ -23,6 +23,8 @@ class InviteFriendViewController: BaseViewController {
         
         self.title = "メンバー追加"
         self.screenTitle = "友達追加画面(iOS)"
+       
+        searchBar.keyboardType = .ASCIICapable
         
         let nib = UINib(nibName: "PayerListTableViewCell", bundle: nil)
         tableView?.registerNib(nib, forCellReuseIdentifier: "PayerListTableViewCell")
