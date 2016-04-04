@@ -13,7 +13,6 @@
 		8303150F1C7F4BFE00F031E1 /* MenuProfTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8303150D1C7F4BFE00F031E1 /* MenuProfTableViewCell.xib */; };
 		830315111C7F4CE600F031E1 /* RoundLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830315101C7F4CE600F031E1 /* RoundLabel.swift */; };
 		830315131C7F5A7600F031E1 /* ProfitLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830315121C7F5A7600F031E1 /* ProfitLabel.swift */; };
-		8306526F1C94D6FF00C61002 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8306526E1C94D6FF00C61002 /* GoogleService-Info.plist */; };
 		830652771C9566A900C61002 /* ResetPasswordSendEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830652751C9566A900C61002 /* ResetPasswordSendEmailViewController.swift */; };
 		830652781C9566A900C61002 /* ResetPasswordSendEmailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 830652761C9566A900C61002 /* ResetPasswordSendEmailViewController.xib */; };
 		8306527B1C956BE400C61002 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830652791C956BE400C61002 /* ResetPasswordViewController.swift */; };
@@ -48,6 +47,10 @@
 		83151F6A1C705B47009A4DA4 /* InviteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83151F681C705B47009A4DA4 /* InviteCell.xib */; };
 		83151F6D1C707050009A4DA4 /* InviteFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83151F6B1C707050009A4DA4 /* InviteFriendViewController.swift */; };
 		83151F6E1C707050009A4DA4 /* InviteFriendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83151F6C1C707050009A4DA4 /* InviteFriendViewController.xib */; };
+		83200DDB1C9FDF1100A523B7 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83200DDA1C9FDF1100A523B7 /* UserDefaultManager.swift */; };
+		83200DDD1C9FE41400A523B7 /* NotificationSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83200DDC1C9FE41400A523B7 /* NotificationSession.swift */; };
+		83200DDF1CA03B3A00A523B7 /* InvitedPeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83200DDE1CA03B3A00A523B7 /* InvitedPeopleView.swift */; };
+		83200DE11CA03B5600A523B7 /* InvitedPeopleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83200DE01CA03B5600A523B7 /* InvitedPeopleView.xib */; };
 		83221BC51C8F2EE2000E47D5 /* PasswordSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83221BC41C8F2EE2000E47D5 /* PasswordSession.swift */; };
 		83274DBD1C78397400CE99E0 /* UIColor+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83274DBC1C78397400CE99E0 /* UIColor+Addition.swift */; };
 		834DDB2F1C6C232900B7AB93 /* PageMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDB2E1C6C232900B7AB93 /* PageMenuViewController.swift */; };
@@ -89,6 +92,7 @@
 		83D033881C848C7900576B8E /* AboutAppViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83D033861C848C7900576B8E /* AboutAppViewController.xib */; };
 		83E6D1661C7C989E004B399C /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E6D1641C7C989E004B399C /* PrivacyPolicyViewController.swift */; };
 		83E6D1671C7C989E004B399C /* PrivacyPolicyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83E6D1651C7C989E004B399C /* PrivacyPolicyViewController.xib */; };
+		83ED55401CACF6B300A139BF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83ED553F1CACF6B300A139BF /* GoogleService-Info.plist */; };
 		83EF132A1C437D2E00D55F74 /* NewUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EF13281C437D2E00D55F74 /* NewUserViewController.swift */; };
 		83EF132B1C437D2E00D55F74 /* NewUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83EF13291C437D2E00D55F74 /* NewUserViewController.xib */; };
 		83EF132D1C43868400D55F74 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EF132C1C43868400D55F74 /* BaseViewController.swift */; };
@@ -113,7 +117,6 @@
 		8303150D1C7F4BFE00F031E1 /* MenuProfTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuProfTableViewCell.xib; sourceTree = "<group>"; };
 		830315101C7F4CE600F031E1 /* RoundLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundLabel.swift; sourceTree = "<group>"; };
 		830315121C7F5A7600F031E1 /* ProfitLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfitLabel.swift; sourceTree = "<group>"; };
-		8306526E1C94D6FF00C61002 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		830652751C9566A900C61002 /* ResetPasswordSendEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordSendEmailViewController.swift; sourceTree = "<group>"; };
 		830652761C9566A900C61002 /* ResetPasswordSendEmailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResetPasswordSendEmailViewController.xib; sourceTree = "<group>"; };
 		830652791C956BE400C61002 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
@@ -150,6 +153,10 @@
 		83151F681C705B47009A4DA4 /* InviteCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InviteCell.xib; sourceTree = "<group>"; };
 		83151F6B1C707050009A4DA4 /* InviteFriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteFriendViewController.swift; sourceTree = "<group>"; };
 		83151F6C1C707050009A4DA4 /* InviteFriendViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InviteFriendViewController.xib; sourceTree = "<group>"; };
+		83200DDA1C9FDF1100A523B7 /* UserDefaultManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
+		83200DDC1C9FE41400A523B7 /* NotificationSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationSession.swift; sourceTree = "<group>"; };
+		83200DDE1CA03B3A00A523B7 /* InvitedPeopleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvitedPeopleView.swift; sourceTree = "<group>"; };
+		83200DE01CA03B5600A523B7 /* InvitedPeopleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvitedPeopleView.xib; sourceTree = "<group>"; };
 		83221BC41C8F2EE2000E47D5 /* PasswordSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordSession.swift; sourceTree = "<group>"; };
 		83274DBC1C78397400CE99E0 /* UIColor+Addition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Addition.swift"; sourceTree = "<group>"; };
 		834DDB2E1C6C232900B7AB93 /* PageMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageMenuViewController.swift; sourceTree = "<group>"; };
@@ -192,6 +199,7 @@
 		83D033861C848C7900576B8E /* AboutAppViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutAppViewController.xib; sourceTree = "<group>"; };
 		83E6D1641C7C989E004B399C /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
 		83E6D1651C7C989E004B399C /* PrivacyPolicyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrivacyPolicyViewController.xib; sourceTree = "<group>"; };
+		83ED553F1CACF6B300A139BF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		83EF13281C437D2E00D55F74 /* NewUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserViewController.swift; sourceTree = "<group>"; };
 		83EF13291C437D2E00D55F74 /* NewUserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewUserViewController.xib; sourceTree = "<group>"; };
 		83EF132C1C43868400D55F74 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -245,6 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				83EF13361C4397C700D55F74 /* RealmManager.swift */,
+				83200DDA1C9FDF1100A523B7 /* UserDefaultManager.swift */,
 			);
 			name = Manager;
 			sourceTree = "<group>";
@@ -263,7 +272,7 @@
 		8312ED2D1C2C2904005A269D = {
 			isa = PBXGroup;
 			children = (
-				8306526E1C94D6FF00C61002 /* GoogleService-Info.plist */,
+				83ED553F1CACF6B300A139BF /* GoogleService-Info.plist */,
 				8312ED381C2C2904005A269D /* Yoshinani */,
 				8312ED371C2C2904005A269D /* Products */,
 				1A345C56D9CC2A0040774646 /* Pods */,
@@ -330,6 +339,8 @@
 				83151F681C705B47009A4DA4 /* InviteCell.xib */,
 				83151F6B1C707050009A4DA4 /* InviteFriendViewController.swift */,
 				83151F6C1C707050009A4DA4 /* InviteFriendViewController.xib */,
+				83200DDE1CA03B3A00A523B7 /* InvitedPeopleView.swift */,
+				83200DE01CA03B5600A523B7 /* InvitedPeopleView.xib */,
 			);
 			name = Invite;
 			sourceTree = "<group>";
@@ -416,6 +427,7 @@
 				83EF133C1C440A1900D55F74 /* UserSession.swift */,
 				8372BD611C6C9BEF00D07D97 /* SignUpSession.swift */,
 				83221BC41C8F2EE2000E47D5 /* PasswordSession.swift */,
+				83200DDC1C9FE41400A523B7 /* NotificationSession.swift */,
 			);
 			name = Session;
 			sourceTree = "<group>";
@@ -637,7 +649,6 @@
 				83151F6E1C707050009A4DA4 /* InviteFriendViewController.xib in Resources */,
 				830652781C9566A900C61002 /* ResetPasswordSendEmailViewController.xib in Resources */,
 				83151F6A1C705B47009A4DA4 /* InviteCell.xib in Resources */,
-				8306526F1C94D6FF00C61002 /* GoogleService-Info.plist in Resources */,
 				83D033881C848C7900576B8E /* AboutAppViewController.xib in Resources */,
 				83151F661C7056D4009A4DA4 /* InvitedViewController.xib in Resources */,
 				8312ED531C2C3374005A269D /* TopViewController.xib in Resources */,
@@ -649,8 +660,10 @@
 				8381A57E1C33CA43001911BC /* TimeLineViewController.xib in Resources */,
 				8381A58F1C33F055001911BC /* PayerListViewController.xib in Resources */,
 				83D033841C848C6200576B8E /* TermsOfServiceViewController.xib in Resources */,
+				83ED55401CACF6B300A139BF /* GoogleService-Info.plist in Resources */,
 				83EF132B1C437D2E00D55F74 /* NewUserViewController.xib in Resources */,
 				83E6D1671C7C989E004B399C /* PrivacyPolicyViewController.xib in Resources */,
+				83200DE11CA03B5600A523B7 /* InvitedPeopleView.xib in Resources */,
 				8381A5771C33C8DB001911BC /* GroupTableViewCell.xib in Resources */,
 				8312ED441C2C2904005A269D /* LaunchScreen.storyboard in Resources */,
 				8381A5841C33CFB0001911BC /* BillTableViewCell.xib in Resources */,
@@ -736,6 +749,7 @@
 				8381A58E1C33F055001911BC /* PayerListViewController.swift in Sources */,
 				83221BC51C8F2EE2000E47D5 /* PasswordSession.swift in Sources */,
 				8367DF071C590C3B00B63E9B /* SignUpViewController.swift in Sources */,
+				83200DDD1C9FE41400A523B7 /* NotificationSession.swift in Sources */,
 				8397593A1C8866A6008398F6 /* RepaymentViewController.swift in Sources */,
 				830315111C7F4CE600F031E1 /* RoundLabel.swift in Sources */,
 				83EF13371C4397C700D55F74 /* RealmManager.swift in Sources */,
@@ -744,12 +758,14 @@
 				8381A5921C33F16B001911BC /* PayerListTableViewCell.swift in Sources */,
 				8312ED3A1C2C2904005A269D /* AppDelegate.swift in Sources */,
 				8372BD641C6CC37900D07D97 /* UIViewController+Addition.swift in Sources */,
+				83200DDF1CA03B3A00A523B7 /* InvitedPeopleView.swift in Sources */,
 				83D033871C848C7900576B8E /* AboutAppViewController.swift in Sources */,
 				83151F581C6F1FB0009A4DA4 /* OverViewController.swift in Sources */,
 				834DDB2F1C6C232900B7AB93 /* PageMenuViewController.swift in Sources */,
 				83EF133D1C440A1900D55F74 /* UserSession.swift in Sources */,
 				8363BD321C30121A0046A08F /* MenuTableViewCell.swift in Sources */,
 				83FE2F721C3503B800EEC29B /* LoginSession.swift in Sources */,
+				83200DDB1C9FDF1100A523B7 /* UserDefaultManager.swift in Sources */,
 				835CCCA71C3551AD00FDEA21 /* RUser.swift in Sources */,
 				83151F5D1C7030C0009A4DA4 /* Total.swift in Sources */,
 				83151F6D1C707050009A4DA4 /* InviteFriendViewController.swift in Sources */,

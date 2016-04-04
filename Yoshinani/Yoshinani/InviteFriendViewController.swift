@@ -8,13 +8,19 @@
 
 import UIKit
 
+protocol InvitedFriendViewControllerDelegate {
+    func didSuccessInvitationToUser()
+}
 class InviteFriendViewController: BaseViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     var user :User?
     var group_id :Int?
+    var users :[User] = []
+    var delegate :InvitedFriendViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,10 +37,84 @@ class InviteFriendViewController: BaseViewController {
         tableView?.estimatedRowHeight = 50
         tableView?.rowHeight = UITableViewAutomaticDimension
         
+        setScreenStatus()
+    }
+    
+    private func setScreenStatus() {
+        var rightButtonTitle = "招待"
+        if delegate != nil {
+            self.navigationItem.hidesBackButton = true
+            rightButtonTitle = "作成"
+        }
+        
+        let rightFooBarButtonItem:UIBarButtonItem = UIBarButtonItem(title:rightButtonTitle , style: UIBarButtonItemStyle.Plain, target: self, action: Selector("didTapRequestButton"))
+        self.navigationItem.setRightBarButtonItem(rightFooBarButtonItem, animated: true)
+    }
+    
+    
+    func didTapRequestButton() {
+        
+        if delegate != nil {
+            closeSuperView()
+        }else {
+            closeSelfView()
+        }
         
     }
-}
+    
+    private func closeSuperView() {
+        guard users.count > 0 else {
+            self.delegate?.didSuccessInvitationToUser()
+            return
+        }
+        
+        connectSession {
+            self.delegate?.didSuccessInvitationToUser()
+        }
+    }
+    
+    private func closeSelfView() {
+        guard users.count > 0 else {
+            caution("招待できません", message: "ユーザを選択してください")
+            return
+        }
+        
+        //追加＋自身のViewを閉じる
+        connectSession { 
+            self.navigationController?.popViewControllerAnimated(true)
+        }
+    }
+    
+    private func connectSession(complition :() ->Void) {
+        
+        guard let nonNilUser = RealmManager.sharedInstance.userInfo else{
+            return
+        }
 
+        let session = GroupSession()
+        self.startIndicator()
+        session.invite(nonNilUser.userId, token: nonNilUser.token, group_id: group_id!, users: users) { (error,message) in
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.stopIndicator()
+                switch error {
+                case .NetworkError:
+                    self.caution(NetworkErrorTitle, message: message ?? ServerErrorMessage)
+                    break
+                case .Success:
+                    self.successAlert(complition)
+                    break
+                case .ServerError:
+                    self.caution("招待できません", message: message ?? ServerErrorMessage)
+                    break
+                case .UnauthorizedError:
+                    self.popToNewUserController()
+                    break
+                }
+            })
+        }
+
+    }
+}
 
 extension InviteFriendViewController :UITableViewDelegate,UITableViewDataSource {
     //MARK: UITableViewDelegate
@@ -61,34 +141,18 @@ extension InviteFriendViewController :UITableViewDelegate,UITableViewDataSource 
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let myuser = RealmManager.sharedInstance.userInfo
         
-        guard let nonNilUser = myuser else{
+        guard let nonNilUser = user else{
             return
         }
         
-        let session = GroupSession()
-        self.startIndicator()
-        session.invite(nonNilUser.userId, token: nonNilUser.token, group_id: group_id!, invite_user_id: user!.userId) { (error) -> Void in
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.stopIndicator()
-                switch error {
-                case .NetworkError:
-                    self.caution(NetworkErrorTitle, message: NetworkErrorMessage)
-                    break
-                case .Success:
-                    self.successAlert()
-                    break
-                case .ServerError:
-                    self.caution(ServerErrorTitle, message: "招待できませんでした")
-                    break
-                case .UnauthorizedError:
-                    self.popToNewUserController()
-                    break
-                }
-            })
+        let sameUsers = users.filter{ $0.userId == nonNilUser.userId }
+        if sameUsers.count > 0 {
+            return
         }
         
+        users.append(nonNilUser)
+        updateFooterView()
     }
 }
 
@@ -159,18 +223,52 @@ extension InviteFriendViewController: UISearchBarDelegate {
         
         let defaultAction = UIAlertAction(title: "OK", style: .Default, handler:nil)
         alertController.addAction(defaultAction)
+        
+        presentViewController(alertController, animated: true, completion: nil)
+
     }
     
-    private func successAlert() {
+    private func successAlert(complition :() ->Void) {
         let alertController = UIAlertController(title: "招待完了", message: "友人をグループに招待しました。", preferredStyle: .Alert)
         
         let defaultAction = UIAlertAction(title: "OK", style: .Default) {
             (action:UIAlertAction!) -> Void in
-            self.navigationController?.popViewControllerAnimated(true)
+            complition()
         }
         alertController.addAction(defaultAction)
         
         presentViewController(alertController, animated: true, completion: nil)
     }
-
 }
+
+extension InviteFriendViewController :InvitedPeopleViewDelegate{
+    func updateFooterView () {
+        
+        //初期化
+        for subview in scrollView.subviews {
+            subview.removeFromSuperview()
+        }
+        
+        //append
+        users.enumerate().forEach{
+            let imageView = InvitedPeopleView()
+            imageView.setUpLabel($0.1)
+            let posX  = CGFloat(integerLiteral: 50 * $0.0)
+            imageView.frame = CGRectMake(posX, 0, 50, 50)
+            imageView.delegate = self
+            imageView.index = $0.0
+            scrollView.addSubview(imageView)
+        }
+        
+        //全体のサイズ
+        scrollView.contentSize = CGSizeMake(CGFloat(integerLiteral: 100 * users.count), 50)
+        // １ページ単位でスクロールさせる
+        scrollView.pagingEnabled = true
+    }
+
+    func didTapClose(index: Int) {
+        users.removeAtIndex(index)
+        updateFooterView()
+    }
+}
+

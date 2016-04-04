@@ -37,13 +37,6 @@ class TopViewController: BaseViewController  ,UITableViewDataSource ,UITableView
         let customButtonItem :UIBarButtonItem = UIBarButtonItem(customView: customButton)
         self.navigationItem.leftBarButtonItem = customButtonItem
         
-        
-        let customButtonRight :UIButton = UIButton(frame: CGRectMake(0, 0, 30, 30))
-        customButtonRight.addTarget(self, action: Selector("pushToInvite"), forControlEvents: .TouchUpInside)
-        customButtonRight.setBackgroundImage(UIImage(named: "Add"), forState: UIControlState.Normal)
-        let customButtonItemRight :UIBarButtonItem = UIBarButtonItem(customView: customButtonRight)
-        self.navigationItem.rightBarButtonItem = customButtonItemRight
-        
         let nib = UINib(nibName: "GroupTableViewCell", bundle: nil)
         tableView?.registerNib(nib, forCellReuseIdentifier: "GroupTableViewCell")
         tableView?.estimatedRowHeight = 50
@@ -59,7 +52,6 @@ class TopViewController: BaseViewController  ,UITableViewDataSource ,UITableView
         self.admobView.adUnitID = Const.urlAdmob;
         self.admobView.rootViewController = self;
         self.admobView.loadRequest(GADRequest())
-        //[self.bannerView loadRequest:[GADRequest request]];
     }
     
     private func reloadData() {
@@ -67,7 +59,6 @@ class TopViewController: BaseViewController  ,UITableViewDataSource ,UITableView
         onSession = true
         //Realmのデータを取得
         let user = RealmManager.sharedInstance.userInfo
-        
         
         if let nonNilUser = user {
             let session = UserSession()
@@ -91,6 +82,7 @@ class TopViewController: BaseViewController  ,UITableViewDataSource ,UITableView
                             self.sumPay.textColor = UIColor.thirdColor()
                         }
                         
+                        self.setInvitedButton()
                         self.tableView.reloadData()
                         break
                     case .ServerError:
@@ -105,10 +97,21 @@ class TopViewController: BaseViewController  ,UITableViewDataSource ,UITableView
             })
             
         }else {
+            self.stopIndicator()
             //ユーザ情報がないので強制的にTOPに戻す
             self.popToNewUserController()
         }
 
+    }
+    
+    private func setInvitedButton() {
+        if user?.invitedGroups?.count > 0 {
+            let customButtonRight :UIButton = UIButton(frame: CGRectMake(0, 0, 30, 30))
+            customButtonRight.addTarget(self, action: Selector("pushToInvite"), forControlEvents: .TouchUpInside)
+            customButtonRight.setBackgroundImage(UIImage(named: "Invited"), forState: UIControlState.Normal)
+            let customButtonItemRight :UIBarButtonItem = UIBarButtonItem(customView: customButtonRight)
+            self.navigationItem.rightBarButtonItem = customButtonItemRight
+        }
     }
     
    private func setAlertView (title :String ,message :String) {
@@ -122,8 +125,7 @@ class TopViewController: BaseViewController  ,UITableViewDataSource ,UITableView
         
         presentViewController(alertController, animated: true, completion: nil)
     }
-
-    
+        
     @IBAction func createButtonTapped(sender: AnyObject) {
         let vc = CreateRoomViewController(nibName: "CreateRoomViewController", bundle: nil)
         let nc = UINavigationController(rootViewController: vc)

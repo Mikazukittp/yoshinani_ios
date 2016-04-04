@@ -10,9 +10,11 @@ import Unbox
 
 struct ErrorDetail: Unboxable {
     let password: [String]?
+    let base :[String]?
     
     init(unboxer: Unboxer) {
         self.password = unboxer.unbox("password")
+        self.base = unboxer.unbox("base")
         print(self)
     }
 }

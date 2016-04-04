@@ -20,7 +20,7 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(loadingIndicator)
-       
+               
         fireBase.observeEventType(.Value, withBlock: { snapshot in
             print(snapshot.value)
             let isActive = snapshot.value.objectForKey("active") as! Bool
@@ -76,5 +76,5 @@ class BaseViewController: UIViewController {
     private func setMaintenanceAlertView (message :String, title :String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         presentViewController(alertController, animated: true, completion: nil)
-    }
+    }    
 }

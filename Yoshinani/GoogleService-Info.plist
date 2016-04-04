@@ -4,6 +4,8 @@
 <dict>
 	<key>TRACKING_ID</key>
 	<string>UA-64303218-3</string>
+	<key>GCM_SENDER_ID</key>
+	<string>888587544463</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>

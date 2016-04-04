@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InviteFriendViewController" customModule="Yoshinani" customModuleProvider="target">
             <connections>
+                <outlet property="scrollView" destination="E5V-oo-EWG" id="qs2-9p-mp2"/>
                 <outlet property="searchBar" destination="x0e-fu-ieX" id="U6L-wY-WUA"/>
                 <outlet property="tableView" destination="9aY-8S-Ng5" id="JMf-C6-puS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -25,7 +26,7 @@
                     </connections>
                 </searchBar>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9aY-8S-Ng5">
-                    <rect key="frame" x="0.0" y="84" width="600" height="516"/>
+                    <rect key="frame" x="0.0" y="84" width="600" height="446"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="sHu-Y4-nio"/>
@@ -36,7 +37,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="600" height="40"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ID(英数)を入力して友達を招待 (IDはメニューより確認できます)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yee-jj-sim">
-                            <rect key="frame" x="5" y="4.5" width="590" height="31.5"/>
+                            <rect key="frame" x="5" y="4" width="590" height="31.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="textColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -50,13 +51,24 @@
                         <constraint firstAttribute="trailing" secondItem="Yee-jj-sim" secondAttribute="trailing" constant="5" id="ofp-T5-S3E"/>
                     </constraints>
                 </view>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E5V-oo-EWG">
+                    <rect key="frame" x="0.0" y="530" width="600" height="70"/>
+                    <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="7ff-oV-jAa"/>
+                    </constraints>
+                </scrollView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="E5V-oo-EWG" secondAttribute="bottom" id="115-I0-Jkr"/>
                 <constraint firstItem="dV1-R5-fqA" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="AjW-9P-zcw"/>
                 <constraint firstAttribute="trailing" secondItem="dV1-R5-fqA" secondAttribute="trailing" id="Iyv-Si-dJu"/>
                 <constraint firstItem="x0e-fu-ieX" firstAttribute="top" secondItem="dV1-R5-fqA" secondAttribute="bottom" id="NNH-Ol-P1W"/>
+                <constraint firstItem="E5V-oo-EWG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="OzI-f0-bAF"/>
                 <constraint firstAttribute="trailing" secondItem="x0e-fu-ieX" secondAttribute="trailing" id="P7I-1m-aW3"/>
+                <constraint firstAttribute="trailing" secondItem="E5V-oo-EWG" secondAttribute="trailing" id="QEY-G6-tvB"/>
+                <constraint firstItem="E5V-oo-EWG" firstAttribute="top" secondItem="9aY-8S-Ng5" secondAttribute="bottom" id="T2c-3N-1BF"/>
                 <constraint firstItem="dV1-R5-fqA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Wx6-bz-3e7"/>
                 <constraint firstAttribute="trailing" secondItem="9aY-8S-Ng5" secondAttribute="trailing" id="bNb-mT-RMw"/>
                 <constraint firstItem="9aY-8S-Ng5" firstAttribute="top" secondItem="x0e-fu-ieX" secondAttribute="bottom" id="fr3-kR-VlY"/>
@@ -64,6 +76,11 @@
                 <constraint firstItem="9aY-8S-Ng5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hUh-tK-5RV"/>
                 <constraint firstItem="x0e-fu-ieX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zfs-nG-7fR"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="hJM-pD-aap"/>
+                </mask>
+            </variation>
         </view>
     </objects>
 </document>

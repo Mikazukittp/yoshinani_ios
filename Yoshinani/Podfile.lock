@@ -1,14 +1,28 @@
 PODS:
   - Firebase (2.5.1)
+  - GGLInstanceID (1.1.6)
   - Google-Mobile-Ads-SDK (7.7.0)
   - Google/Analytics (1.0.7):
     - Google/Core
     - GoogleAnalytics (~> 3.12)
+  - Google/CloudMessaging (1.0.7):
+    - GGLInstanceID (~> 1.0)
+    - Google/Core
+    - GoogleCloudMessaging (~> 1.0)
   - Google/Core (1.0.7):
     - GoogleNetworkingUtilities (~> 1.0)
     - GoogleSymbolUtilities (~> 1.0)
     - GoogleUtilities (~> 1.0)
   - GoogleAnalytics (3.14.0)
+  - GoogleCloudMessaging (1.2.0):
+    - GoogleInterchangeUtilities (~> 1.0)
+    - GoogleIPhoneUtilities (~> 1.0)
+    - GoogleSymbolUtilities (~> 1.0)
+  - GoogleInterchangeUtilities (1.1.0):
+    - GoogleSymbolUtilities (~> 1.0)
+  - GoogleIPhoneUtilities (1.2.0):
+    - GoogleSymbolUtilities (~> 1.0)
+    - GoogleUtilities (~> 1.0)
   - GoogleNetworkingUtilities (1.0.0):
     - GoogleSymbolUtilities (~> 1.0)
   - GoogleSymbolUtilities (1.0.3)
@@ -55,6 +69,7 @@ DEPENDENCIES:
   - Firebase (>= 2.5.0)
   - Google-Mobile-Ads-SDK (~> 7.0)
   - Google/Analytics (~> 1.0.0)
+  - Google/CloudMessaging
   - MRProgress
   - PageMenu
   - RealmSwift
@@ -63,9 +78,13 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Firebase: 3565ea88b830f28f2c77ecc524622bc71a20d085
+  GGLInstanceID: f92465924a9b8a48f712829d22e223653ab8dc72
   Google: 875f5a8ade86dd02e36586e4a54814843938c7f6
   Google-Mobile-Ads-SDK: d290e523a6e2f223256abcbf8e0c778b55b1f04e
   GoogleAnalytics: 9be1afdb8deeac4bb5f13ca7f7d3b9db2a1f43dc
+  GoogleCloudMessaging: f37ea14dd0f41d4d889c10b5559dd35bbfd9ac26
+  GoogleInterchangeUtilities: d7f7174176fbcf9710f696f1acebad4dbd98ac03
+  GoogleIPhoneUtilities: 1c2996078f079d2fc54453dbd13eaf5523666550
   GoogleNetworkingUtilities: 292992ab31b7b4ba32809a0e8b40e324cdfb2c0c
   GoogleSymbolUtilities: 82ad9f93d3615244b3f4ce440f5ab2515e8b4f56
   GoogleUtilities: 8ed9134debe11719097881711464752900668f10

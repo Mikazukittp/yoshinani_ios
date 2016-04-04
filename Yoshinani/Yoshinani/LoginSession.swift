@@ -69,7 +69,6 @@ class LoginSession: NSObject {
 extension NSURLSession {
     func cancelAllTasks() {
         self.getTasksWithCompletionHandler { (dataTasks, uploadTasks, downloadTasks) -> Void in
-            
             dataTasks.forEach {
                 if $0.state == .Running {
                     $0.cancel()

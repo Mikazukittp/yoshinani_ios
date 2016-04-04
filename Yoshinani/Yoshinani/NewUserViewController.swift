@@ -121,6 +121,12 @@ extension NewUserViewController :UITextFieldDelegate {
                         RealmManager.sharedInstance.userInfo = ruser
                     }
                     
+                    //新規プッシュ登録
+                    if !UserDefaultManager.sharedInstance.synchronizeApnsToken() {
+                        self.sendApnsToken()
+                        return
+                    }
+                    
                     self.pushToTopViewController()
                     break
                 case .ServerError:
@@ -172,5 +178,34 @@ extension NewUserViewController :UITextFieldDelegate {
         alertController.addAction(defaultAction)
         
         presentViewController(alertController, animated: true, completion: nil)
-    } 
+    }
+    
+    private func sendApnsToken() {
+        let deviceToken = UserDefaultManager.sharedInstance.apnsToken()
+        
+        guard let notNildeviceToken = deviceToken else {
+            print("トークンがないよ")
+            self.pushToTopViewController()
+            return
+        }
+        
+        let session = NotificationSession()
+        //Realmのデータを取得
+        let user = RealmManager.sharedInstance.userInfo
+        guard let notNilUser = user else {
+            self.pushToTopViewController()
+            return
+        }
+        
+        session.create((notNilUser.token,notNilUser.userId,notNildeviceToken)) { (error, message) -> Void in
+            if error == ErrorHandring.Success {
+                UserDefaultManager.sharedInstance.setSynchronizeApnsToken(true)
+            }
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.pushToTopViewController()
+                })
+            print(message)
+        }
+    }
+
 }

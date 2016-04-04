@@ -12,7 +12,7 @@ class Const {
     //http://52.193.62.129/api/v1: 開発
     //http://52.69.32.124/api/v1 :本番
     class var urlDomain: String {
-        #if false
+        #if true
            return "http://52.193.62.129/api/v1"
         #else
             return "http://52.69.32.124/api/v1"
@@ -20,7 +20,7 @@ class Const {
     }
     
     class var urlAdmob :String {
-        #if false
+        #if true
             return "ca-app-pub-3940256099942544/2934735716"
         #else
             return "ca-app-pub-8668651775161815/1088420289"

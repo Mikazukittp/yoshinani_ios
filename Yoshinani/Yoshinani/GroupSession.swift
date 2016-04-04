@@ -54,7 +54,7 @@ class GroupSession: NSObject {
         dataTask.resume()
     }
     
-    func create (uid: Int,token :String,name: String, desp :String, complition :(error :ErrorHandring) ->Void) {
+    func create (uid: Int,token :String,name: String, desp :String, complition :(error :ErrorHandring, group_id :Int?) ->Void) {
         let request = NSMutableURLRequest(URL: NSURL(string: Const.urlDomain + "/groups")!,
             cachePolicy: .UseProtocolCachePolicy,
             timeoutInterval: 10.0)
@@ -85,29 +85,28 @@ class GroupSession: NSObject {
         let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
                 if error!.code != NSURLError.Cancelled.rawValue {
-                    complition(error: .NetworkError)
+                    complition(error: .NetworkError, group_id: nil)
                 }
             } else {
                 guard let notNilResponse = response else {
-                    complition(error: .ServerError)
+                    complition(error: .ServerError, group_id: nil)
                     return
                 }
                 
                 let httpResponse = notNilResponse as! NSHTTPURLResponse
                 if httpResponse.statusCode == 401 {
-                    complition(error: .UnauthorizedError)
+                    complition(error: .UnauthorizedError, group_id: nil)
                     return
                 }else if httpResponse.statusCode != 200 {
-                    complition(error: .ServerError)
+                    complition(error: .ServerError, group_id: nil)
                     return
                 }
                 
                 self.group = Unbox(data!)
                 print(self.group)
 
-                complition(error: .Success)
+                complition(error: .Success,group_id: self.group?.group_id)
             }
-            
             
         })
         dataTask.resume()
@@ -186,7 +185,7 @@ class GroupSession: NSObject {
         dataTask.resume()
     }
     
-    func invite(uid :Int, token :String,group_id: Int,invite_user_id :Int,complition :(error :ErrorHandring) ->Void) {
+    func invite(uid :Int, token :String,group_id: Int,users :[User],complition :(error :ErrorHandring, message: String?) ->Void) {
         let request = NSMutableURLRequest(URL: NSURL(string: Const.urlDomain + "/groups/\(group_id)/users/")!,
             cachePolicy: .UseProtocolCachePolicy,
             timeoutInterval: 10.0)
@@ -196,15 +195,15 @@ class GroupSession: NSObject {
         request.addValue("\(uid)", forHTTPHeaderField: "uid")
         request.addValue(token, forHTTPHeaderField: "token")
         
-        let userDict:Dictionary<String,Int>  = [
-            "user_id":invite_user_id
-        ]
-        let params = ["group_user":[userDict]]
-        print(params)
+        let userDicts = users.map{["user_id":$0.userId]}
+        print(userDicts)
         
+        let userParams = ["group_user":userDicts]
+        print(userParams)
+                
         do {
             // Dict -> JSON
-            let jsonData = try NSJSONSerialization.dataWithJSONObject(params, options: .PrettyPrinted) //(*)options??
+            let jsonData = try NSJSONSerialization.dataWithJSONObject(userParams, options: .PrettyPrinted) //(*)options??
             request.HTTPBody = jsonData
         } catch {
             print("Error!: \(error)")
@@ -215,26 +214,31 @@ class GroupSession: NSObject {
         let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
                 if error!.code != NSURLError.Cancelled.rawValue {
-                    complition(error: .NetworkError)
+                    complition(error: .NetworkError, message: NetworkErrorMessage)
                 }
             } else {
                 guard let notNilResponse = response else {
-                    complition(error: .ServerError)
+                    complition(error: .ServerError, message: ServerErrorMessage)
                     return
                 }
                 
                 let httpResponse = notNilResponse as! NSHTTPURLResponse
                 if httpResponse.statusCode == 401 {
-                    complition(error: .UnauthorizedError)
+                    complition(error: .UnauthorizedError, message: "")
                     return
                 }else if httpResponse.statusCode != 200 {
-                    complition(error: .ServerError)
+                    let error :Error = Unbox(data!)!
+                    guard let message = error.errors?.base else {
+                        complition(error: .ServerError, message: error.message)
+                        return
+                    }
+                    complition(error: .ServerError, message: message[0])
                     return
                 }
                 self.groups = Unbox(data!)
                 print(self.groups)
 
-                complition(error: .Success)
+                complition(error: .Success,message: nil)
             }
             
         })

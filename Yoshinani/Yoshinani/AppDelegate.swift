@@ -11,13 +11,12 @@ import REFrostedViewController
 import RealmSwift
 import GoogleMobileAds
 
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate,REFrostedViewControllerDelegate {
 
     var window: UIWindow?
 
-
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         if let win = window {
@@ -43,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,REFrostedViewControllerDel
             var configureError:NSError?
             GGLContext.sharedInstance().configureWithError(&configureError)
             assert(configureError == nil, "Error configuring Google services: \(configureError)")
-            
+
             // Optional: configure GAI options.
             let gai = GAI.sharedInstance()
             gai.trackUncaughtExceptions = true  // report uncaught exceptions
@@ -56,8 +55,51 @@ class AppDelegate: UIResponder, UIApplicationDelegate,REFrostedViewControllerDel
             UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
             UINavigationBar.appearance().tintColor = UIColor.whiteColor()
             UINavigationBar.appearance().barTintColor = UIColor.mainColor()
+            
+            // バッジ、サウンド、アラートをリモート通知対象として登録する
+            let settings = UIUserNotificationSettings(forTypes: [.Badge, .Sound, .Alert], categories:nil)
+            UIApplication.sharedApplication().registerForRemoteNotifications()
+            UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+            
         }
         return true
+    }
+    
+    func application( application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken
+        deviceToken: NSData ) {
+        let characterSet: NSCharacterSet = NSCharacterSet( charactersInString: "<>" )
+        let deviceTokenString: String = ( deviceToken.description as NSString )
+                .stringByTrimmingCharactersInSet( characterSet )
+                .stringByReplacingOccurrencesOfString( " ", withString: "" ) as String
+        print("ApnsToken:" + deviceTokenString)
+            
+        UserDefaultManager.sharedInstance.setApnsToken(deviceTokenString)
+        
+        if !UserDefaultManager.sharedInstance.synchronizeApnsToken() {
+            sendApnsToken()
+        }
+    }
+    private func sendApnsToken() {
+        let deviceToken = UserDefaultManager.sharedInstance.apnsToken()
+        
+        guard let notNildeviceToken = deviceToken else {
+            print("トークンがないよ")
+            return
+        }
+        
+        let session = NotificationSession()
+        //Realmのデータを取得
+        let user = RealmManager.sharedInstance.userInfo
+        guard let notNilUser = user else {
+            return
+        }
+        
+        session.create((notNilUser.token,notNilUser.userId,notNildeviceToken)) { (error, message) -> Void in
+            if error == ErrorHandring.Success {
+                UserDefaultManager.sharedInstance.setSynchronizeApnsToken(true)
+            }
+            print(message)
+        }
     }
 
     func applicationWillResignActive(application: UIApplication) {

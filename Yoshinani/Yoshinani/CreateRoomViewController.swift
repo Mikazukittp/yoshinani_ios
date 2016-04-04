@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateRoomViewController: BaseViewController,UITextFieldDelegate {
+class CreateRoomViewController: BaseViewController,UITextFieldDelegate,InvitedFriendViewControllerDelegate {
 
     @IBOutlet weak var groupNameTextField: UITextField!
     @IBOutlet weak var descriptionNameTextField: UITextField!
@@ -64,7 +64,7 @@ class CreateRoomViewController: BaseViewController,UITextFieldDelegate {
         if isSuccess {
             let session = GroupSession()
             self.startIndicator()
-            session.create(notNilUser.userId, token: notNilUser.token, name: groupNameTextField.text!, desp: descriptionNameTextField.text!, complition: { (error) -> Void in
+            session.create(notNilUser.userId, token: notNilUser.token, name: groupNameTextField.text!, desp: descriptionNameTextField.text!, complition: { (error, group_id) -> Void in
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.stopIndicator()
                     switch error {
@@ -72,7 +72,10 @@ class CreateRoomViewController: BaseViewController,UITextFieldDelegate {
                         self.setAlertView(NetworkErrorTitle, message: NetworkErrorMessage)
                         break
                     case .Success:
-                        self.dismissViewControllerAnimated(true, completion: nil)
+                        let pc = InviteFriendViewController(nibName :"InviteFriendViewController",bundle: nil)
+                        pc.group_id = group_id
+                        pc.delegate = self
+                        self.navigationController?.pushViewController(pc, animated: true)
                         break
                     case .ServerError:
                         self.setAlertView(ServerErrorMessage, message: ServerErrorMessage)
@@ -85,6 +88,12 @@ class CreateRoomViewController: BaseViewController,UITextFieldDelegate {
             })
         }
         
+    }
+    
+    func didSuccessInvitationToUser() {
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        })
     }
     
     @IBAction func closeButtonTapped(sender: AnyObject) {

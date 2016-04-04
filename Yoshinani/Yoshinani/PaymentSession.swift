@@ -115,6 +115,8 @@ class PaymentSession: NSObject {
                     complition(error: .UnauthorizedError)
                     return
                 }else if httpResponse.statusCode != 201 {
+                    let error :Error = Unbox(data!)!
+                    print(error)
                     complition(error: .ServerError)
                     return
                 }
