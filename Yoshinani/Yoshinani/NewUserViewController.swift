@@ -193,7 +193,6 @@ extension NewUserViewController :UITextFieldDelegate {
         //Realmのデータを取得
         let user = RealmManager.sharedInstance.userInfo
         guard let notNilUser = user else {
-            self.pushToTopViewController()
             return
         }
         

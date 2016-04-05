@@ -89,7 +89,8 @@ class RepaymentViewController: BaseViewController {
                         self.setAlertView(NetworkErrorTitle, alert: NetworkErrorMessage)
                         break
                     case .Success:
-                        self.dismissViewControllerAnimated(true, completion: nil)
+                        self.dismissViewControllerAnimated(true, completion: { 
+                        })
                         break
                     case .ServerError:
                         self.setAlertView(ServerErrorMessage, alert: RequestErrorMessage)

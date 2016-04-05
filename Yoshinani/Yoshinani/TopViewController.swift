@@ -44,6 +44,11 @@ class TopViewController: BaseViewController  ,UITableViewDataSource ,UITableView
         
         setAdBannerView()
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
         self.startIndicator()
         reloadData()
     }

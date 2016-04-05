@@ -20,7 +20,7 @@ class InvitedPeopleView: UIView {
     var index :Int?
     
     func setUpLabel(user :User) {
-        self.nameLabel.text = user.userName
+        self.nameLabel.text = user.userName ?? user.account
         self.initialLabel.text = (user.account.uppercaseString as NSString).substringToIndex(1)
     }
     

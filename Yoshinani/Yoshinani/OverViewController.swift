@@ -25,6 +25,7 @@ class OverViewController: BaseViewController {
         tableView?.registerNib(nib, forCellReuseIdentifier: "OverviewTableViewCell")
         tableView?.estimatedRowHeight = 50
         tableView?.rowHeight = UITableViewAutomaticDimension
+        
         indicatorDelegate?.startChildViewIndicator()
         reloadData()
     }

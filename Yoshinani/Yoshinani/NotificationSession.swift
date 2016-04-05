@@ -39,16 +39,19 @@ class NotificationSession: NSObject {
             print("Error!: \(error)")
         }
         
-        let session = NSURLSession.sharedSession()       
+        let semaphore = dispatch_semaphore_create(0)
+        let session = NSURLSession.sharedSession()
         let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
                 print(error)
                 if error!.code != NSURLError.Cancelled.rawValue {
                     complition(error: .NetworkError, message: nil)
+                    dispatch_semaphore_signal(semaphore)
                 }
             } else {
                 guard let notNilResponse = response else {
                     complition(error: .ServerError, message: nil)
+                    dispatch_semaphore_signal(semaphore)
                     return
                 }
                 
@@ -57,24 +60,29 @@ class NotificationSession: NSObject {
                     let error :Error = Unbox(data!)!
                     guard let message = error.errors?.password else {
                         complition(error: .UnauthorizedError,message: error.message)
+                        dispatch_semaphore_signal(semaphore)
                         return
                     }
                     complition(error: .UnauthorizedError,message: message[0])
+                    dispatch_semaphore_signal(semaphore)
                     return
                 }else if httpResponse.statusCode != 200 {
                     let error :Error = Unbox(data!)!
                     guard let message = error.errors?.password else {
                         complition(error: .ServerError,message: error.message)
+                        dispatch_semaphore_signal(semaphore)
                         return
                     }
                     complition(error: .ServerError,message: message[0])
+                    dispatch_semaphore_signal(semaphore)
                     return
                 }
                 
                 complition(error: .Success, message: nil)
+                dispatch_semaphore_signal(semaphore)
             }
         })
         dataTask.resume()
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
     }
-
 }

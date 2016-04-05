@@ -57,7 +57,7 @@ class ResetPasswordSendEmailViewController: BaseViewController,UITextFieldDelega
                         self.setAlertView(NetworkErrorMessage)
                         break
                     case .Success:
-                        self.setAlertView(SuccessMailTitle, message: SUccessMailBody, closure: { () -> Void in
+                        self.setAlertView(SuccessMailTitle, message: SuccessMailBody, closure: { () -> Void in
                             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                                 let vc = ResetPasswordViewController(nibName: "ResetPasswordViewController", bundle:nil)
                                 self.navigationController?.pushViewController(vc, animated: true)

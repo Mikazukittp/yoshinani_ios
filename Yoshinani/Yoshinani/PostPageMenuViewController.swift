@@ -15,7 +15,6 @@ class PostPageMenuViewController: BaseViewController ,UIViewControllerTransition
     var users :[User]?
     var group_id :Int?
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,6 +30,7 @@ class PostPageMenuViewController: BaseViewController ,UIViewControllerTransition
         controller.group_id = group_id
         controller.indicatorDelegate = self
         controllerArray.append(controller)
+        
         let controller2 = RepaymentViewController(nibName: "RepaymentViewController", bundle: nil)
         controller2.title = "返済"
         controller2.users = users
