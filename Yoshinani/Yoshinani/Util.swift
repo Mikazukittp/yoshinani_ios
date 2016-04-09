@@ -19,3 +19,15 @@ struct UIScreenUtil {
         return Int(UIScreen.mainScreen().bounds.size.height);
     }
 }
+
+struct StringUtil {
+    static func cordinateStringWithComma(value :Int) -> String {
+        let num = NSNumber(integer: value)
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
+        formatter.groupingSeparator = ","
+        formatter.groupingSize = 3
+        return formatter.stringFromNumber(num) ?? "0"
+    }
+}
+

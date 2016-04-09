@@ -59,12 +59,6 @@ class BaseViewController: UIViewController {
         loadingIndicator.stopAnimating()
     }
     
-    func startSmallIndicator() {
-        self.view.bringSubviewToFront(loadingIndicator)
-        loadingIndicator.startAnimating();
-    }
-    
-    
     func sendGA(name :String) {
         let tracker = GAI.sharedInstance().defaultTracker
         tracker.set(kGAIScreenName, value: name)
@@ -72,6 +66,27 @@ class BaseViewController: UIViewController {
         let builder = GAIDictionaryBuilder.createScreenView()
         tracker.send(builder.build() as [NSObject : AnyObject])
     }
+    
+//    func setRetryButton() {
+//        let retryButton = UIButton(frame: CGRectMake(CGFloat(UIScreenUtil.screenWidth() / 2), CGFloat(UIScreenUtil.screenHeight() / 2), 100, 100))
+//        
+//        retryButton.titleLabel?.text = "再試行"
+//        retryButton.titleLabel!.layer.cornerRadius = retryButton.frame.width / 2;
+//        retryButton.titleLabel!.clipsToBounds = true;
+//        retryButton.titleLabel!.layer.borderColor = UIColor.mainColor().CGColor
+//        retryButton.titleLabel!.layer.borderWidth = 2
+//
+//        retryButton.addTarget(self, action: #selector(BaseViewController.didTappedRetryButton(_:)), forControlEvents: .TouchUpInside)
+//        self.view.addSubview(retryButton)
+//    }
+//    
+//    func didTappedRetryButton(sender: UIButton!){
+//        retryButtonAction()
+//    }
+//    
+//    func retryButtonAction() {
+//       print("子でオーバライドして処理を書いてください")
+//    }
     
     private func setMaintenanceAlertView (message :String, title :String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)

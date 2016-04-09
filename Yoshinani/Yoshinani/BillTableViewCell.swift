@@ -25,7 +25,8 @@ class BillTableViewCell: UITableViewCell {
     //MARK: Public
     func setUpParts(payment :Payment) {
         self.nameLabel.text = payment.paid_user?.userName ?? payment.paid_user?.account
-        self.priceLabel.text = "¥\(payment.amount)" ?? "-"
+        
+        self.priceLabel.text = "¥\(StringUtil.cordinateStringWithComma(payment.amount))"
         self.eventLabel.text = payment.event ?? "-"
         self.descriptionLabel.text = payment.description ?? "-"
         self.dateLabel.text = (payment.created_at as NSString).substringToIndex(10) ?? "-"

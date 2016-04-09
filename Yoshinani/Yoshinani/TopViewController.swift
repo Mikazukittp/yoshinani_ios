@@ -60,17 +60,14 @@ class TopViewController: BaseViewController  ,UITableViewDataSource ,UITableView
     }
     
     private func reloadData() {
-        if onSession { return }
-        onSession = true
         //Realmのデータを取得
         let user = RealmManager.sharedInstance.userInfo
-        
+        print("connect")
         if let nonNilUser = user {
             let session = UserSession()
             session.show(nonNilUser.userId, token: nonNilUser.token, complition: { (error) -> Void in
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.stopIndicator()
-                    
                     self.onSession = false
                     switch error {
                     case .NetworkError:
@@ -79,7 +76,8 @@ class TopViewController: BaseViewController  ,UITableViewDataSource ,UITableView
                     case .Success:
                         self.user = session.user
                         let pay = session.user?.sumPay ?? 0
-                        self.sumPay.text = "¥\(pay)"
+                        let payWithComma = StringUtil.cordinateStringWithComma(pay)
+                        self.sumPay.text = "¥\(payWithComma)"
                         
                         if pay < 0 {
                             self.sumPay.textColor = UIColor.accentColor()
@@ -190,15 +188,5 @@ class TopViewController: BaseViewController  ,UITableViewDataSource ,UITableView
         pc.groups = self.user?.invitedGroups
         self.navigationController?.pushViewController(pc , animated: true)
     }
-    /*
-    スクロール時
-    */
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        
-        // 下に引っ張ったときは、ヘッダー位置を計算して動かないようにする（★ここがポイント..）
-        if scrollView.contentOffset.y < 0 {
-            startSmallIndicator()
-            reloadData()
-        }
-    }
 }
+

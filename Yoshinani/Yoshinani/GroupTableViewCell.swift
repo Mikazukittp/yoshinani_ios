@@ -28,6 +28,7 @@ class GroupTableViewCell: UITableViewCell {
         }
         
         let toPayStr = Int(round(notNilTotal))
-        toPay.text = "¥\(toPayStr)"
+        let payWithComma = StringUtil.cordinateStringWithComma(toPayStr)
+        toPay.text = "¥\(payWithComma)"
     }
 }
