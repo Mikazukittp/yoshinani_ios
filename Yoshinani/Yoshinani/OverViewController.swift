@@ -103,16 +103,4 @@ extension OverViewController: UITableViewDataSource,UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
-    
-    /*
-    スクロール時
-    */
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        
-        // 下に引っ張ったときは、ヘッダー位置を計算して動かないようにする（★ここがポイント..）
-        if scrollView.contentOffset.y < 0 {
-            indicatorDelegate?.startChildViewSmallIndicator()
-            reloadData()
-        }
-    }
 }

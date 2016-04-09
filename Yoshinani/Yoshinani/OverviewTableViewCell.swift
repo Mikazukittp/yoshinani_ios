@@ -26,7 +26,8 @@ class OverviewTableViewCell: UITableViewCell {
         }
         
         let roundToPay = Int(round(notNilTotal.result ?? 0))
-        self.toPay.text = "¥\(roundToPay)"
+        let payWithComma = StringUtil.cordinateStringWithComma(roundToPay)
+        self.toPay.text = "¥\(payWithComma)"
         if roundToPay < 0 {
             toPay.textColor = UIColor.accentColor()
         }else {

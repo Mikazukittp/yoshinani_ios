@@ -86,6 +86,7 @@
 		8397593B1C8866A6008398F6 /* RepaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 839759391C8866A6008398F6 /* RepaymentViewController.xib */; };
 		83A5E4C11C7876B2001740A0 /* ToPayUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A5E4BF1C7876B2001740A0 /* ToPayUserCell.swift */; };
 		83A5E4C21C7876B2001740A0 /* ToPayUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83A5E4C01C7876B2001740A0 /* ToPayUserCell.xib */; };
+		83C473831CB8FC6A00AD7384 /* Int+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C473821CB8FC6A00AD7384 /* Int+Addition.swift */; };
 		83D033831C848C6200576B8E /* TermsOfServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D033811C848C6200576B8E /* TermsOfServiceViewController.swift */; };
 		83D033841C848C6200576B8E /* TermsOfServiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83D033821C848C6200576B8E /* TermsOfServiceViewController.xib */; };
 		83D033871C848C7900576B8E /* AboutAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D033851C848C7900576B8E /* AboutAppViewController.swift */; };
@@ -104,6 +105,8 @@
 		83EF133D1C440A1900D55F74 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EF133C1C440A1900D55F74 /* UserSession.swift */; };
 		83F53D461C79AA1B00E8F79C /* CopyRightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F53D441C79AA1B00E8F79C /* CopyRightViewController.swift */; };
 		83F53D471C79AA1B00E8F79C /* CopyRightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83F53D451C79AA1B00E8F79C /* CopyRightViewController.xib */; };
+		83FA9D351CB8D28300ECF1D3 /* LoadMoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FA9D331CB8D28300ECF1D3 /* LoadMoreTableViewCell.swift */; };
+		83FA9D361CB8D28300ECF1D3 /* LoadMoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83FA9D341CB8D28300ECF1D3 /* LoadMoreTableViewCell.xib */; };
 		83FE2F721C3503B800EEC29B /* LoginSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FE2F711C3503B800EEC29B /* LoginSession.swift */; };
 		83FE2F751C35047C00EEC29B /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FE2F741C35047C00EEC29B /* Const.swift */; };
 		83FE2F781C35078500EEC29B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FE2F771C35078500EEC29B /* User.swift */; };
@@ -193,6 +196,7 @@
 		839759391C8866A6008398F6 /* RepaymentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepaymentViewController.xib; sourceTree = "<group>"; };
 		83A5E4BF1C7876B2001740A0 /* ToPayUserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToPayUserCell.swift; sourceTree = "<group>"; };
 		83A5E4C01C7876B2001740A0 /* ToPayUserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ToPayUserCell.xib; sourceTree = "<group>"; };
+		83C473821CB8FC6A00AD7384 /* Int+Addition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Addition.swift"; sourceTree = "<group>"; };
 		83D033811C848C6200576B8E /* TermsOfServiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsOfServiceViewController.swift; sourceTree = "<group>"; };
 		83D033821C848C6200576B8E /* TermsOfServiceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TermsOfServiceViewController.xib; sourceTree = "<group>"; };
 		83D033851C848C7900576B8E /* AboutAppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutAppViewController.swift; sourceTree = "<group>"; };
@@ -211,6 +215,8 @@
 		83EF133C1C440A1900D55F74 /* UserSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		83F53D441C79AA1B00E8F79C /* CopyRightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyRightViewController.swift; sourceTree = "<group>"; };
 		83F53D451C79AA1B00E8F79C /* CopyRightViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CopyRightViewController.xib; sourceTree = "<group>"; };
+		83FA9D331CB8D28300ECF1D3 /* LoadMoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadMoreTableViewCell.swift; sourceTree = "<group>"; };
+		83FA9D341CB8D28300ECF1D3 /* LoadMoreTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadMoreTableViewCell.xib; sourceTree = "<group>"; };
 		83FE2F711C3503B800EEC29B /* LoginSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSession.swift; sourceTree = "<group>"; };
 		83FE2F741C35047C00EEC29B /* Const.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		83FE2F771C35078500EEC29B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -350,6 +356,7 @@
 			children = (
 				8372BD631C6CC37900D07D97 /* UIViewController+Addition.swift */,
 				83274DBC1C78397400CE99E0 /* UIColor+Addition.swift */,
+				83C473821CB8FC6A00AD7384 /* Int+Addition.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -440,6 +447,8 @@
 				8381A57C1C33CA43001911BC /* TimeLineViewController.xib */,
 				8381A5811C33CFB0001911BC /* BillTableViewCell.swift */,
 				8381A5821C33CFB0001911BC /* BillTableViewCell.xib */,
+				83FA9D331CB8D28300ECF1D3 /* LoadMoreTableViewCell.swift */,
+				83FA9D341CB8D28300ECF1D3 /* LoadMoreTableViewCell.xib */,
 			);
 			name = TimeLine;
 			sourceTree = "<group>";
@@ -645,6 +654,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83FA9D361CB8D28300ECF1D3 /* LoadMoreTableViewCell.xib in Resources */,
 				83EF13351C43933A00D55F74 /* ProfileViewController.xib in Resources */,
 				83151F6E1C707050009A4DA4 /* InviteFriendViewController.xib in Resources */,
 				830652781C9566A900C61002 /* ResetPasswordSendEmailViewController.xib in Resources */,
@@ -788,8 +798,10 @@
 				8381A5891C33D3FA001911BC /* PostBillViewController.swift in Sources */,
 				835CCCAB1C37BBF500FDEA21 /* Payment.swift in Sources */,
 				83F53D461C79AA1B00E8F79C /* CopyRightViewController.swift in Sources */,
+				83FA9D351CB8D28300ECF1D3 /* LoadMoreTableViewCell.swift in Sources */,
 				83EF13391C43FE4100D55F74 /* GroupSession.swift in Sources */,
 				83FE2F751C35047C00EEC29B /* Const.swift in Sources */,
+				83C473831CB8FC6A00AD7384 /* Int+Addition.swift in Sources */,
 				838DE2C51C8C781D00CA84E1 /* ChangePasswordViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

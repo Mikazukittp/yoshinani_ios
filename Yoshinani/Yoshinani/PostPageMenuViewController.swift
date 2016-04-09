@@ -9,11 +9,15 @@
 import UIKit
 import PageMenu
 
+protocol PostBillPageMenuDelegate {
+    func succeededPostBill()
+}
 
 class PostPageMenuViewController: BaseViewController ,UIViewControllerTransitioningDelegate{
     var pageMenu : CAPSPageMenu?
     var users :[User]?
     var group_id :Int?
+    var postBillDelegate :PostBillPageMenuDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +33,7 @@ class PostPageMenuViewController: BaseViewController ,UIViewControllerTransition
         controller.users = users
         controller.group_id = group_id
         controller.indicatorDelegate = self
+        controller.postDelegate = self
         controllerArray.append(controller)
         
         let controller2 = RepaymentViewController(nibName: "RepaymentViewController", bundle: nil)
@@ -80,6 +85,12 @@ class PostPageMenuViewController: BaseViewController ,UIViewControllerTransition
     }
 }
 
+extension PostPageMenuViewController :PostBillDelagate {
+    func succeededPostBill() {
+        postBillDelegate?.succeededPostBill()
+    }
+}
+
 extension PostPageMenuViewController :PageMenuIndicatorDelegate {
     func startChildViewIndicator() {
         startIndicator()
@@ -87,10 +98,6 @@ extension PostPageMenuViewController :PageMenuIndicatorDelegate {
     
     func stopChildViewIndicator() {
         stopIndicator()
-    }
-    
-    func startChildViewSmallIndicator(){
-        startSmallIndicator()
-    }
+    }    
 }
 

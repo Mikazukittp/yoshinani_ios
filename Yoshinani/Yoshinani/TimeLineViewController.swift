@@ -11,10 +11,17 @@ import UIKit
 
 protocol TimeLineViewControllerDelegate {
     func pushNextViewControler (vc :UIViewController)
+    func presentNextViewController(vc :PostPageMenuViewController)
 }
 
 class TimeLineViewController: BaseViewController{
 
+    
+    enum TimeLineListType :Int{
+        case Payment
+        case LoadMore
+    }
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var createButton: UIButton!
 
@@ -31,8 +38,11 @@ class TimeLineViewController: BaseViewController{
         
         self.screenTitle = "全ログ画面(iOS)"
         
-        let nib = UINib(nibName: "BillTableViewCell", bundle: nil)
-        tableView?.registerNib(nib, forCellReuseIdentifier: "BillTableViewCell")
+        tableView?.registerNib(UINib(nibName: "BillTableViewCell", bundle: nil),
+                               forCellReuseIdentifier: "BillTableViewCell")
+        tableView?.registerNib(UINib(nibName: LoadMoreTableViewCell.identifier, bundle: nil),
+                               forCellReuseIdentifier: LoadMoreTableViewCell.identifier)
+        
         tableView?.estimatedRowHeight = 50
         tableView?.rowHeight = UITableViewAutomaticDimension
         indicatorDelegate?.startChildViewIndicator()
@@ -109,14 +119,11 @@ class TimeLineViewController: BaseViewController{
     
     @IBAction func createButtonTapped(sender: AnyObject) {
         let vc = PostPageMenuViewController()
-        let nc = MenuNavigationController(rootViewController: vc)
         vc.modalPresentationStyle = .Custom
         vc.modalTransitionStyle = .CrossDissolve
         vc.users = users
         vc.group_id = group_id
-        self.presentViewController(nc, animated: true) { () -> Void in
-            
-        }
+        delegate?.presentNextViewController(vc)
     }
     
     //MARK: Private 
@@ -135,16 +142,47 @@ class TimeLineViewController: BaseViewController{
 }
 
 extension TimeLineViewController :UITableViewDelegate ,UITableViewDataSource {
+//    - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        //イベント＋さらによみこむ
+        return 2
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if payments?.count == nil {
+        switch section {
+        case TimeLineListType.Payment.rawValue:
+            
+            if payments?.count == nil {
+                return 0
+            }
+            return (payments?.count)!
+            
+        case TimeLineListType.LoadMore.rawValue:
+            if payments?.count == nil {
+                return 0
+            }
+            return 1
+        default:
             return 0
         }
         
-        return (payments?.count)!
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        switch indexPath.section {
+        case TimeLineListType.Payment.rawValue:
+            return paymentCell(indexPath)
+        case TimeLineListType.LoadMore.rawValue:
+            return loadMoreCell(indexPath)
+        default :
+            return loadMoreCell(indexPath)
+        }
+    }
+    
+    private func paymentCell(indexPath :NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("BillTableViewCell", forIndexPath: indexPath) as! BillTableViewCell
         
         guard let notNilPayments = payments else {
@@ -156,7 +194,21 @@ extension TimeLineViewController :UITableViewDelegate ,UITableViewDataSource {
         return cell
     }
     
+    private func loadMoreCell(indexPath :NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(LoadMoreTableViewCell.identifier, forIndexPath: indexPath) as! LoadMoreTableViewCell
+        cell.disableReloadButton()
+        cell.startIndicator()
+        return cell
+    }
+    
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == TimeLineListType.LoadMore.rawValue {
+            addSession()
+            loadMoreCell(indexPath)
+            return
+        }
+        
         let payment = payments![indexPath.row]
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let pc = PayerListViewController(nibName: "PayerListViewController", bundle: nil)
@@ -171,68 +223,58 @@ extension TimeLineViewController :UITableViewDelegate ,UITableViewDataSource {
        
         if onSession { return }
         
+        if indexPath.section == TimeLineListType.LoadMore.rawValue {
+            addSession()
+        }
+    }
+    private func addSession() {
+        
         guard let notNilPayments = payments else {
             return
         }
         
-        if indexPath.row == (notNilPayments.count - 1){
-            let session = PaymentSession()
+        guard let notNilUser =  RealmManager.sharedInstance.userInfo else{
+            self.popToNewUserController()
+            return
+        }
+        let session = PaymentSession()
+        let uid = notNilUser.userId
+        let token = notNilUser.token
+        self.onSession = true
+        session.payments(uid, pass: token, group_id: group_id!,last_id: notNilPayments.last?.payment_id) { (error) -> Void in
             
-            guard let notNilUser =  RealmManager.sharedInstance.userInfo else{
-                self.popToNewUserController()
-                return
-            }
-            
-            let uid = notNilUser.userId
-            let token = notNilUser.token
-            
-            self.onSession = true
-            self.indicatorDelegate?.startChildViewSmallIndicator()
-            session.payments(uid, pass: token, group_id: group_id!,last_id: notNilPayments.last?.payment_id) { (error) -> Void in
-
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.indicatorDelegate?.stopChildViewIndicator()
-                    self.onSession = false
-                    
-                    switch error {
-                    case .NetworkError:
-                        self.setAlertView(NetworkErrorTitle, message: NetworkErrorMessage)
-                        break
-                    case .Success:
-                        guard let newPayments = session.payments else {
-                            return
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.onSession = false
+                
+                self.tableView.visibleCells.forEach{
+                    if $0.reuseIdentifier == LoadMoreTableViewCell.identifier {
+                        let cell =  $0 as! LoadMoreTableViewCell
+                        cell.stopIndicator()
+                        if error != .Success {
+                            cell.enableReloadButton()
                         }
-                        if newPayments.count == 0 {
-                            return
-                        }
-                        
-                        self.payments?.appendContentsOf(newPayments)
-                        self.tableView.reloadData()
-                        break
-                    case .ServerError:
-                        self.setAlertView(ServerErrorMessage, message: ServerErrorMessage)
-                        break
-                    case .UnauthorizedError:
-                        self.popToNewUserController()
-                        break
                     }
-                })
-            }
+                }
+                
+                switch error {
+                case .NetworkError: break
+                case .ServerError: break
+                case .Success:
+                    guard let newPayments = session.payments else {
+                        return
+                    }
+                    if newPayments.count == 0 {
+                        return
+                    }
+                    
+                    self.payments?.appendContentsOf(newPayments)
+                    self.tableView.reloadData()
+                    break
+                case .UnauthorizedError:
+                    self.popToNewUserController()
+                    break
+                }
+            })
         }
     }
-    /*
-    スクロール時
-    */
-    //FIXME :一回だけフェッチする
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        
-        if onSession { return }
-        
-        // 下に引っ張ったときは、ヘッダー位置を計算して動かないようにする（★ここがポイント..）
-        if scrollView.contentOffset.y < 0 {
-            indicatorDelegate?.startChildViewSmallIndicator()
-            reloadData()
-        }
-    }
-
 }
