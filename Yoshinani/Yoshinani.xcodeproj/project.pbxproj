@@ -28,6 +28,11 @@
 		8306528E1C959CF200C61002 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8306528D1C959CF200C61002 /* MessageUI.framework */; };
 		830652901C959CF800C61002 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8306528F1C959CF800C61002 /* StoreKit.framework */; };
 		830652921C959D0400C61002 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830652911C959D0400C61002 /* SystemConfiguration.framework */; };
+		8309F4E81CBA3F23004BFC19 /* LineAdapter_3.1.17 in Resources */ = {isa = PBXBuildFile; fileRef = 8309F4E71CBA3F23004BFC19 /* LineAdapter_3.1.17 */; };
+		8309F4EA1CBA3F80004BFC19 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8309F4E91CBA3F80004BFC19 /* Foundation.framework */; };
+		8309F4EC1CBA3F90004BFC19 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8309F4EB1CBA3F90004BFC19 /* UIKit.framework */; };
+		8309F4EE1CBA3F9B004BFC19 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8309F4ED1CBA3F9B004BFC19 /* Security.framework */; };
+		8309F4F01CBA3FBD004BFC19 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8309F4EF1CBA3FBD004BFC19 /* CoreText.framework */; };
 		830A1D741C91A1FB00DE6E40 /* ErrosDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830A1D731C91A1FB00DE6E40 /* ErrosDetail.swift */; };
 		8312ED3A1C2C2904005A269D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8312ED391C2C2904005A269D /* AppDelegate.swift */; };
 		8312ED411C2C2904005A269D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8312ED401C2C2904005A269D /* Assets.xcassets */; };
@@ -135,6 +140,11 @@
 		8306528D1C959CF200C61002 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		8306528F1C959CF800C61002 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		830652911C959D0400C61002 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		8309F4E71CBA3F23004BFC19 /* LineAdapter_3.1.17 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = LineAdapter_3.1.17; sourceTree = "<group>"; };
+		8309F4E91CBA3F80004BFC19 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		8309F4EB1CBA3F90004BFC19 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		8309F4ED1CBA3F9B004BFC19 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		8309F4EF1CBA3FBD004BFC19 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		830A1D731C91A1FB00DE6E40 /* ErrosDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrosDetail.swift; sourceTree = "<group>"; };
 		8312ED361C2C2904005A269D /* Yoshinani.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yoshinani.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8312ED391C2C2904005A269D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -228,14 +238,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8309F4F01CBA3FBD004BFC19 /* CoreText.framework in Frameworks */,
+				830652841C959CD000C61002 /* CoreGraphics.framework in Frameworks */,
+				830652881C959CDE00C61002 /* CoreTelephony.framework in Frameworks */,
+				8309F4EE1CBA3F9B004BFC19 /* Security.framework in Frameworks */,
+				8309F4EC1CBA3F90004BFC19 /* UIKit.framework in Frameworks */,
+				8309F4EA1CBA3F80004BFC19 /* Foundation.framework in Frameworks */,
 				830652921C959D0400C61002 /* SystemConfiguration.framework in Frameworks */,
 				830652901C959CF800C61002 /* StoreKit.framework in Frameworks */,
 				8306528E1C959CF200C61002 /* MessageUI.framework in Frameworks */,
 				8306528C1C959CEC00C61002 /* EventKitUI.framework in Frameworks */,
 				8306528A1C959CE600C61002 /* EventKit.framework in Frameworks */,
-				830652881C959CDE00C61002 /* CoreTelephony.framework in Frameworks */,
 				830652861C959CD600C61002 /* CoreMedia.framework in Frameworks */,
-				830652841C959CD000C61002 /* CoreGraphics.framework in Frameworks */,
 				830652821C959CC700C61002 /* AVFoundation.framework in Frameworks */,
 				830652801C959CBD00C61002 /* AudioToolbox.framework in Frameworks */,
 				8306527E1C959CB400C61002 /* AdSupport.framework in Frameworks */,
@@ -279,6 +293,7 @@
 			isa = PBXGroup;
 			children = (
 				83ED553F1CACF6B300A139BF /* GoogleService-Info.plist */,
+				8309F4E71CBA3F23004BFC19 /* LineAdapter_3.1.17 */,
 				8312ED381C2C2904005A269D /* Yoshinani */,
 				8312ED371C2C2904005A269D /* Products */,
 				1A345C56D9CC2A0040774646 /* Pods */,
@@ -576,6 +591,10 @@
 		BD8181EB9E2D367EDEB6D9DE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8309F4EF1CBA3FBD004BFC19 /* CoreText.framework */,
+				8309F4ED1CBA3F9B004BFC19 /* Security.framework */,
+				8309F4EB1CBA3F90004BFC19 /* UIKit.framework */,
+				8309F4E91CBA3F80004BFC19 /* Foundation.framework */,
 				830652911C959D0400C61002 /* SystemConfiguration.framework */,
 				8306528F1C959CF800C61002 /* StoreKit.framework */,
 				8306528D1C959CF200C61002 /* MessageUI.framework */,
@@ -677,6 +696,7 @@
 				8381A5771C33C8DB001911BC /* GroupTableViewCell.xib in Resources */,
 				8312ED441C2C2904005A269D /* LaunchScreen.storyboard in Resources */,
 				8381A5841C33CFB0001911BC /* BillTableViewCell.xib in Resources */,
+				8309F4E81CBA3F23004BFC19 /* LineAdapter_3.1.17 in Resources */,
 				8312ED411C2C2904005A269D /* Assets.xcassets in Resources */,
 				8363BD331C30121A0046A08F /* MenuTableViewCell.xib in Resources */,
 				8303150F1C7F4BFE00F031E1 /* MenuProfTableViewCell.xib in Resources */,

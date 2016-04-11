@@ -38,35 +38,6 @@
                         <action selector="pushToSignupViewController:" destination="-1" eventType="touchUpInside" id="wez-We-4ax"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yxc-IP-mE4">
-                    <rect key="frame" x="20" y="400" width="560" height="35"/>
-                    <color key="backgroundColor" red="0.14901960780000001" green="0.65098039220000004" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="35" id="6MI-kN-gyi"/>
-                        <constraint firstAttribute="width" constant="100" id="eFo-vs-v5f"/>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="tLX-5E-u9M"/>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="zF5-qB-XPS"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                    <state key="normal" title="ログイン">
-                        <color key="titleColor" red="0.13725490196078433" green="0.59607843137254901" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="keyPath">
-                            <integer key="value" value="1"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="eFo-vs-v5f"/>
-                            <exclude reference="tLX-5E-u9M"/>
-                            <exclude reference="zF5-qB-XPS"/>
-                        </mask>
-                    </variation>
-                    <connections>
-                        <action selector="submitButtonTapped:" destination="-1" eventType="touchUpInside" id="dB9-gi-Rxg"/>
-                    </connections>
-                </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="Yu1-j1-pZg">
                     <rect key="frame" x="270" y="50" width="60" height="60"/>
                     <constraints>
@@ -144,13 +115,42 @@ Yoshinaniへ</string>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lSL-CX-6tH">
-                    <rect key="frame" x="216.5" y="485" width="168" height="27"/>
+                    <rect key="frame" x="216" y="485" width="168" height="27"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <state key="normal" title="パスワードを忘れた方はこちら">
                         <color key="titleColor" red="0.89019608500000003" green="0.89019608500000003" blue="0.89803922179999995" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="didTapResetPasswordButton:" destination="-1" eventType="touchUpInside" id="Vsi-qR-acY"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yxc-IP-mE4">
+                    <rect key="frame" x="20" y="400" width="560" height="35"/>
+                    <color key="backgroundColor" red="0.14901960780000001" green="0.65098039220000004" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="6MI-kN-gyi"/>
+                        <constraint firstAttribute="width" constant="100" id="eFo-vs-v5f"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="tLX-5E-u9M"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="zF5-qB-XPS"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <state key="normal" title="ログイン">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="keyPath">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="eFo-vs-v5f"/>
+                            <exclude reference="tLX-5E-u9M"/>
+                            <exclude reference="zF5-qB-XPS"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <action selector="submitButtonTapped:" destination="-1" eventType="touchUpInside" id="dB9-gi-Rxg"/>
                     </connections>
                 </button>
             </subviews>
