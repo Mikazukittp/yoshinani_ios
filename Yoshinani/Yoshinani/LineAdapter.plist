@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   LineAdapter.plist
+   Yoshinani
+
+   Created by 石部達也 on 2016/04/11.
+   Copyright (c) 2016年 石部達也. All rights reserved.
+-->
+<plist version="1.0">
+    <dict>
+        <key>ChannelId</key>
+        <string>1461975038</string>
+    </dict>
+</plist>

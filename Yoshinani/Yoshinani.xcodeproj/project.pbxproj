@@ -110,6 +110,11 @@
 		83EF133D1C440A1900D55F74 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EF133C1C440A1900D55F74 /* UserSession.swift */; };
 		83F53D461C79AA1B00E8F79C /* CopyRightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F53D441C79AA1B00E8F79C /* CopyRightViewController.swift */; };
 		83F53D471C79AA1B00E8F79C /* CopyRightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83F53D451C79AA1B00E8F79C /* CopyRightViewController.xib */; };
+		83F7419B1CBBD0DD00FB1571 /* LineAdapter.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83F7419A1CBBD0DD00FB1571 /* LineAdapter.plist */; };
+		83F7419D1CBBD55A00FB1571 /* LineAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F7419C1CBBD55A00FB1571 /* LineAdapter.framework */; };
+		83F7419F1CBBD55D00FB1571 /* LineAdapterLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F7419E1CBBD55D00FB1571 /* LineAdapterLogin.framework */; };
+		83F741A11CBBD56000FB1571 /* LineAdapterUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F741A01CBBD56000FB1571 /* LineAdapterUI.framework */; };
+		83F741A31CBBD56B00FB1571 /* LineAdapterUI.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F741A21CBBD56B00FB1571 /* LineAdapterUI.bundle */; };
 		83FA9D351CB8D28300ECF1D3 /* LoadMoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FA9D331CB8D28300ECF1D3 /* LoadMoreTableViewCell.swift */; };
 		83FA9D361CB8D28300ECF1D3 /* LoadMoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83FA9D341CB8D28300ECF1D3 /* LoadMoreTableViewCell.xib */; };
 		83FE2F721C3503B800EEC29B /* LoginSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FE2F711C3503B800EEC29B /* LoginSession.swift */; };
@@ -225,6 +230,11 @@
 		83EF133C1C440A1900D55F74 /* UserSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		83F53D441C79AA1B00E8F79C /* CopyRightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyRightViewController.swift; sourceTree = "<group>"; };
 		83F53D451C79AA1B00E8F79C /* CopyRightViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CopyRightViewController.xib; sourceTree = "<group>"; };
+		83F7419A1CBBD0DD00FB1571 /* LineAdapter.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LineAdapter.plist; sourceTree = "<group>"; };
+		83F7419C1CBBD55A00FB1571 /* LineAdapter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LineAdapter.framework; path = LineAdapter_3.1.17/LineAdapter.framework; sourceTree = "<group>"; };
+		83F7419E1CBBD55D00FB1571 /* LineAdapterLogin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LineAdapterLogin.framework; path = LineAdapter_3.1.17/LineAdapterLogin.framework; sourceTree = "<group>"; };
+		83F741A01CBBD56000FB1571 /* LineAdapterUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LineAdapterUI.framework; path = LineAdapter_3.1.17/LineAdapterUI.framework; sourceTree = "<group>"; };
+		83F741A21CBBD56B00FB1571 /* LineAdapterUI.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = LineAdapterUI.bundle; path = LineAdapter_3.1.17/LineAdapterUI.bundle; sourceTree = "<group>"; };
 		83FA9D331CB8D28300ECF1D3 /* LoadMoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadMoreTableViewCell.swift; sourceTree = "<group>"; };
 		83FA9D341CB8D28300ECF1D3 /* LoadMoreTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadMoreTableViewCell.xib; sourceTree = "<group>"; };
 		83FE2F711C3503B800EEC29B /* LoginSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSession.swift; sourceTree = "<group>"; };
@@ -241,6 +251,10 @@
 				8309F4F01CBA3FBD004BFC19 /* CoreText.framework in Frameworks */,
 				830652841C959CD000C61002 /* CoreGraphics.framework in Frameworks */,
 				830652881C959CDE00C61002 /* CoreTelephony.framework in Frameworks */,
+				83F7419D1CBBD55A00FB1571 /* LineAdapter.framework in Frameworks */,
+				83F7419F1CBBD55D00FB1571 /* LineAdapterLogin.framework in Frameworks */,
+				83F741A11CBBD56000FB1571 /* LineAdapterUI.framework in Frameworks */,
+				83F741A31CBBD56B00FB1571 /* LineAdapterUI.bundle in Frameworks */,
 				8309F4EE1CBA3F9B004BFC19 /* Security.framework in Frameworks */,
 				8309F4EC1CBA3F90004BFC19 /* UIKit.framework in Frameworks */,
 				8309F4EA1CBA3F80004BFC19 /* Foundation.framework in Frameworks */,
@@ -321,6 +335,7 @@
 				8312ED401C2C2904005A269D /* Assets.xcassets */,
 				8312ED421C2C2904005A269D /* LaunchScreen.storyboard */,
 				8312ED451C2C2904005A269D /* Info.plist */,
+				83F7419A1CBBD0DD00FB1571 /* LineAdapter.plist */,
 			);
 			path = Yoshinani;
 			sourceTree = "<group>";
@@ -591,6 +606,10 @@
 		BD8181EB9E2D367EDEB6D9DE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				83F741A21CBBD56B00FB1571 /* LineAdapterUI.bundle */,
+				83F741A01CBBD56000FB1571 /* LineAdapterUI.framework */,
+				83F7419E1CBBD55D00FB1571 /* LineAdapterLogin.framework */,
+				83F7419C1CBBD55A00FB1571 /* LineAdapter.framework */,
 				8309F4EF1CBA3FBD004BFC19 /* CoreText.framework */,
 				8309F4ED1CBA3F9B004BFC19 /* Security.framework */,
 				8309F4EB1CBA3F90004BFC19 /* UIKit.framework */,
@@ -675,6 +694,7 @@
 			files = (
 				83FA9D361CB8D28300ECF1D3 /* LoadMoreTableViewCell.xib in Resources */,
 				83EF13351C43933A00D55F74 /* ProfileViewController.xib in Resources */,
+				83F7419B1CBBD0DD00FB1571 /* LineAdapter.plist in Resources */,
 				83151F6E1C707050009A4DA4 /* InviteFriendViewController.xib in Resources */,
 				830652781C9566A900C61002 /* ResetPasswordSendEmailViewController.xib in Resources */,
 				83151F6A1C705B47009A4DA4 /* InviteCell.xib in Resources */,
@@ -925,9 +945,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7B8D13955C28A4C3AD797B2B /* Pods.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LineAdapter_3.1.17",
+				);
 				INFOPLIST_FILE = Yoshinani/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -942,9 +967,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 73B802D50B2C294AB961BA8A /* Pods.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LineAdapter_3.1.17",
+				);
 				INFOPLIST_FILE = Yoshinani/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -37,5 +37,11 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>lineauth</string>
+        <string>line3rdp.$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+    </array>
+
 </dict>
 </plist>
