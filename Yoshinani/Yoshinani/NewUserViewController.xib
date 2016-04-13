@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -18,7 +18,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zYD-vW-53o">
-                    <rect key="frame" x="20" y="445" width="560" height="30"/>
+                    <rect key="frame" x="20" y="510" width="560" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="TTF-Pn-sHa"/>
                         <constraint firstAttribute="height" constant="30" id="Y0f-nk-fIm"/>
@@ -114,16 +114,6 @@ Yoshinaniへ</string>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lSL-CX-6tH">
-                    <rect key="frame" x="216" y="485" width="168" height="27"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <state key="normal" title="パスワードを忘れた方はこちら">
-                        <color key="titleColor" red="0.89019608500000003" green="0.89019608500000003" blue="0.89803922179999995" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <connections>
-                        <action selector="didTapResetPasswordButton:" destination="-1" eventType="touchUpInside" id="Vsi-qR-acY"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yxc-IP-mE4">
                     <rect key="frame" x="20" y="400" width="560" height="35"/>
                     <color key="backgroundColor" red="0.14901960780000001" green="0.65098039220000004" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -153,15 +143,56 @@ Yoshinaniへ</string>
                         <action selector="submitButtonTapped:" destination="-1" eventType="touchUpInside" id="dB9-gi-Rxg"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eX1-Xd-sEW">
+                    <rect key="frame" x="20" y="465" width="560" height="35"/>
+                    <color key="backgroundColor" red="0.14901960780000001" green="0.65098039220000004" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="3fz-Ak-5OH"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="Ry3-6T-SFZ"/>
+                        <constraint firstAttribute="height" constant="35" id="bgW-Pt-2hp"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="k2V-MG-PgJ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <state key="normal" title="LINEでログイン">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="keyPath">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="3fz-Ak-5OH"/>
+                            <exclude reference="k2V-MG-PgJ"/>
+                            <exclude reference="Ry3-6T-SFZ"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <action selector="didTapLineLogin:" destination="-1" eventType="touchUpInside" id="g6C-xA-5Lh"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lSL-CX-6tH">
+                    <rect key="frame" x="216" y="550" width="168" height="27"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <state key="normal" title="パスワードを忘れた方はこちら">
+                        <color key="titleColor" red="0.89019608500000003" green="0.89019608500000003" blue="0.89803922179999995" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="didTapResetPasswordButton:" destination="-1" eventType="touchUpInside" id="Vsi-qR-acY"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.27270087599999998" green="0.3071439862" blue="0.43824788930000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="IGv-L5-IsE" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="1Cj-ys-8Pm"/>
                 <constraint firstItem="bxP-Gr-Ayw" firstAttribute="top" secondItem="hDn-7f-fNB" secondAttribute="bottom" constant="30" id="2TO-0Z-VeR"/>
+                <constraint firstItem="eX1-Xd-sEW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="4og-9t-ufM"/>
                 <constraint firstAttribute="trailing" secondItem="hDn-7f-fNB" secondAttribute="trailing" constant="20" id="6Kd-Ds-kJc"/>
                 <constraint firstItem="IGv-L5-IsE" firstAttribute="width" secondItem="mkp-af-koU" secondAttribute="width" id="BFE-2w-ik7"/>
                 <constraint firstAttribute="trailing" secondItem="IGv-L5-IsE" secondAttribute="trailing" constant="20" id="OML-l2-Gnc"/>
                 <constraint firstAttribute="trailing" secondItem="bxP-Gr-Ayw" secondAttribute="trailing" constant="20" id="UMn-VK-Rx2"/>
+                <constraint firstItem="Yxc-IP-mE4" firstAttribute="top" secondItem="IGv-L5-IsE" secondAttribute="bottom" constant="30" id="Vje-b6-Hle"/>
                 <constraint firstItem="lSL-CX-6tH" firstAttribute="top" secondItem="zYD-vW-53o" secondAttribute="bottom" constant="10" id="WA1-iV-TBp"/>
                 <constraint firstAttribute="trailing" secondItem="CQ5-wG-3Zd" secondAttribute="trailing" constant="20" id="Xxb-ad-aP9"/>
                 <constraint firstItem="lSL-CX-6tH" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="YKg-DD-BdH"/>
@@ -176,11 +207,13 @@ Yoshinaniへ</string>
                 <constraint firstItem="Yu1-j1-pZg" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="iK0-Mm-uwd"/>
                 <constraint firstItem="mkp-af-koU" firstAttribute="top" secondItem="CQ5-wG-3Zd" secondAttribute="bottom" constant="20" id="j8H-O9-sPZ"/>
                 <constraint firstItem="CQ5-wG-3Zd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="jkd-24-jY3"/>
+                <constraint firstItem="zYD-vW-53o" firstAttribute="top" secondItem="eX1-Xd-sEW" secondAttribute="bottom" constant="10" id="lqN-1f-Eux"/>
+                <constraint firstAttribute="trailing" secondItem="eX1-Xd-sEW" secondAttribute="trailing" constant="20" id="mz3-BP-j91"/>
                 <constraint firstAttribute="trailing" secondItem="zYD-vW-53o" secondAttribute="trailing" constant="20" id="nqq-nk-aUc"/>
+                <constraint firstItem="eX1-Xd-sEW" firstAttribute="top" secondItem="Yxc-IP-mE4" secondAttribute="bottom" constant="30" id="p28-g9-m4q"/>
                 <constraint firstItem="Yu1-j1-pZg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="50" id="pZq-Os-qMr"/>
                 <constraint firstItem="IGv-L5-IsE" firstAttribute="top" secondItem="mkp-af-koU" secondAttribute="bottom" constant="3" id="qaY-RX-V7m"/>
                 <constraint firstItem="hDn-7f-fNB" firstAttribute="top" secondItem="Yu1-j1-pZg" secondAttribute="bottom" constant="50" id="reJ-Qv-ubb"/>
-                <constraint firstItem="zYD-vW-53o" firstAttribute="top" secondItem="Yxc-IP-mE4" secondAttribute="bottom" constant="10" id="u4n-m3-7iv"/>
                 <constraint firstItem="Yxc-IP-mE4" firstAttribute="top" secondItem="IGv-L5-IsE" secondAttribute="bottom" constant="30" id="whg-Zq-dYY"/>
                 <constraint firstItem="CQ5-wG-3Zd" firstAttribute="top" secondItem="bxP-Gr-Ayw" secondAttribute="bottom" constant="3" id="yc6-Hh-MIP"/>
                 <constraint firstItem="CQ5-wG-3Zd" firstAttribute="top" secondItem="bxP-Gr-Ayw" secondAttribute="bottom" constant="3" id="yq1-kj-jzl"/>
@@ -188,6 +221,7 @@ Yoshinaniへ</string>
             </constraints>
             <variation key="default">
                 <mask key="constraints">
+                    <exclude reference="whg-Zq-dYY"/>
                     <exclude reference="dDz-cd-hjm"/>
                 </mask>
             </variation>

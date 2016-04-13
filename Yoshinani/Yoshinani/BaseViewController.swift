@@ -51,7 +51,7 @@ class BaseViewController: UIViewController {
     }
     
     func startIndicator() {
-        MRProgressOverlayView.showOverlayAddedTo(self.navigationController!.view,title:"Loading...",mode:.Indeterminate, animated: true);
+        MRProgressOverlayView.showOverlayAddedTo(self.navigationController!.view,title:"",mode:.Indeterminate, animated: true);
     }
     
     func stopIndicator() {

@@ -13,6 +13,8 @@ class NewUserViewController: BaseViewController {
     @IBOutlet weak var nameTextInputer: UITextField!
     
     @IBOutlet weak var passwordTextInputer: UITextField!
+    
+    let lineAdapeter = LineAdapter.adapterWithConfigFile()
 
     
     override func viewDidLoad() {
@@ -29,8 +31,10 @@ class NewUserViewController: BaseViewController {
         nameTextInputer.delegate = self
         passwordTextInputer.delegate = self
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"textFieldDidChange:", name: UITextFieldTextDidChangeNotification, object: nil)
-
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(NewUserViewController.textFieldDidChange(_:)), name: UITextFieldTextDidChangeNotification, object: nil)
+        
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(NewUserViewController.authorizationDidChange(_:)), name: LineAdapterAuthorizationDidChangeNotification, object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -143,8 +147,80 @@ extension NewUserViewController :UITextFieldDelegate {
         let vc = ResetPasswordSendEmailViewController(nibName :"ResetPasswordSendEmailViewController", bundle: nil)
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    @IBAction func didTapLineLogin(sender: AnyObject) {
+        
+        if lineAdapeter.authorized {
+//            alert("Already authorized", message: "")
+            return
+        }else {
+            if lineAdapeter.canAuthorizeUsingLineApp {
+                lineAdapeter.authorize()
+                return
+            }else{
+                let vc = LineAdapterWebViewController.init(adapter: lineAdapeter, withWebViewOrientation: kOrientationAll)
+            vc.navigationItem.setLeftBarButtonItem(LineAdapterNavigationController.barButtonItemWithTitle("Cancel", target: self, action: #selector(NewUserViewController.cancel(_:))), animated: true)
+                vc.title = "Line Login"
+                let nc = LineAdapterNavigationController.init(rootViewController: vc)
+                
+                self.presentViewController(nc, animated: false, completion: nil)
+            }
+        }
+        
+        
+        
+    }
+    func cancel(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
     
-    
+    func authorizationDidChange(notification: NSNotification) {
+        let adapter = notification.object as! LineAdapter
+        if adapter.authorized {
+            
+        }else {
+             if let error = notification.userInfo?["error"] as? NSError  {
+                let errorMessage = error.localizedDescription
+                let code = error.code
+               kLineAdapterErrorAuthorizationAgentNotAvailable
+            }
+        }
+//        LineAdapter *_adapter = [aNotification object];
+//        if ([_adapter isAuthorized])
+//        {
+//            // Connection completed to LINE.
+//        }
+//        else
+//        {
+//            NSError *error = [[aNotification userInfo] objectForKey:@"error"];
+//            if (error)
+//            {
+//                NSString *errorMessage = [error localizedDescription];
+//                NSInteger code = [error code];
+//                if (code == kLineAdapterErrorMissingConfiguration)
+//                {
+//                    // URL Types is not set correctly
+//                }
+//                else if (code == kLineAdapterErrorAuthorizationAgentNotAvailable)
+//                {
+//                    // The LINE application is not installed
+//                }
+//                else if (code == kLineAdapterErrorInvalidServerResponse)
+//                {
+//                    // The response from the server is incorrect
+//                }
+//                else if (code == kLineAdapterErrorAuthorizationDenied)
+//                {
+//                    // The user has cancelled the authentication and authorization
+//                }
+//                else if (code == kLineAdapterErrorAuthorizationFailed)
+//                {
+//                    // The authentication and authorization has failed for an unknown reason
+//                }
+//            }
+//        }
+    }
+
+
     //MARK* Private
     
     func textFieldDidChange(notification: NSNotification) {
