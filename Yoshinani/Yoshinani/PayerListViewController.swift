@@ -30,7 +30,7 @@ class PayerListViewController: BaseViewController ,UITableViewDataSource, UITabl
 
         if user?.userId == payer?.userId {
             let customButtonRight :UIButton = UIButton(frame: CGRectMake(0, 0, 30, 30))
-            customButtonRight.addTarget(self, action: Selector("deletePost"), forControlEvents: .TouchUpInside)
+            customButtonRight.addTarget(self, action: #selector(PayerListViewController.deletePost), forControlEvents: .TouchUpInside)
             customButtonRight.setBackgroundImage(UIImage(named: "Delete"), forState: UIControlState.Normal)
             let customButtonItemRight :UIBarButtonItem = UIBarButtonItem(customView: customButtonRight)
             self.navigationItem.rightBarButtonItem = customButtonItemRight

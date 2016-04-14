@@ -31,7 +31,7 @@ class ResetPasswordViewController: BaseViewController, UITextFieldDelegate {
         newPasswordInput.delegate = self
         reNewPasswordInput.delegate = self
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"textFieldDidChange:", name: UITextFieldTextDidChangeNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(ResetPasswordViewController.textFieldDidChange(_:)), name: UITextFieldTextDidChangeNotification, object: nil)
 
     }
     @IBAction func didTapSubmitButton(sender: AnyObject) {

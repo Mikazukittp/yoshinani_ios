@@ -25,14 +25,14 @@ class CreateRoomViewController: BaseViewController,UITextFieldDelegate,InvitedFr
         groupNameTextField.returnKeyType = .Next
         descriptionNameTextField.returnKeyType = .Done
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"textFieldDidChange:", name: UITextFieldTextDidChangeNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(CreateRoomViewController.textFieldDidChange(_:)), name: UITextFieldTextDidChangeNotification, object: nil)
 
         setCloseButton()
     }
     
     func setCloseButton() {
         let customButton :UIButton = UIButton(frame: CGRectMake(0, 0, 30, 30))
-        customButton.addTarget(self, action: Selector("closeView"), forControlEvents: .TouchUpInside)
+        customButton.addTarget(self, action: #selector(CreateRoomViewController.closeView), forControlEvents: .TouchUpInside)
         customButton.setBackgroundImage(UIImage(named: "Cancel"), forState: UIControlState.Normal)
         let customButtonItem :UIBarButtonItem = UIBarButtonItem(customView: customButton)
         self.navigationItem.leftBarButtonItem = customButtonItem

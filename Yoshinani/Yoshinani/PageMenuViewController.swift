@@ -26,7 +26,7 @@ class PageMenuViewController: BaseViewController ,UIViewControllerTransitioningD
         self.edgesForExtendedLayout = .None
         
         let customButton :UIButton = UIButton(frame: CGRectMake(0, 0, 30, 30))
-        customButton.addTarget(self, action: Selector("pushToInvite"), forControlEvents: .TouchUpInside)
+        customButton.addTarget(self, action: #selector(PageMenuViewController.pushToInvite), forControlEvents: .TouchUpInside)
         customButton.setBackgroundImage(UIImage(named: "Add"), forState: UIControlState.Normal)
         let customButtonItem :UIBarButtonItem = UIBarButtonItem(customView: customButton)
         self.navigationItem.rightBarButtonItem = customButtonItem

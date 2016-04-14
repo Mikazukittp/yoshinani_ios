@@ -27,7 +27,7 @@ class ResetPasswordSendEmailViewController: BaseViewController,UITextFieldDelega
         mailInput.delegate = self
         reMailInput.delegate = self
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"textFieldDidChange:", name: UITextFieldTextDidChangeNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(ResetPasswordSendEmailViewController.textFieldDidChange(_:)), name: UITextFieldTextDidChangeNotification, object: nil)
     }
     
     @IBAction func didSubmitTapped(sender: AnyObject) {

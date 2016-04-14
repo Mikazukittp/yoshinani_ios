@@ -72,7 +72,7 @@ class PostPageMenuViewController: BaseViewController ,UIViewControllerTransition
     
     func setCloseButton() {
         let customButton :UIButton = UIButton(frame: CGRectMake(0, 0, 30, 30))
-        customButton.addTarget(self, action: Selector("closeView"), forControlEvents: .TouchUpInside)
+        customButton.addTarget(self, action: #selector(PostPageMenuViewController.closeView), forControlEvents: .TouchUpInside)
         customButton.setBackgroundImage(UIImage(named: "Cancel"), forState: UIControlState.Normal)
         let customButtonItem :UIBarButtonItem = UIBarButtonItem(customView: customButton)
         self.navigationItem.leftBarButtonItem = customButtonItem

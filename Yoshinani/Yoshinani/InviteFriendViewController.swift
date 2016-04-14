@@ -47,7 +47,7 @@ class InviteFriendViewController: BaseViewController {
             rightButtonTitle = "作成"
         }
         
-        let rightFooBarButtonItem:UIBarButtonItem = UIBarButtonItem(title:rightButtonTitle , style: UIBarButtonItemStyle.Plain, target: self, action: Selector("didTapRequestButton"))
+        let rightFooBarButtonItem:UIBarButtonItem = UIBarButtonItem(title:rightButtonTitle , style: UIBarButtonItemStyle.Plain, target: self, action: #selector(InviteFriendViewController.didTapRequestButton))
         self.navigationItem.setRightBarButtonItem(rightFooBarButtonItem, animated: true)
     }
     

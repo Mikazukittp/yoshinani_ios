@@ -42,7 +42,7 @@ class PostBillViewController: BaseViewController {
         setTextInput()
         
         datePicker = UIDatePicker()
-        datePicker.addTarget(self, action: "changedDateEvent:", forControlEvents: UIControlEvents.ValueChanged)
+        datePicker.addTarget(self, action: #selector(PostBillViewController.changedDateEvent(_:)), forControlEvents: UIControlEvents.ValueChanged)
         datePicker.datePickerMode = UIDatePickerMode.Date
         dateInput.inputView = datePicker
         
