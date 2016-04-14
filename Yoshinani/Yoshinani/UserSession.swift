@@ -20,6 +20,7 @@ class UserSession: NSObject {
             timeoutInterval: 10.0)
         request.HTTPMethod = "GET"
         
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.addValue("\(uid)", forHTTPHeaderField: "uid")
         request.addValue(token, forHTTPHeaderField: "token")
         
@@ -62,6 +63,7 @@ class UserSession: NSObject {
         print(uid)
         request.HTTPMethod = "GET"
         
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.addValue("\(uid)", forHTTPHeaderField: "uid")
         request.addValue(token, forHTTPHeaderField: "token")
         
@@ -101,6 +103,7 @@ class UserSession: NSObject {
             timeoutInterval: 10.0)
         request.HTTPMethod = "GET"
         
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.addValue("\(uid)", forHTTPHeaderField: "uid")
         request.addValue(token, forHTTPHeaderField: "token")
         
@@ -132,6 +135,61 @@ class UserSession: NSObject {
             }
         })
         dataTask.resume()
+    }
+    
+    func update(uid :Int,token :String ,account :String,completion :(error :ErrorHandring, user :User?) ->Void) {
+        
+        let request = NSMutableURLRequest(URL: NSURL(string: Const.urlDomain + "/users/\(uid)")!,
+                                          cachePolicy: .UseProtocolCachePolicy,
+                                          timeoutInterval: 10.0)
+        request.HTTPMethod = "PATCH"
+        
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.addValue("\(uid)", forHTTPHeaderField: "uid")
+        request.addValue(token, forHTTPHeaderField: "token")
 
+        let session = NSURLSession.sharedSession()
+        
+        let userDict:Dictionary<String,String>  = [
+            "account":account
+        ]
+        let params = ["user":userDict]
+        print(params)
+        
+        do {
+            // Dict -> JSON
+            let jsonData = try NSJSONSerialization.dataWithJSONObject(params, options: .PrettyPrinted) //(*)options??
+            request.HTTPBody = jsonData
+        } catch {
+            print("Error!: \(error)")
+        }
+        
+        session.cancelAllTasks()
+        let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+            if (error != nil) {
+                if error!.code != NSURLError.Cancelled.rawValue {
+                    completion(error: .NetworkError,user: nil)
+                }
+            } else {
+                guard let notNilResponse = response else {
+                    completion(error: .ServerError,user :nil)
+                    return
+                }
+                
+                let httpResponse = notNilResponse as! NSHTTPURLResponse
+                if httpResponse.statusCode == 401 {
+                    completion(error: .UnauthorizedError, user: nil)
+                    return
+                }else if httpResponse.statusCode != 200 {
+                    completion(error: .ServerError, user:nil)
+                    return
+                }
+                self.user = Unbox(data!)
+                print(self.user)
+                
+                completion(error: .Success, user: self.user)
+            }
+        })
+        dataTask.resume()
     }
 }

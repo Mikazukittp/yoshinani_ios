@@ -56,6 +56,9 @@
 		83200DDD1C9FE41400A523B7 /* NotificationSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83200DDC1C9FE41400A523B7 /* NotificationSession.swift */; };
 		83200DDF1CA03B3A00A523B7 /* InvitedPeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83200DDE1CA03B3A00A523B7 /* InvitedPeopleView.swift */; };
 		83200DE11CA03B5600A523B7 /* InvitedPeopleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83200DE01CA03B5600A523B7 /* InvitedPeopleView.xib */; };
+		832213701CBE8AEF0098E50F /* OauthSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8322136F1CBE8AEF0098E50F /* OauthSession.swift */; };
+		832213731CBEA4E70098E50F /* LineLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832213711CBEA4E70098E50F /* LineLoginViewController.swift */; };
+		832213741CBEA4E70098E50F /* LineLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 832213721CBEA4E70098E50F /* LineLoginViewController.xib */; };
 		83221BC51C8F2EE2000E47D5 /* PasswordSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83221BC41C8F2EE2000E47D5 /* PasswordSession.swift */; };
 		83274DBD1C78397400CE99E0 /* UIColor+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83274DBC1C78397400CE99E0 /* UIColor+Addition.swift */; };
 		834DDB2F1C6C232900B7AB93 /* PageMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDB2E1C6C232900B7AB93 /* PageMenuViewController.swift */; };
@@ -175,6 +178,9 @@
 		83200DDC1C9FE41400A523B7 /* NotificationSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationSession.swift; sourceTree = "<group>"; };
 		83200DDE1CA03B3A00A523B7 /* InvitedPeopleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvitedPeopleView.swift; sourceTree = "<group>"; };
 		83200DE01CA03B5600A523B7 /* InvitedPeopleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvitedPeopleView.xib; sourceTree = "<group>"; };
+		8322136F1CBE8AEF0098E50F /* OauthSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OauthSession.swift; sourceTree = "<group>"; };
+		832213711CBEA4E70098E50F /* LineLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineLoginViewController.swift; sourceTree = "<group>"; };
+		832213721CBEA4E70098E50F /* LineLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LineLoginViewController.xib; sourceTree = "<group>"; };
 		83221BC41C8F2EE2000E47D5 /* PasswordSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordSession.swift; sourceTree = "<group>"; };
 		83274DBC1C78397400CE99E0 /* UIColor+Addition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Addition.swift"; sourceTree = "<group>"; };
 		834DDB2E1C6C232900B7AB93 /* PageMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageMenuViewController.swift; sourceTree = "<group>"; };
@@ -465,6 +471,7 @@
 				8372BD611C6C9BEF00D07D97 /* SignUpSession.swift */,
 				83221BC41C8F2EE2000E47D5 /* PasswordSession.swift */,
 				83200DDC1C9FE41400A523B7 /* NotificationSession.swift */,
+				8322136F1CBE8AEF0098E50F /* OauthSession.swift */,
 			);
 			name = Session;
 			sourceTree = "<group>";
@@ -522,6 +529,8 @@
 			children = (
 				83EF13281C437D2E00D55F74 /* NewUserViewController.swift */,
 				83EF13291C437D2E00D55F74 /* NewUserViewController.xib */,
+				832213711CBEA4E70098E50F /* LineLoginViewController.swift */,
+				832213721CBEA4E70098E50F /* LineLoginViewController.xib */,
 			);
 			name = "Log In";
 			sourceTree = "<group>";
@@ -713,6 +722,7 @@
 				83EF132B1C437D2E00D55F74 /* NewUserViewController.xib in Resources */,
 				83E6D1671C7C989E004B399C /* PrivacyPolicyViewController.xib in Resources */,
 				83200DE11CA03B5600A523B7 /* InvitedPeopleView.xib in Resources */,
+				832213741CBEA4E70098E50F /* LineLoginViewController.xib in Resources */,
 				8381A5771C33C8DB001911BC /* GroupTableViewCell.xib in Resources */,
 				8312ED441C2C2904005A269D /* LaunchScreen.storyboard in Resources */,
 				8381A5841C33CFB0001911BC /* BillTableViewCell.xib in Resources */,
@@ -802,6 +812,7 @@
 				83200DDD1C9FE41400A523B7 /* NotificationSession.swift in Sources */,
 				8397593A1C8866A6008398F6 /* RepaymentViewController.swift in Sources */,
 				830315111C7F4CE600F031E1 /* RoundLabel.swift in Sources */,
+				832213701CBE8AEF0098E50F /* OauthSession.swift in Sources */,
 				83EF13371C4397C700D55F74 /* RealmManager.swift in Sources */,
 				83EF132D1C43868400D55F74 /* BaseViewController.swift in Sources */,
 				83EF13341C43933A00D55F74 /* ProfileViewController.swift in Sources */,
@@ -824,6 +835,7 @@
 				8303150E1C7F4BFE00F031E1 /* MenuProfTableViewCell.swift in Sources */,
 				83FE2F781C35078500EEC29B /* User.swift in Sources */,
 				8363BD2E1C3010560046A08F /* MenuTableViewController.swift in Sources */,
+				832213731CBEA4E70098E50F /* LineLoginViewController.swift in Sources */,
 				83151F651C7056D4009A4DA4 /* InvitedViewController.swift in Sources */,
 				8381A57D1C33CA43001911BC /* TimeLineViewController.swift in Sources */,
 				8363BD351C30217B0046A08F /* MenuNavigationController.swift in Sources */,

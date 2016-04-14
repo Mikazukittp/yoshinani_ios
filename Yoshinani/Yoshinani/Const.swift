@@ -12,7 +12,7 @@ class Const {
     //http://52.193.62.129/api/v1: 開発
     //http://52.69.32.124/api/v1 :本番
     class var urlDomain: String {
-        #if true
+        #if false
            return "http://52.193.62.129/api/v1"
         #else
             return "http://52.69.32.124/api/v1"
@@ -20,7 +20,7 @@ class Const {
     }
     
     class var urlAdmob :String {
-        #if true
+        #if false
             return "ca-app-pub-3940256099942544/2934735716"
         #else
             return "ca-app-pub-8668651775161815/1088420289"
@@ -52,3 +52,4 @@ let PasswordMessage = "パスワードの変更が完了しました"
 let SuccessMailTitle = "メール送信完了"
 let SuccessMailBody = "指定されたアドレスにメールを送信しました"
 let UpdateNotification = "UpdateNotification"
+let SortWord = "!rhd2014"

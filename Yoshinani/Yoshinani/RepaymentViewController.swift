@@ -118,7 +118,8 @@ class RepaymentViewController: BaseViewController {
         var isSuccess = true
         
         textFields.forEach {
-            if $0.text!.isEmpty {
+            if $0.text!.isEmptyField {
+                $0.text = nil
                 $0.attributedPlaceholder = NSAttributedString(string:alertMessage,
                     attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
                 

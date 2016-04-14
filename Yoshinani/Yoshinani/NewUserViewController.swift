@@ -54,7 +54,7 @@ class NewUserViewController: BaseViewController {
         let bottomColor = UIColor.mainColor()
         
         //グラデーションの色を配列で管理
-        let gradientColors: [CGColor] = [topColor.CGColor, bottomColor.CGColor]
+        let gradientColors: [CGColor] = [bottomColor.CGColor, topColor.CGColor]
         
         //グラデーションレイヤーを作成
         let gradientLayer: CAGradientLayer = CAGradientLayer()
@@ -87,13 +87,15 @@ extension NewUserViewController :UITextFieldDelegate {
     //MARK: IBAction
     @IBAction func submitButtonTapped(sender: AnyObject) {
         
-        if  nameTextInputer.text!.isEmpty {
+        if  nameTextInputer.text!.isEmptyField {
+            nameTextInputer.text = nil
             nameTextInputer.attributedPlaceholder = NSAttributedString(string:"名前を入力してください",
                 attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
             return
         }
         
-        if passwordTextInputer.text!.isEmpty {
+        if passwordTextInputer.text!.isEmptyField {
+            passwordTextInputer.text = nil
             passwordTextInputer.attributedPlaceholder = NSAttributedString(string:"パスワードを入力してください",
                 attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
             return
@@ -150,25 +152,24 @@ extension NewUserViewController :UITextFieldDelegate {
     @IBAction func didTapLineLogin(sender: AnyObject) {
         
         if lineAdapeter.authorized {
-//            alert("Already authorized", message: "")
+            let mid = lineAdapeter.MID
+            loginWithLine(mid)
             return
         }else {
             if lineAdapeter.canAuthorizeUsingLineApp {
                 lineAdapeter.authorize()
                 return
-            }else{
+            }else {
                 let vc = LineAdapterWebViewController.init(adapter: lineAdapeter, withWebViewOrientation: kOrientationAll)
-            vc.navigationItem.setLeftBarButtonItem(LineAdapterNavigationController.barButtonItemWithTitle("Cancel", target: self, action: #selector(NewUserViewController.cancel(_:))), animated: true)
+                vc.navigationItem.setLeftBarButtonItem(LineAdapterNavigationController.barButtonItemWithTitle("Cancel", target: self, action: #selector(NewUserViewController.cancel(_:))), animated: true)
                 vc.title = "Line Login"
                 let nc = LineAdapterNavigationController.init(rootViewController: vc)
                 
                 self.presentViewController(nc, animated: false, completion: nil)
             }
         }
-        
-        
-        
     }
+    
     func cancel(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
     }
@@ -176,48 +177,50 @@ extension NewUserViewController :UITextFieldDelegate {
     func authorizationDidChange(notification: NSNotification) {
         let adapter = notification.object as! LineAdapter
         if adapter.authorized {
+            let mid = adapter.MID
+            loginWithLine(mid)
             
         }else {
              if let error = notification.userInfo?["error"] as? NSError  {
                 let errorMessage = error.localizedDescription
-                let code = error.code
-               kLineAdapterErrorAuthorizationAgentNotAvailable
+                print(errorMessage)
+                setAlertView("LINEでログインができません")
             }
         }
-//        LineAdapter *_adapter = [aNotification object];
-//        if ([_adapter isAuthorized])
-//        {
-//            // Connection completed to LINE.
-//        }
-//        else
-//        {
-//            NSError *error = [[aNotification userInfo] objectForKey:@"error"];
-//            if (error)
-//            {
-//                NSString *errorMessage = [error localizedDescription];
-//                NSInteger code = [error code];
-//                if (code == kLineAdapterErrorMissingConfiguration)
-//                {
-//                    // URL Types is not set correctly
-//                }
-//                else if (code == kLineAdapterErrorAuthorizationAgentNotAvailable)
-//                {
-//                    // The LINE application is not installed
-//                }
-//                else if (code == kLineAdapterErrorInvalidServerResponse)
-//                {
-//                    // The response from the server is incorrect
-//                }
-//                else if (code == kLineAdapterErrorAuthorizationDenied)
-//                {
-//                    // The user has cancelled the authentication and authorization
-//                }
-//                else if (code == kLineAdapterErrorAuthorizationFailed)
-//                {
-//                    // The authentication and authorization has failed for an unknown reason
-//                }
-//            }
-//        }
+    }
+    
+    func loginWithLine(mid :String) {
+        let session = OauthSession()
+        self.startIndicator()
+        session.create(mid) { (error, message, user) in
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.stopIndicator()
+                switch error {
+                case .NetworkError:
+                    self.setAlertView(NetworkErrorMessage)
+                    break
+                case .Success:
+                    if user!.account.isEmptyField {
+                        let vc = LineLoginViewController(nibName: "LineLoginViewController", bundle:nil)
+                        vc.user = user
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }else {
+                        //ログイン情報をRealmに保存する
+                        let ruser = RUser()
+                        ruser.setProperty(user!)
+                        RealmManager.sharedInstance.userInfo = ruser
+                        self.pushToTopViewController()
+                    }
+                    break
+                case .ServerError:
+                    self.setAlertView(message ?? "ユーザ名もしくはパスワードが間違っています。")
+                    break
+                case .UnauthorizedError:
+                    self.popToNewUserController()
+                    break
+                }
+            })
+        }
     }
 
 

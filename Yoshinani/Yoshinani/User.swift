@@ -31,7 +31,7 @@ struct User: Unboxable {
         self.totals = unboxer.unbox("totals")
         self.invitedGroups = unboxer.unbox("invited_groups")
         self.activeGroups = unboxer.unbox("active_groups")
-        self.account = unboxer.unbox("account")
+        self.account = unboxer.unbox("account") ?? "" // ouath用
         
         guard let notNilTotals = totals else {
             self.sumPay = nil

@@ -17,4 +17,4 @@
 #import <LineAdapter/LineAdapter.h>
 #import <LineAdapterLogin/LineAdapterLogin.h>
 #import <LineAdapterUI/LineAdapterUI.h>
-
+#import <CommonCrypto/CommonCrypto.h>
