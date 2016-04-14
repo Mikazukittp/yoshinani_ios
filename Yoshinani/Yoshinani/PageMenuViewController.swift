@@ -11,7 +11,6 @@ import PageMenu
 
 protocol PageMenuIndicatorDelegate {
     func startChildViewIndicator()
-    func startChildViewSmallIndicator()
     func stopChildViewIndicator()
 }
 
@@ -31,15 +30,18 @@ class PageMenuViewController: BaseViewController ,UIViewControllerTransitioningD
         customButton.setBackgroundImage(UIImage(named: "Add"), forState: UIControlState.Normal)
         let customButtonItem :UIBarButtonItem = UIBarButtonItem(customView: customButton)
         self.navigationItem.rightBarButtonItem = customButtonItem
-
+        setUpParts()
+    }
+    
+    private func setUpParts() {
         // Array to keep track of controllers in page menu
         var controllerArray : [UIViewController] = []
-
+        
         let controller = OverViewController(nibName: "OverViewController", bundle: nil)
         controller.title = "メンバー"
         controller.group_id = group_id
         controller.indicatorDelegate = self
-
+        
         controllerArray.append(controller)
         let controller2 = TimeLineViewController(nibName: "TimeLineViewController", bundle: nil)
         controller2.title = "ログ"
@@ -47,7 +49,7 @@ class PageMenuViewController: BaseViewController ,UIViewControllerTransitioningD
         controller2.delegate = self
         controller2.indicatorDelegate = self
         controllerArray.append(controller2)
-
+        
         
         // Customize page menu to your liking (optional) or use default settings by sending nil for 'options' in the init
         // Example:
@@ -61,7 +63,7 @@ class PageMenuViewController: BaseViewController ,UIViewControllerTransitioningD
         
         // Initialize page menu with controller array, frame, and optional parameters
         pageMenu = CAPSPageMenu(viewControllers: controllerArray, frame: CGRectMake(0.0, 0.0, self.view.frame.width, self.view.frame.height), pageMenuOptions: parameters)
-       
+        
         // Lastly add page menu as subview of base view controller view
         // or use pageMenu controller in you view hierachy as desired
         self.addChildViewController(pageMenu!)
@@ -80,9 +82,24 @@ class PageMenuViewController: BaseViewController ,UIViewControllerTransitioningD
     }
 }
 
+extension PageMenuViewController :PostBillPageMenuDelegate {
+    func succeededPostBill() {
+        setUpParts()
+        //FIXME
+        //pageMenu?.moveToPage(1)
+    }
+}
+
 extension PageMenuViewController :TimeLineViewControllerDelegate {
     func pushNextViewControler(vc: UIViewController) {
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    func presentNextViewController(vc: PostPageMenuViewController) {
+        vc.postBillDelegate = self
+        let nc = MenuNavigationController(rootViewController: vc)
+        self.presentViewController(nc, animated: true) { () -> Void in
+            
+        }
     }
 }
 
@@ -93,9 +110,5 @@ extension PageMenuViewController :PageMenuIndicatorDelegate {
     
     func stopChildViewIndicator() {
         stopIndicator()
-    }
-    
-    func startChildViewSmallIndicator(){
-        startSmallIndicator()
-    }
+    }    
 }

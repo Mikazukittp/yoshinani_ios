@@ -14,4 +14,7 @@
 #import "REFrostedViewController/UIViewController+REFrostedViewController.h"
 #import <Google/Analytics.h>
 #import <MRProgress/MRProgress.h>
-
+#import <LineAdapter/LineAdapter.h>
+#import <LineAdapterLogin/LineAdapterLogin.h>
+#import <LineAdapterUI/LineAdapterUI.h>
+#import <CommonCrypto/CommonCrypto.h>

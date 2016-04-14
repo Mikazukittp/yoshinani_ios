@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol PostBillDelagate {
+    func succeededPostBill()
+}
+
 class PostBillViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     var users :[User]? {
@@ -24,7 +28,7 @@ class PostBillViewController: BaseViewController {
     var toolBar:UIToolbar!
     var group_id :Int?
     var indicatorDelegate :PageMenuIndicatorDelegate?
-
+    var postDelegate :PostBillDelagate?
     
     @IBOutlet weak var eventInput: UITextField!
     @IBOutlet weak var detailInput: UITextField!
@@ -145,7 +149,8 @@ class PostBillViewController: BaseViewController {
                         self.setAlertView(NetworkErrorTitle, alert: NetworkErrorMessage)
                         break
                     case .Success:
-                        self.dismissViewControllerAnimated(true, completion: { 
+                        self.dismissViewControllerAnimated(true, completion: {
+                            self.postDelegate?.succeededPostBill()
                          })
                         break
                     case .ServerError:
@@ -178,10 +183,10 @@ class PostBillViewController: BaseViewController {
         var isSuccess = true
         
         textFields.forEach {
-            if $0.text!.isEmpty {
+            if $0.text!.isEmptyField {
                 $0.attributedPlaceholder = NSAttributedString(string:alertMessage,
                     attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
-                
+                $0.text = nil
                 isSuccess = false
             }
             

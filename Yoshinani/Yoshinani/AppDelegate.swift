@@ -61,6 +61,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,REFrostedViewControllerDel
             UIApplication.sharedApplication().registerForRemoteNotifications()
             UIApplication.sharedApplication().registerUserNotificationSettings(settings)
             
+            // Add the following line
+            LineAdapter.handleLaunchOptions(launchOptions)
+            
         }
         return true
     }
@@ -100,6 +103,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate,REFrostedViewControllerDel
             }
             print(message)
         }
+    }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+       return LineAdapter.handleOpenURL(url)
+    }
+    
+    func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
+        return LineAdapter.handleOpenURL(url)
     }
     
     func applicationWillResignActive(application: UIApplication) {

@@ -43,7 +43,7 @@ class SignUpViewController: BaseViewController,UITextFieldDelegate {
         passwordTextInput.delegate = self
         rePasswordInput.delegate = self
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"textFieldDidChange:", name: UITextFieldTextDidChangeNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(SignUpViewController.textFieldDidChange(_:)), name: UITextFieldTextDidChangeNotification, object: nil)
     }
     @IBAction func submitButtonTapped(sender: AnyObject) {
         
@@ -142,7 +142,8 @@ class SignUpViewController: BaseViewController,UITextFieldDelegate {
         var isSuccess = true
         
         textFields.forEach {
-            if $0.text!.isEmpty {
+            if $0.text!.isEmptyField {
+                $0.text = nil
                 $0.attributedPlaceholder = NSAttributedString(string:alertMessage,
                     attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
                 

@@ -32,7 +32,7 @@ class ChangePasswordViewController: BaseViewController ,UITextFieldDelegate {
         newPasswordInput.delegate = self
         reNewPasswordInput.delegate = self
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"textFieldDidChange:", name: UITextFieldTextDidChangeNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(ChangePasswordViewController.textFieldDidChange(_:)), name: UITextFieldTextDidChangeNotification, object: nil)
 
     }
     
@@ -133,7 +133,8 @@ class ChangePasswordViewController: BaseViewController ,UITextFieldDelegate {
         var isSuccess = true
         
         textFields.forEach {
-            if $0.text!.isEmpty {
+            if $0.text!.isEmptyField {
+                $0.text = nil
                 $0.attributedPlaceholder = NSAttributedString(string:alertMessage,
                     attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
                 
