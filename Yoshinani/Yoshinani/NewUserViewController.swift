@@ -160,12 +160,12 @@ extension NewUserViewController :UITextFieldDelegate {
                 lineAdapeter.authorize()
                 return
             }else {
-                let vc = LineAdapterWebViewController.init(adapter: lineAdapeter, withWebViewOrientation: kOrientationAll)
-                vc.navigationItem.setLeftBarButtonItem(LineAdapterNavigationController.barButtonItemWithTitle("Cancel", target: self, action: #selector(NewUserViewController.cancel(_:))), animated: true)
-                vc.title = "Line Login"
-                let nc = LineAdapterNavigationController.init(rootViewController: vc)
-                
-                self.presentViewController(nc, animated: false, completion: nil)
+                setAlertView("LINEをインストールしてください")
+//                let vc = LineAdapterWebViewController.init(adapter: lineAdapeter, withWebViewOrientation: kOrientationAll)
+//                vc.navigationItem.setLeftBarButtonItem(LineAdapterNavigationController.barButtonItemWithTitle("Cancel", target: self, action: #selector(NewUserViewController.cancel(_:))), animated: true)
+//                vc.title = "Line Login"
+//                let nc = LineAdapterNavigationController.init(rootViewController: vc)
+//                self.presentViewController(nc, animated: false, completion: nil)
             }
         }
     }
@@ -179,7 +179,6 @@ extension NewUserViewController :UITextFieldDelegate {
         if adapter.authorized {
             let mid = adapter.MID
             loginWithLine(mid)
-            
         }else {
              if let error = notification.userInfo?["error"] as? NSError  {
                 let errorMessage = error.localizedDescription

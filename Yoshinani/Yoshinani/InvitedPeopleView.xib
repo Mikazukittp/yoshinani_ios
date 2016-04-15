@@ -17,18 +17,18 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="T" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LUY-3v-i0Q" customClass="RoundLabel" customModule="Yoshinani" customModuleProvider="target">
-                    <rect key="frame" x="67" y="18" width="30" height="30"/>
+                    <rect key="frame" x="65" y="18" width="33" height="33"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="30" id="C01-Hn-Lyz"/>
-                        <constraint firstAttribute="height" constant="30" id="w20-hw-aCE"/>
+                        <constraint firstAttribute="width" constant="33" id="C01-Hn-Lyz"/>
+                        <constraint firstAttribute="height" constant="33" id="w20-hw-aCE"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                     <color key="textColor" red="0.14901960780000001" green="0.65098039220000004" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jt6-ls-kDW">
-                    <rect key="frame" x="0.0" y="50" width="164" height="14.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <rect key="frame" x="2" y="53" width="160" height="12"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -46,8 +46,8 @@
             </subviews>
             <constraints>
                 <constraint firstItem="3LH-TL-lX8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="2ts-Eq-2VT"/>
-                <constraint firstAttribute="trailing" secondItem="Jt6-ls-kDW" secondAttribute="trailing" id="6dM-mZ-wae"/>
-                <constraint firstItem="Jt6-ls-kDW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="8U7-8n-bTF"/>
+                <constraint firstAttribute="trailing" secondItem="Jt6-ls-kDW" secondAttribute="trailing" constant="2" id="6dM-mZ-wae"/>
+                <constraint firstItem="Jt6-ls-kDW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="2" id="8U7-8n-bTF"/>
                 <constraint firstItem="Jt6-ls-kDW" firstAttribute="top" secondItem="LUY-3v-i0Q" secondAttribute="bottom" constant="2" id="V5F-9c-qIg"/>
                 <constraint firstAttribute="trailing" secondItem="3LH-TL-lX8" secondAttribute="trailing" id="Z4d-wn-EZF"/>
                 <constraint firstItem="LUY-3v-i0Q" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ldG-YH-Kp6"/>

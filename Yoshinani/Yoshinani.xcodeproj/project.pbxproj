@@ -28,7 +28,6 @@
 		8306528E1C959CF200C61002 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8306528D1C959CF200C61002 /* MessageUI.framework */; };
 		830652901C959CF800C61002 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8306528F1C959CF800C61002 /* StoreKit.framework */; };
 		830652921C959D0400C61002 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830652911C959D0400C61002 /* SystemConfiguration.framework */; };
-		8309F4E81CBA3F23004BFC19 /* LineAdapter_3.1.17 in Resources */ = {isa = PBXBuildFile; fileRef = 8309F4E71CBA3F23004BFC19 /* LineAdapter_3.1.17 */; };
 		8309F4EA1CBA3F80004BFC19 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8309F4E91CBA3F80004BFC19 /* Foundation.framework */; };
 		8309F4EC1CBA3F90004BFC19 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8309F4EB1CBA3F90004BFC19 /* UIKit.framework */; };
 		8309F4EE1CBA3F9B004BFC19 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8309F4ED1CBA3F9B004BFC19 /* Security.framework */; };
@@ -101,6 +100,7 @@
 		83D033881C848C7900576B8E /* AboutAppViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83D033861C848C7900576B8E /* AboutAppViewController.xib */; };
 		83E6D1661C7C989E004B399C /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E6D1641C7C989E004B399C /* PrivacyPolicyViewController.swift */; };
 		83E6D1671C7C989E004B399C /* PrivacyPolicyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83E6D1651C7C989E004B399C /* PrivacyPolicyViewController.xib */; };
+		83E822671CBFED3600C7E123 /* LineAdapterUI.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 83E822661CBFED3600C7E123 /* LineAdapterUI.bundle */; };
 		83ED55401CACF6B300A139BF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83ED553F1CACF6B300A139BF /* GoogleService-Info.plist */; };
 		83EF132A1C437D2E00D55F74 /* NewUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EF13281C437D2E00D55F74 /* NewUserViewController.swift */; };
 		83EF132B1C437D2E00D55F74 /* NewUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83EF13291C437D2E00D55F74 /* NewUserViewController.xib */; };
@@ -117,7 +117,6 @@
 		83F7419D1CBBD55A00FB1571 /* LineAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F7419C1CBBD55A00FB1571 /* LineAdapter.framework */; };
 		83F7419F1CBBD55D00FB1571 /* LineAdapterLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F7419E1CBBD55D00FB1571 /* LineAdapterLogin.framework */; };
 		83F741A11CBBD56000FB1571 /* LineAdapterUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F741A01CBBD56000FB1571 /* LineAdapterUI.framework */; };
-		83F741A31CBBD56B00FB1571 /* LineAdapterUI.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F741A21CBBD56B00FB1571 /* LineAdapterUI.bundle */; };
 		83FA9D351CB8D28300ECF1D3 /* LoadMoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FA9D331CB8D28300ECF1D3 /* LoadMoreTableViewCell.swift */; };
 		83FA9D361CB8D28300ECF1D3 /* LoadMoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83FA9D341CB8D28300ECF1D3 /* LoadMoreTableViewCell.xib */; };
 		83FE2F721C3503B800EEC29B /* LoginSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FE2F711C3503B800EEC29B /* LoginSession.swift */; };
@@ -224,6 +223,7 @@
 		83D033861C848C7900576B8E /* AboutAppViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutAppViewController.xib; sourceTree = "<group>"; };
 		83E6D1641C7C989E004B399C /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
 		83E6D1651C7C989E004B399C /* PrivacyPolicyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrivacyPolicyViewController.xib; sourceTree = "<group>"; };
+		83E822661CBFED3600C7E123 /* LineAdapterUI.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = LineAdapterUI.bundle; path = LineAdapter_3.1.17/LineAdapterUI.bundle; sourceTree = "<group>"; };
 		83ED553F1CACF6B300A139BF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		83EF13281C437D2E00D55F74 /* NewUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserViewController.swift; sourceTree = "<group>"; };
 		83EF13291C437D2E00D55F74 /* NewUserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewUserViewController.xib; sourceTree = "<group>"; };
@@ -260,7 +260,6 @@
 				83F7419D1CBBD55A00FB1571 /* LineAdapter.framework in Frameworks */,
 				83F7419F1CBBD55D00FB1571 /* LineAdapterLogin.framework in Frameworks */,
 				83F741A11CBBD56000FB1571 /* LineAdapterUI.framework in Frameworks */,
-				83F741A31CBBD56B00FB1571 /* LineAdapterUI.bundle in Frameworks */,
 				8309F4EE1CBA3F9B004BFC19 /* Security.framework in Frameworks */,
 				8309F4EC1CBA3F90004BFC19 /* UIKit.framework in Frameworks */,
 				8309F4EA1CBA3F80004BFC19 /* Foundation.framework in Frameworks */,
@@ -312,6 +311,7 @@
 		8312ED2D1C2C2904005A269D = {
 			isa = PBXGroup;
 			children = (
+				83E822661CBFED3600C7E123 /* LineAdapterUI.bundle */,
 				83ED553F1CACF6B300A139BF /* GoogleService-Info.plist */,
 				8309F4E71CBA3F23004BFC19 /* LineAdapter_3.1.17 */,
 				8312ED381C2C2904005A269D /* Yoshinani */,
@@ -702,6 +702,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83FA9D361CB8D28300ECF1D3 /* LoadMoreTableViewCell.xib in Resources */,
+				83E822671CBFED3600C7E123 /* LineAdapterUI.bundle in Resources */,
 				83EF13351C43933A00D55F74 /* ProfileViewController.xib in Resources */,
 				83F7419B1CBBD0DD00FB1571 /* LineAdapter.plist in Resources */,
 				83151F6E1C707050009A4DA4 /* InviteFriendViewController.xib in Resources */,
@@ -726,7 +727,6 @@
 				8381A5771C33C8DB001911BC /* GroupTableViewCell.xib in Resources */,
 				8312ED441C2C2904005A269D /* LaunchScreen.storyboard in Resources */,
 				8381A5841C33CFB0001911BC /* BillTableViewCell.xib in Resources */,
-				8309F4E81CBA3F23004BFC19 /* LineAdapter_3.1.17 in Resources */,
 				8312ED411C2C2904005A269D /* Assets.xcassets in Resources */,
 				8363BD331C30121A0046A08F /* MenuTableViewCell.xib in Resources */,
 				8303150F1C7F4BFE00F031E1 /* MenuProfTableViewCell.xib in Resources */,
@@ -994,6 +994,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Yoshinani/Yoshinani-Bridging-Header.h";
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)/LineAdapter.framework/Headers $(PROJECT_DIR)/LineAdapterLogin.framework/Headers $(PROJECT_DIR)/LineAdapterUI.framework/Headers $(PROJECT_DIR)/LineAdapterUI.bundle/Headers";
 			};
 			name = Release;
 		};
