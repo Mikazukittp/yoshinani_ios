@@ -13,6 +13,7 @@ class PayerListViewController: BaseViewController ,UITableViewDataSource, UITabl
     var payerList :[User]?
     var payer :User?
     var payment_id :Int?
+    var postBillDelegate :PostBillPageMenuDelegate?
     
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
@@ -58,6 +59,7 @@ class PayerListViewController: BaseViewController ,UITableViewDataSource, UITabl
                         break
                     case .Success:
                         self.navigationController?.popViewControllerAnimated(true)
+                        self.postBillDelegate?.succeededPostBill()
                         break
                     case .ServerError:
                         self.setAlertView(ServerErrorMessage, message: ServerErrorMessage)

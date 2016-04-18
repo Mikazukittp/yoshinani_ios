@@ -10,7 +10,7 @@
 import UIKit
 
 protocol TimeLineViewControllerDelegate {
-    func pushNextViewControler (vc :UIViewController)
+    func pushNextViewControler (vc :PayerListViewController)
     func presentNextViewController(vc :PostPageMenuViewController)
 }
 

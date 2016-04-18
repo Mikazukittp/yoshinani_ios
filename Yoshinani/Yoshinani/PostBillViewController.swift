@@ -52,11 +52,14 @@ class PostBillViewController: BaseViewController {
         toolBar.tintColor = UIColor.whiteColor()
         toolBar.backgroundColor = UIColor.blackColor()
         
-        let toolBarBtn = UIBarButtonItem(title: "完了", style: .Plain, target: self, action: "didTapToolBarBtn:")
+        let toolBarBtn = UIBarButtonItem(title: "完了", style: .Plain, target: self, action: #selector(PostBillViewController.didTapToolBarBtn(_:)))
         toolBarBtn.tag = 1
 
         toolBar.items = [toolBarBtn]
         dateInput.inputAccessoryView = toolBar
+        
+        //現在時刻設定
+        changeLabelDate(NSDate())
        
         let nib = UINib(nibName: "ToPayUserCell", bundle: nil)
         tableView?.registerNib(nib, forCellReuseIdentifier: "ToPayUserCell")

@@ -37,18 +37,18 @@ class PageMenuViewController: BaseViewController ,UIViewControllerTransitioningD
         // Array to keep track of controllers in page menu
         var controllerArray : [UIViewController] = []
         
-        let controller = OverViewController(nibName: "OverViewController", bundle: nil)
-        controller.title = "メンバー"
-        controller.group_id = group_id
-        controller.indicatorDelegate = self
+        let overViewController = OverViewController(nibName: "OverViewController", bundle: nil)
+        overViewController.title = "メンバー"
+        overViewController.group_id = group_id
+        overViewController.indicatorDelegate = self
         
-        controllerArray.append(controller)
-        let controller2 = TimeLineViewController(nibName: "TimeLineViewController", bundle: nil)
-        controller2.title = "ログ"
-        controller2.group_id = group_id
-        controller2.delegate = self
-        controller2.indicatorDelegate = self
-        controllerArray.append(controller2)
+        controllerArray.append(overViewController)
+        let timeLineViewController = TimeLineViewController(nibName: "TimeLineViewController", bundle: nil)
+        timeLineViewController.title = "ログ"
+        timeLineViewController.group_id = group_id
+        timeLineViewController.delegate = self
+        timeLineViewController.indicatorDelegate = self
+        controllerArray.append(timeLineViewController)
         
         
         // Customize page menu to your liking (optional) or use default settings by sending nil for 'options' in the init
@@ -91,7 +91,8 @@ extension PageMenuViewController :PostBillPageMenuDelegate {
 }
 
 extension PageMenuViewController :TimeLineViewControllerDelegate {
-    func pushNextViewControler(vc: UIViewController) {
+    func pushNextViewControler(vc: PayerListViewController) {
+        vc.postBillDelegate = self
         self.navigationController?.pushViewController(vc, animated: true)
     }
     func presentNextViewController(vc: PostPageMenuViewController) {

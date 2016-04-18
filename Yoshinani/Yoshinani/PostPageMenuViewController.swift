@@ -41,6 +41,7 @@ class PostPageMenuViewController: BaseViewController ,UIViewControllerTransition
         controller2.users = users
         controller2.group_id = group_id
         controller2.indicatorDelegate = self
+        controller2.postDelegate = self
         controllerArray.append(controller2)
         
         

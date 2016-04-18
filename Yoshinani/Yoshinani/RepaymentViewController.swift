@@ -18,7 +18,7 @@ class RepaymentViewController: BaseViewController {
     var selectIndex :Int?
     var group_id :Int?
     var indicatorDelegate :PageMenuIndicatorDelegate?
-
+    var postDelegate :PostBillDelagate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,7 +89,8 @@ class RepaymentViewController: BaseViewController {
                         self.setAlertView(NetworkErrorTitle, alert: NetworkErrorMessage)
                         break
                     case .Success:
-                        self.dismissViewControllerAnimated(true, completion: { 
+                        self.dismissViewControllerAnimated(true, completion: {
+                            self.postDelegate?.succeededPostBill()
                         })
                         break
                     case .ServerError:
