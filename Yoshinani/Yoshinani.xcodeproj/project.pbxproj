@@ -60,6 +60,7 @@
 		832213741CBEA4E70098E50F /* LineLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 832213721CBEA4E70098E50F /* LineLoginViewController.xib */; };
 		83221BC51C8F2EE2000E47D5 /* PasswordSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83221BC41C8F2EE2000E47D5 /* PasswordSession.swift */; };
 		83274DBD1C78397400CE99E0 /* UIColor+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83274DBC1C78397400CE99E0 /* UIColor+Addition.swift */; };
+		8332E91C1D06B90E00A0EE3A /* String+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8332E91B1D06B90E00A0EE3A /* String+Addition.swift */; };
 		834DDB2F1C6C232900B7AB93 /* PageMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDB2E1C6C232900B7AB93 /* PageMenuViewController.swift */; };
 		834DDB321C6C285700B7AB93 /* Userable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DDB311C6C285700B7AB93 /* Userable.swift */; };
 		835CCCA71C3551AD00FDEA21 /* RUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835CCCA61C3551AD00FDEA21 /* RUser.swift */; };
@@ -182,6 +183,7 @@
 		832213721CBEA4E70098E50F /* LineLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LineLoginViewController.xib; sourceTree = "<group>"; };
 		83221BC41C8F2EE2000E47D5 /* PasswordSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordSession.swift; sourceTree = "<group>"; };
 		83274DBC1C78397400CE99E0 /* UIColor+Addition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Addition.swift"; sourceTree = "<group>"; };
+		8332E91B1D06B90E00A0EE3A /* String+Addition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Addition.swift"; sourceTree = "<group>"; };
 		834DDB2E1C6C232900B7AB93 /* PageMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageMenuViewController.swift; sourceTree = "<group>"; };
 		834DDB311C6C285700B7AB93 /* Userable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Userable.swift; sourceTree = "<group>"; };
 		835CCCA61C3551AD00FDEA21 /* RUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RUser.swift; sourceTree = "<group>"; };
@@ -393,6 +395,7 @@
 				8372BD631C6CC37900D07D97 /* UIViewController+Addition.swift */,
 				83274DBC1C78397400CE99E0 /* UIColor+Addition.swift */,
 				83C473821CB8FC6A00AD7384 /* Int+Addition.swift */,
+				8332E91B1D06B90E00A0EE3A /* String+Addition.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -830,6 +833,7 @@
 				835CCCA71C3551AD00FDEA21 /* RUser.swift in Sources */,
 				83151F5D1C7030C0009A4DA4 /* Total.swift in Sources */,
 				83151F6D1C707050009A4DA4 /* InviteFriendViewController.swift in Sources */,
+				8332E91C1D06B90E00A0EE3A /* String+Addition.swift in Sources */,
 				8303150B1C7F3FB300F031E1 /* Util.swift in Sources */,
 				8381A5831C33CFB0001911BC /* BillTableViewCell.swift in Sources */,
 				8303150E1C7F4BFE00F031E1 /* MenuProfTableViewCell.swift in Sources */,

@@ -220,7 +220,7 @@ extension NewUserViewController :UITextFieldDelegate {
 
     //MARK* Private
     
-    func textFieldDidChange(notification: NSNotification) {
+   @objc private func textFieldDidChange(notification: NSNotification) {
         validateCheckInputText(nameTextInputer)
         validateCheckInputText(passwordTextInputer)
     }

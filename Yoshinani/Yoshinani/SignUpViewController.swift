@@ -48,8 +48,13 @@ class SignUpViewController: BaseViewController,UITextFieldDelegate {
     @IBAction func submitButtonTapped(sender: AnyObject) {
         
         let textFields = [accountTextInput,passwordTextInput,rePasswordInput]
-        let isSuccess = self.nilCheck(textFields, alertMessage: "未入力の項目があります")
-
+        var isSuccess = self.nilCheck(textFields, alertMessage: "未入力の項目があります")
+        isSuccess = ValidateUtil.isTextfiledsAlphanumeric(textFields)
+        if !isSuccess {
+           setAlertView("半角英数字で入力してください。")
+            return
+        }
+        
         if isSuccess {
             
             let password = passwordTextInput.text!
@@ -156,7 +161,6 @@ class SignUpViewController: BaseViewController,UITextFieldDelegate {
         }
         return isSuccess
     }
-    
     
     private func setAlertView (message :String) {
         let alertController = UIAlertController(title: "登録失敗", message: message, preferredStyle: .Alert)

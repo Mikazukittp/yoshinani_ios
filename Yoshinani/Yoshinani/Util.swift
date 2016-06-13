@@ -20,6 +20,7 @@ struct UIScreenUtil {
     }
 }
 
+
 struct StringUtil {
     static func cordinateStringWithComma(value :Int) -> String {
         let num = NSNumber(integer: value)
@@ -60,9 +61,15 @@ struct StringUtil {
     }
 }
 
-extension String {
-    var isEmptyField: Bool {
-        return stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == ""
+struct ValidateUtil {
+    static func isTextfiledsAlphanumeric(textFields :[UITextField!]) -> Bool {
+        var isSuccess = true
+        
+        textFields.forEach {
+            if !$0.text!.isAlphanumeric() {
+                isSuccess = false
+            }
+        }
+        return isSuccess
     }
 }
-

@@ -161,7 +161,11 @@ extension InviteFriendViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        
+        let isSuccess = searchBar.text!.isAlphanumeric()
+        if !isSuccess {
+            caution("招待できません", message: "英数字を入力してください")
+            return
+        }
         let user = RealmManager.sharedInstance.userInfo
         
         guard let nonNilUser = user else{
@@ -171,6 +175,8 @@ extension InviteFriendViewController: UISearchBarDelegate {
         
         let session = UserSession()
         self.startIndicator()
+        
+        
         session.search(nonNilUser.userId, token: nonNilUser.token, userName: searchBar.text!) { (error) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.stopIndicator()

@@ -24,7 +24,6 @@ class GroupSession: NSObject {
         request.addValue(token, forHTTPHeaderField: "token")
         
         let session = NSURLSession.sharedSession()
-        session.cancelAllTasks()
         let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
                 if error!.code != NSURLError.Cancelled.rawValue {
@@ -81,7 +80,6 @@ class GroupSession: NSObject {
 
         
         let session = NSURLSession.sharedSession()
-        session.cancelAllTasks()
         let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
                 if error!.code != NSURLError.Cancelled.rawValue {
@@ -122,7 +120,6 @@ class GroupSession: NSObject {
         request.addValue(token, forHTTPHeaderField: "token")
         
         let session = NSURLSession.sharedSession()
-        session.cancelAllTasks()
         let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
                 if error!.code != NSURLError.Cancelled.rawValue {
@@ -159,7 +156,6 @@ class GroupSession: NSObject {
         request.addValue(token, forHTTPHeaderField: "token")
         
         let session = NSURLSession.sharedSession()
-        session.cancelAllTasks()
         let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
                 if error!.code != NSURLError.Cancelled.rawValue {
@@ -210,7 +206,6 @@ class GroupSession: NSObject {
         }
         
         let session = NSURLSession.sharedSession()
-        session.cancelAllTasks()
         let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
                 if error!.code != NSURLError.Cancelled.rawValue {
@@ -256,7 +251,6 @@ class GroupSession: NSObject {
         request.addValue(token, forHTTPHeaderField: "token")
         
         let session = NSURLSession.sharedSession()
-        session.cancelAllTasks()
         let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
                 if error!.code != NSURLError.Cancelled.rawValue {
