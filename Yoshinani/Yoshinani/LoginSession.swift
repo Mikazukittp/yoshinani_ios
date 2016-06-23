@@ -22,7 +22,7 @@ class LoginSession: NSObject {
 
     func login (account :String,pass :String,complition :(error :ErrorHandring, user :User?) ->Void) {
         
-        let request = NSMutableURLRequest(URL: NSURL(string: Const.urlDomain + "/users/sign_in")!,
+        let request = NSMutableURLRequest(URL: NSURL(string: Const().urlDomain + "/users/sign_in")!,
             cachePolicy: .UseProtocolCachePolicy,
             timeoutInterval: 10.0)
         request.HTTPMethod = "POST"

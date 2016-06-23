@@ -15,7 +15,7 @@ class GroupSession: NSObject {
     var group :Group?
     
     func groups (uid: Int,token :String, complition :(error :ErrorHandring) ->Void) {
-        let request = NSMutableURLRequest(URL: NSURL(string: Const.urlDomain + "/groups")!,
+        let request = NSMutableURLRequest(URL: NSURL(string: Const().urlDomain + "/groups")!,
             cachePolicy: .UseProtocolCachePolicy,
             timeoutInterval: 10.0)
         request.HTTPMethod = "GET"
@@ -54,7 +54,7 @@ class GroupSession: NSObject {
     }
     
     func create (uid: Int,token :String,name: String, desp :String, complition :(error :ErrorHandring, group_id :Int?) ->Void) {
-        let request = NSMutableURLRequest(URL: NSURL(string: Const.urlDomain + "/groups")!,
+        let request = NSMutableURLRequest(URL: NSURL(string: Const().urlDomain + "/groups")!,
             cachePolicy: .UseProtocolCachePolicy,
             timeoutInterval: 10.0)
         request.HTTPMethod = "POST"
@@ -111,7 +111,7 @@ class GroupSession: NSObject {
     }
     
     func accept(uid :Int, token :String, group_id :Int ,complition :(error :ErrorHandring) ->Void) {
-        let request = NSMutableURLRequest(URL: NSURL(string: Const.urlDomain + "/groups/\(group_id)/users/accept")!,
+        let request = NSMutableURLRequest(URL: NSURL(string: Const().urlDomain + "/groups/\(group_id)/users/accept")!,
             cachePolicy: .UseProtocolCachePolicy,
             timeoutInterval: 10.0)
         request.HTTPMethod = "PATCH"
@@ -147,7 +147,7 @@ class GroupSession: NSObject {
     }
     
     func destroy(uid :Int,token :String,group_id :Int, user_id :Int,complition :(error :ErrorHandring) ->Void) {
-        let request = NSMutableURLRequest(URL: NSURL(string: Const.urlDomain + "/groups/\(group_id)/users/\(user_id)")!,
+        let request = NSMutableURLRequest(URL: NSURL(string: Const().urlDomain + "/groups/\(group_id)/users/\(user_id)")!,
             cachePolicy: .UseProtocolCachePolicy,
             timeoutInterval: 10.0)
         request.HTTPMethod = "DELETE"
@@ -182,7 +182,7 @@ class GroupSession: NSObject {
     }
     
     func invite(uid :Int, token :String,group_id: Int,users :[User],complition :(error :ErrorHandring, message: String?) ->Void) {
-        let request = NSMutableURLRequest(URL: NSURL(string: Const.urlDomain + "/groups/\(group_id)/users/")!,
+        let request = NSMutableURLRequest(URL: NSURL(string: Const().urlDomain + "/groups/\(group_id)/users/")!,
             cachePolicy: .UseProtocolCachePolicy,
             timeoutInterval: 10.0)
         request.HTTPMethod = "POST"
@@ -242,7 +242,7 @@ class GroupSession: NSObject {
     
     func users(uid :Int,token :String,group_id :Int,complition :(error :ErrorHandring) ->Void) {
         
-        let request = NSMutableURLRequest(URL: NSURL(string: Const.urlDomain + "/groups/\(group_id)")!,
+        let request = NSMutableURLRequest(URL: NSURL(string: Const().urlDomain + "/groups/\(group_id)")!,
             cachePolicy: .UseProtocolCachePolicy,
             timeoutInterval: 10.0)
         request.HTTPMethod = "GET"

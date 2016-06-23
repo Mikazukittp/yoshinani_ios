@@ -54,7 +54,7 @@ class TopViewController: BaseViewController  ,UITableViewDataSource ,UITableView
     }
     
     private func setAdBannerView(){
-        self.admobView.adUnitID = Const.urlAdmob;
+        self.admobView.adUnitID = Const().urlAdmob;
         self.admobView.rootViewController = self;
         self.admobView.loadRequest(GADRequest())
     }

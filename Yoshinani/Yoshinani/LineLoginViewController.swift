@@ -29,7 +29,9 @@ class LineLoginViewController: BaseViewController ,UITextFieldDelegate{
     
     @IBAction func didTapSubmitButton(sender: AnyObject) {
         let textFields = [accountInputFiled]
-        let isSuccess = self.nilCheck(textFields, alertMessage: "アカウントを入力してください")
+        var isSuccess = self.nilCheck(textFields, alertMessage: "アカウントを入力してください")
+        isSuccess = accountInputFiled.text!.isAlphanumeric()
+
         if !isSuccess { return }
         
         guard let account = accountInputFiled.text else { return }

@@ -11,24 +11,19 @@ import UIKit
 class Const {
     //http://52.193.62.129/api/v1: 開発
     //http://52.69.32.124/api/v1 :本番
-    class var urlDomain: String {
-        #if false
-           return "http://52.193.62.129/api/v1"
-        #else
-            return "http://52.69.32.124/api/v1"
-        #endif
-    }
     
-    class var urlAdmob :String {
-        #if false
-            return "ca-app-pub-3940256099942544/2934735716"
-        #else
-            return "ca-app-pub-8668651775161815/1088420289"
-        #endif
+    #if DEBUG
+    let urlDomain = "http://52.193.62.129/api/v1"
+    #else
+    let urlDomain = "http://52.69.32.124/api/v1"
+    #endif
+    
+    #if DEBUG
+    let urlAdmob = "ca-app-pub-3940256099942544/2934735716"
+    #else
+    let urlAdmob = "ca-app-pub-8668651775161815/1088420289"
+    #endif
 
-       
-    }
-    
 }
 
 func participants_ids(users :[User], checked :[Bool]) -> [Int] {

@@ -15,7 +15,7 @@ class UserSession: NSObject {
     var user :User?
     
     func users (uid: Int,token :String, groud_id :Int, complition :(error :ErrorHandring) ->Void) {
-        let request = NSMutableURLRequest(URL: NSURL(string: Const.urlDomain + "/users?group_id=" + String(groud_id))!,
+        let request = NSMutableURLRequest(URL: NSURL(string: Const().urlDomain + "/users?group_id=" + String(groud_id))!,
             cachePolicy: .UseProtocolCachePolicy,
             timeoutInterval: 10.0)
         request.HTTPMethod = "GET"
@@ -56,7 +56,7 @@ class UserSession: NSObject {
     }
     
     func show(uid :Int,  token :String, complition:(error :ErrorHandring) ->Void) {
-        let request = NSMutableURLRequest(URL: NSURL(string: Const.urlDomain + "/users/" + String(uid))!,
+        let request = NSMutableURLRequest(URL: NSURL(string: Const().urlDomain + "/users/" + String(uid))!,
             cachePolicy: .UseProtocolCachePolicy,
             timeoutInterval: 10.0)
         print(uid)
@@ -97,7 +97,7 @@ class UserSession: NSObject {
     
     //users/search?account=#{アカウント名}
     func search(uid: Int, token:String ,userName :String,complition:(error :ErrorHandring) ->Void){
-        let request = NSMutableURLRequest(URL: NSURL(string: Const.urlDomain + "/users/search?account=" + String(userName))!,
+        let request = NSMutableURLRequest(URL: NSURL(string: Const().urlDomain + "/users/search?account=" + String(userName))!,
             cachePolicy: .UseProtocolCachePolicy,
             timeoutInterval: 10.0)
         request.HTTPMethod = "GET"
@@ -137,7 +137,7 @@ class UserSession: NSObject {
     
     func update(uid :Int,token :String ,account :String,completion :(error :ErrorHandring, user :User?) ->Void) {
         
-        let request = NSMutableURLRequest(URL: NSURL(string: Const.urlDomain + "/users/\(uid)")!,
+        let request = NSMutableURLRequest(URL: NSURL(string: Const().urlDomain + "/users/\(uid)")!,
                                           cachePolicy: .UseProtocolCachePolicy,
                                           timeoutInterval: 10.0)
         request.HTTPMethod = "PATCH"

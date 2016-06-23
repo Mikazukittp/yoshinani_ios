@@ -15,7 +15,7 @@ class PasswordSession: NSObject {
     
     func change (uid: Int,token :String,property :(password: String,newPassword: String,newPasswordConfirm :String),complition :(error :ErrorHandring , user :User?, message :String?) ->Void) {
         
-        let request = NSMutableURLRequest(URL: NSURL(string: Const.urlDomain + "/passwords")!,
+        let request = NSMutableURLRequest(URL: NSURL(string: Const().urlDomain + "/passwords")!,
             cachePolicy: .UseProtocolCachePolicy,
             timeoutInterval: 10.0)
         
@@ -88,7 +88,7 @@ class PasswordSession: NSObject {
     
     func getToken (email :String,complition :(error :ErrorHandring, message :String?) ->Void) {
         
-        let request = NSMutableURLRequest(URL: NSURL(string: Const.urlDomain + "/passwords/init")!,
+        let request = NSMutableURLRequest(URL: NSURL(string: Const().urlDomain + "/passwords/init")!,
             cachePolicy: .UseProtocolCachePolicy,
             timeoutInterval: 10.0)
         
@@ -140,7 +140,7 @@ class PasswordSession: NSObject {
     }
     func reset (property :(confirmKey: String,newPassword: String,newPasswordConfirm :String),complition :(error :ErrorHandring , user :User?, message :String?) ->Void) {
         
-        let request = NSMutableURLRequest(URL: NSURL(string: Const.urlDomain + "/passwords/reset")!,
+        let request = NSMutableURLRequest(URL: NSURL(string: Const().urlDomain + "/passwords/reset")!,
             cachePolicy: .UseProtocolCachePolicy,
             timeoutInterval: 10.0)
         

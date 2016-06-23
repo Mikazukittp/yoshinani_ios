@@ -14,7 +14,7 @@ class SignUpSession: NSObject {
 
     func singUp (property :(account: String,password: String,email :String?,username :String?),complition :(error :ErrorHandring , user :User?, meesage: String?) ->Void) {
         
-        let request = NSMutableURLRequest(URL: NSURL(string: Const.urlDomain + "/users")!,
+        let request = NSMutableURLRequest(URL: NSURL(string: Const().urlDomain + "/users")!,
             cachePolicy: .UseProtocolCachePolicy,
             timeoutInterval: 10.0)
         

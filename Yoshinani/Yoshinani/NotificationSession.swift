@@ -14,7 +14,7 @@ class NotificationSession: NSObject {
     
     func create (property :(token: String,userId: Int,gcmToken :String),complition :(error :ErrorHandring, message: String?) ->Void) {
         
-        let request = NSMutableURLRequest(URL: NSURL(string: Const.urlDomain + "/notification_tokens")!,
+        let request = NSMutableURLRequest(URL: NSURL(string: Const().urlDomain + "/notification_tokens")!,
             cachePolicy: .UseProtocolCachePolicy,
             timeoutInterval: 10.0)
         

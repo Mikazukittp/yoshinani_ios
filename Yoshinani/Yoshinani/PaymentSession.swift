@@ -22,7 +22,7 @@ class PaymentSession: NSObject {
             print(getParameter)
         }
         
-        let request = NSMutableURLRequest(URL: NSURL(string: Const.urlDomain + getParameter)!,
+        let request = NSMutableURLRequest(URL: NSURL(string: Const().urlDomain + getParameter)!,
             cachePolicy: .UseProtocolCachePolicy,
             timeoutInterval: 10.0)
         request.HTTPMethod = "GET"
@@ -60,7 +60,7 @@ class PaymentSession: NSObject {
     
     func create (uid :Int, pass :String,payment :Payment,group_id :Int,participants: [Int], complition :(error :ErrorHandring) ->Void) {
         
-        let request = NSMutableURLRequest(URL: NSURL(string: Const.urlDomain + "/payments")!,
+        let request = NSMutableURLRequest(URL: NSURL(string: Const().urlDomain + "/payments")!,
             cachePolicy: .UseProtocolCachePolicy,
             timeoutInterval: 10.0)
         request.HTTPMethod = "POST"
@@ -129,7 +129,7 @@ class PaymentSession: NSObject {
         
         let parameter = "/payments/\(payment_id))"
         
-        let request = NSMutableURLRequest(URL: NSURL(string: Const.urlDomain + parameter)!,
+        let request = NSMutableURLRequest(URL: NSURL(string: Const().urlDomain + parameter)!,
             cachePolicy: .UseProtocolCachePolicy,
             timeoutInterval: 10.0)
         request.HTTPMethod = "DELETE"

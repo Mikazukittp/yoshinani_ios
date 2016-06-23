@@ -12,7 +12,7 @@ import Unbox
 class OauthSession: NSObject {
     func create (thirdPartyId :String,complition :(error :ErrorHandring, message: String?, user :User?) ->Void) {
         
-        let request = NSMutableURLRequest(URL: NSURL(string: Const.urlDomain + "/oauth_registrations")!,
+        let request = NSMutableURLRequest(URL: NSURL(string: Const().urlDomain + "/oauth_registrations")!,
                                           cachePolicy: .UseProtocolCachePolicy,
                                           timeoutInterval: 10.0)
         
